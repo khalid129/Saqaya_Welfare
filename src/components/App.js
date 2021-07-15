@@ -1,7 +1,7 @@
 import '../css/index.css';
 const App = ()=>{
   return(<>
-    <h1>This is an App</h1>
+  <h1>This is an App</h1>
   </>);
 }
 
