@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "./Header";
+import Accountinfo from "./Accountinfo";
 import "../css/Account.css";
 
 const Account = () => {
@@ -12,46 +13,8 @@ const Account = () => {
         </div>
         <div className="button">تلاش کریں</div>
       </div>
-      <div className="accounts_box">
-        <div className="account">
-          <div className="account_name">
-            <h1>بلال</h1>
-          </div>
-          <div className="account_ledger">
-            <div className="balance">
-              <label htmlFor="balance">بقیہ : </label>
-              <span id="balance">200000</span>
-            </div>
-            <div className="expense">
-              <label htmlFor="expense">خرچہ : </label>
-              <span id="expense">150000</span>
-            </div>
-            <div className="income">
-              <label htmlFor="income">آمدنی : </label>
-              <span id="income">50000</span>
-            </div>
-          </div>
-        </div>
-        <div className="account">
-          <div className="account_name">
-            <h1>وقار</h1>
-          </div>
-          <div className="account_ledger">
-            <div className="balance">
-              <label htmlFor="balance">بقیہ : </label>
-              <span id="balance">150000</span>
-            </div>
-            <div className="expense">
-              <label htmlFor="expense">خرچہ : </label>
-              <span id="expense">50000</span>
-            </div>
-            <div className="income">
-              <label htmlFor="income">آمدنی : </label>
-              <span id="income">100000</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Accountinfo name="بلال" balance = "1000" expense="2000" income="3000"/>
+      <Accountinfo name="وقار" balance = "18000" expense="12000" income="30000"/>
     </div>
   );
 };

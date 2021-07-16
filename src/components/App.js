@@ -7,7 +7,7 @@ const App = ()=>{
   return(<>
     {/* <Masjid></Masjid> */}
     {/* <Account></Account> */}
-    <AccountDetails/>
+    {/* <AccountDetails/> */}
   </>);
 }
 
