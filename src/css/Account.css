@@ -1,0 +1,45 @@
+.main_div {
+  width: 100vw;
+  height: 100vh;
+  background-color: #add8e6;
+}
+
+.account,
+.account_header,
+.account_ledger_details {
+  width: 94%;
+  background: #e1e1e1;
+  margin: 0 auto;
+  margin-top: 10px;
+  text-align: right;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.account_ledger,
+.account_ledger_details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  font-size: 20px;
+}
+
+.account_header span {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Account Detail Responsive CSS */
+
+@media only screen and (max-width: 768px) {
+  .account_ledger_details {
+    display: grid;
+    grid-template-columns: repeat(3, 90px);
+    grid-auto-rows: minmax(min-content, max-content);
+    font-size: 16px;
+  }
+  /* .account_ledger{
+    display: grid;
+    grid-template-columns: repeat(3, 110px);
+  } */
+}
