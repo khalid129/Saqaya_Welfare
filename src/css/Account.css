@@ -24,10 +24,18 @@
   font-size: 20px;
   gap: 1;
 }
-
 .account_header span {
   font-size: 24px;
   font-weight: bold;
+}
+
+/* Account Info */
+.account .account_ledger{
+  display: flex;
+  justify-content: space-around;
+}
+.account_ledger .button{
+  height: 30px;
 }
 
 /* Account Detail Responsive CSS */

@@ -5,30 +5,36 @@ import AccountTransaction from "./AccountTransaction";
 import "../css/Account.css";
 import "../css/masjid.css";
 
-const AccountDetails = () => {
+const ExpenseDetail = () => {
   return (
     <div className="main_div">
-      <Header name="کھاتہ کی تفصیل" />
+      <Header name="خرچ کی تفصیل" />
       <div className="account_details">
-        <Accountinfo name="بلال" balance="1000" expense="14000" income="15000" form="فارم"/>
+        <Accountinfo
+          name="بلال"
+          balance="1000"
+          expense="14000"
+          income="15000"
+          form="فارم"
+        />
       </div>
       <div className="account_header">
         <div className="account_ledger">
           <div className="amount">
-            <span>رقم</span>
+            <span>کل رقم</span>
           </div>
           <div className="place">
-            <span>جگہ خرچ</span>
+            <span>مسجد کا نام</span>
           </div>
           <div className="date">
             <span>تاریخ</span>
           </div>
         </div>
       </div>
-      <AccountTransaction expenseAmount = "2000" expensePlace = "مسجد" expenseDate="12-Jul-2021"/>
-      <AccountTransaction expenseAmount = "12000" expensePlace = "جانور" expenseDate="10-Jul-2021"/>
+      <AccountTransaction expenseAmount = "2000" expensePlace =  "مسجد عمر" expenseDate="12-Jul-2021"/>
+      <AccountTransaction expenseAmount = "3000" expensePlace =  "مسجد عائشہ" expenseDate="12-Jul-2021"/>
     </div>
   );
 };
 
-export default AccountDetails;
+export default ExpenseDetail;
