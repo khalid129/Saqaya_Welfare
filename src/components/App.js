@@ -3,7 +3,7 @@ import Masjid  from './Masjid';
 import Account from './Account';
 import AccountDetails from './AccountDetails';
 import AccountIncome from './AccountIncome';
-import ExpenseDetail from './ExpenseDetail';
+import MasjidExpense from './MasjidExpense';
 
 const App = ()=>{
   return(<>
@@ -11,7 +11,7 @@ const App = ()=>{
     {/* <Account></Account> */}
     {/* <AccountDetails/> */}
     {/* <AccountIncome/> */}
-    <ExpenseDetail/>
+    <MasjidExpense/>
   </>);
 }
 

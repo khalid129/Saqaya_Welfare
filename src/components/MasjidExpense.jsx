@@ -5,7 +5,7 @@ import AccountTransaction from "./AccountTransaction";
 import "../css/Account.css";
 import "../css/masjid.css";
 
-const ExpenseDetail = () => {
+const MasjidExpense = () => {
   return (
     <div className="main_div">
       <Header name="خرچ کی تفصیل" />
@@ -32,9 +32,9 @@ const ExpenseDetail = () => {
         </div>
       </div>
       <AccountTransaction expenseAmount = "2000" expensePlace =  "مسجد عمر" expenseDate="12-Jul-2021"/>
-      <AccountTransaction expenseAmount = "3000" expensePlace =  "مسجد عائشہ" expenseDate="12-Jul-2021"/>
+      <AccountTransaction expenseAmount = "3000" expensePlace =  "مسجد عائشہ" expenseDate="10-Jul-2021"/>
     </div>
   );
 };
 
-export default ExpenseDetail;
+export default MasjidExpense;
