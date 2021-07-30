@@ -10,10 +10,10 @@ const AccountDetails = () => {
     <div className="main_div">
       <Header name="کھاتہ کی تفصیل" />
       <div className="account_details">
-        <Accountinfo name="بلال" balance="1000" expense="14000" income="15000" form="فارم"/>
+        <Accountinfo name="بلال" balance="1000" expense="14000" income="15000" form="فارم" accountDetail="آمدن کی تفصیل"/>
       </div>
       <div className="account_header">
-        <div className="account_ledger">
+        <div className="account_text">
           <div className="amount">
             <span>رقم</span>
           </div>
@@ -25,8 +25,8 @@ const AccountDetails = () => {
           </div>
         </div>
       </div>
-      <AccountTransaction expenseAmount = "2000" expensePlace = "مسجد" expenseDate="12-Jul-2021"/>
-      <AccountTransaction expenseAmount = "12000" expensePlace = "جانور" expenseDate="10-Jul-2021"/>
+      <AccountTransaction expenseAmount = "2000" expensePlace = "مسجد" expenseDate="12-7-2021"/>
+      <AccountTransaction expenseAmount = "12000" expensePlace = "جانور" expenseDate="10-7-2021"/>
     </div>
   );
 };

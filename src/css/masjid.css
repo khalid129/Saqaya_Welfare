@@ -24,7 +24,6 @@
 /* Check Box Part */
 .input_box{
     width: 100%;
-    height: 50px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -32,7 +31,6 @@
 
 .input_box .search_box{
     width: 1200px;
-    height: 80%;
 }
 
 .search_box input{
@@ -53,7 +51,7 @@ input:focus{
 
 .button {
     width: 150px;
-    height: 80%;
+    height: 45px;
     font-size: 20px;
     display: flex;
     justify-content: center;
@@ -78,6 +76,7 @@ input:focus{
     text-shadow: 1px 1px 2px rgb(158, 158, 158), 0 0 1em rgb(175, 175, 175), 0 0 0.2em rgb(216, 216, 216);
 }
 
+
 /* Resposive CSS  */
 
 @media only screen and (max-width: 768px){
@@ -87,13 +86,12 @@ input:focus{
     }
     .input_box{
         flex-wrap: wrap;
-        margin-bottom: 60px;
     }
     .input_box .button, .input_box .search_box{
         width: 100%;
         margin: 10px 20px;
     }
-    .date{
+    .Header_date{
         display: none;
     }
     .category_type .button{
@@ -101,5 +99,22 @@ input:focus{
     }
     .category_name{
         margin-left: 10px;
+    }
+    .header_div div:nth-child(3){
+        margin-right: 10px;
+    }
+    .account_ledger{
+       display: flex;
+       flex-direction: column-reverse;
+       justify-content:right;
+      } 
+    .account_ledger_details div, .account_text div{
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 1024px){
+    .input_box .search_box{
+        width: 800px;
     }
 }

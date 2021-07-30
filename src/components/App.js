@@ -8,10 +8,10 @@ import MasjidExpense from './MasjidExpense';
 const App = ()=>{
   return(<>
     {/* <Masjid></Masjid> */}
-    {/* <Account></Account> */}
+    <Account></Account>
     {/* <AccountDetails/> */}
     {/* <AccountIncome/> */}
-    <MasjidExpense/>
+    {/* <MasjidExpense/> */}
   </>);
 }
 

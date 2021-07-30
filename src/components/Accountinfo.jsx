@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/Account.css";
+import "../css/masjid.css";
 
 const Accountinfo = (props) => {
   return (
@@ -8,9 +9,8 @@ const Accountinfo = (props) => {
         <h1>{props.name}</h1>
       </div>
       <div className="account_ledger">
-        <div className="form">
-          <div className="button">{props.form}</div>
-        </div>
+        <div className="button accoutDetail">{props.accountDetail}</div>
+        <div className="button">{props.form}</div>
         <div className="balance">
           <label htmlFor="balance">بقیہ : </label>
           <span id="balance">{props.balance}</span>

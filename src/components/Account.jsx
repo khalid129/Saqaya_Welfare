@@ -13,8 +13,8 @@ const Account = () => {
         </div>
         <div className="button">تلاش کریں</div>
       </div>
-      <Accountinfo name="بلال" balance = "1000" expense="2000" income="3000" form="کھاتہ کی تفصیل"/>
-      <Accountinfo name="وقار" balance = "18000" expense="12000" income="30000" form="کھاتہ کی تفصیل"/>
+      <Accountinfo name="بلال" balance = "1000" expense="2000" income="3000" form="کھاتہ کی تفصیل" accountDetail="آمدن کی تفصیل"/>
+      <Accountinfo name="وقار" balance = "18000" expense="12000" income="30000" form="کھاتہ کی تفصیل" accountDetail="آمدن کی تفصیل"/>
     </div>
   );
 };

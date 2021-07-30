@@ -4,7 +4,7 @@ import '../css/masjid.css';
 const Header = (props) => {
     return (
         <div className='header_div'>
-        <div className="date">
+        <div className="Header_date">
             <h3>15-July-2021</h3>
         </div>
         <div className="category_name">

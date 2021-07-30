@@ -16,10 +16,11 @@ const AccountIncome = () => {
           expense="14000"
           income="15000"
           form="فارم"
+          accountDetail="آمدن کی تفصیل"
         />
       </div>
       <div className="account_header">
-        <div className="account_ledger">
+        <div className="account_text">
           <div className="amount">
             <span>کل رقم</span>
           </div>
@@ -31,10 +32,10 @@ const AccountIncome = () => {
           </div>
         </div>
       </div>
-      <AccountTransaction expenseAmount = "1000" expensePlace = "مسجد" expenseDate="12-Jul-2021"/>
-      <AccountTransaction expenseAmount = "10000" expensePlace = "جانور" expenseDate="10-Jul-2021"/>
-      <AccountTransaction expenseAmount = "1000" expensePlace = "مسجد" expenseDate="9-Jul-2021"/>
-      <AccountTransaction expenseAmount = "2000" expensePlace = "جانور" expenseDate="9-Jul-2021"/>
+      <AccountTransaction expenseAmount = "1000" expensePlace = "مسجد" expenseDate="12-7-2021"/>
+      <AccountTransaction expenseAmount = "10000" expensePlace = "جانور" expenseDate="10-7-2021"/>
+      <AccountTransaction expenseAmount = "1000" expensePlace = "مسجد" expenseDate="9-7-2021"/>
+      <AccountTransaction expenseAmount = "2000" expensePlace = "جانور" expenseDate="9-7-2021"/>
 
 
     </div>
