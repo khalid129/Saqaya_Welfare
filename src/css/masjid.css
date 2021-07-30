@@ -111,6 +111,9 @@ input:focus{
     .account_ledger_details div, .account_text div{
         text-align: center;
     }
+    .account_ledger .accoutDetail{
+        margin-top: 10px;
+      }
 }
 
 @media only screen and (max-width: 1024px){
