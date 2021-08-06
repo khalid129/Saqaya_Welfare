@@ -20,8 +20,12 @@
 .account_ledger,
 .account_text,
 .account_ledger_details {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  justify-content: space-around;
+  /* display: grid;
+  grid-template-columns: repeat(3, 1fr); */
   font-size: 20px;
 }
 .account_header span {

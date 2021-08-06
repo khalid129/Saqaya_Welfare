@@ -60,6 +60,9 @@ input:focus{
     background-color: #76d1f0;
     cursor: pointer;
 }
+/* .expense{
+    background-color: #10b4f0;
+} */
 .input_box .button{
     font-weight: bold;
 }
@@ -67,6 +70,7 @@ input:focus{
     width: 100%;
     max-height: 50px;
     height: 100%;
+    margin-top: 10px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;

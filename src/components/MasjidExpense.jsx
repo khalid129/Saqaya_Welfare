@@ -5,7 +5,7 @@ import AccountTransaction from "./AccountTransaction";
 import "../css/Account.css";
 import "../css/masjid.css";
 
-const MasjidExpense = () => {
+const MasjidExpense = ({props}) => {
   return (
     <div className="main_div">
       <Header name="خرچ کی تفصیل" />
@@ -24,16 +24,20 @@ const MasjidExpense = () => {
           <div className="amount">
             <span>کل رقم</span>
           </div>
-          <div className="place">
+          {
+            props &&
+            <div className="place">
             <span>مسجد کا نام</span>
           </div>
+          }
+          
           <div className="date">
             <span>تاریخ</span>
           </div>
         </div>
       </div>
-      <AccountTransaction expenseAmount = "2000" expensePlace =  "مسجد عمر" expenseDate="12-7-2021"/>
-      <AccountTransaction expenseAmount = "3000" expensePlace =  "مسجد عائشہ" expenseDate="10-7-2021"/>
+      <AccountTransaction expenseAmount = "2000" expenseDate="12-7-2021"/>
+      <AccountTransaction expenseAmount = "3000" expenseDate="10-7-2021"/>
     </div>
   );
 };

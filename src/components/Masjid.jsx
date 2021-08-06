@@ -10,8 +10,10 @@ const Masjid = () => {
           <input type="text" placeholder="انداج کریں" />
         </div>
         <div className="button">تلاش کریں</div>
+        <div className="button expense">خرچہ</div>
       </div>
       <div className="category_type">
+        
         <div className="button">صوبہ کا نام</div>
         <div className="button">شھر کا نام</div>
         <div className="button">نگران کا نام</div>
