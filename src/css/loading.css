@@ -1,0 +1,16 @@
+.load{
+    background-image: radial-gradient(#ADD9E6,#ADD9E6, white) !important;
+    /* background-color: #ADD9E6; */
+}
+.load{
+    height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;   
+}
+
+.load img{
+    height : 20%;
+     width : 30%;
+}
