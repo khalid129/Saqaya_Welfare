@@ -79,8 +79,21 @@ input:focus{
 .button:hover{
     text-shadow: 1px 1px 2px rgb(158, 158, 158), 0 0 1em rgb(175, 175, 175), 0 0 0.2em rgb(216, 216, 216);
 }
-
-
+.masjid_list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+.filter_Masjid_name{
+    width: 90%;
+    text-align: right;
+    background: #e1e1e1;
+    margin: 10px 30px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
 /* Resposive CSS  */
 
 @media only screen and (max-width: 768px){
@@ -117,6 +130,10 @@ input:focus{
     }
     .account_ledger .accoutDetail{
         margin-top: 10px;
+      }
+      .masjid_list{
+          margin-top: 70px;
+          justify-content: flex-start;
       }
 }
 
