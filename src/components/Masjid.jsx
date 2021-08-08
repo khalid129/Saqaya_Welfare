@@ -69,19 +69,23 @@ const Masjid = () => {
   return (
     <div className="main_div">
       <Header name="مسجد" />
-      <div className="input_box">
+        <div className="input_box">
+        <div className="button expense" onClick={toggleModal}>
+          خرچہ
+        </div>
+        
         <div className="search_box">
+        <div className="button" onClick={() => updateInput(state, button)}>
+          تلاش کریں
+        </div>
           <input
             type="text"
             placeholder="انداج کریں"
             onChange={(e) => setstate(e.target.value)}
           />
         </div>
-        <div className="button" onClick={() => updateInput(state, button)}>
-          تلاش کریں
-        </div>
         <div className="button expense" onClick={toggleModal}>
-          خرچہ
+          مسجد کا اندراج
         </div>
       </div>
       <div className="category_type">
@@ -287,17 +291,16 @@ const Masjid = () => {
         </ModalBody>
       </Modal>
       <div className="masjid_list">
-      {masjidList.map((data, index) => {
-        if (data) {
-          return (
+        {masjidList.map((data, index) => {
+          if (data) {
+            return (
               <div className="filter_Masjid_name" key={data.name}>
                 <h1>{data.name}</h1>
               </div>
-            
-          );
-        }
-        return null;
-      })}
+            );
+          }
+          return null;
+        })}
       </div>
     </div>
   );

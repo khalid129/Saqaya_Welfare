@@ -29,12 +29,17 @@
     align-items: center;
 }
 
-.input_box .search_box{
+/* .input_box .search_box{
     width: 1200px;
+} */
+.search_box{
+    width: 800px;
+    display: flex;
+    justify-content: space-around;
 }
 
 .search_box input{
-    width: 100%;
+    width: 600px;
     height: 100%;
     border: none;
     font-size: 16px;
