@@ -24,6 +24,7 @@
 /* Check Box Part */
 .input_box{
     width: 100%;
+    margin: 0 auto;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -33,13 +34,14 @@
     width: 1200px;
 } */
 .search_box{
-    width: 800px;
+    width: 70%;
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
 .search_box input{
-    width: 600px;
+    width: 80%;
     height: 100%;
     border: none;
     font-size: 16px;
@@ -103,25 +105,34 @@ input:focus{
 
 @media only screen and (max-width: 768px){
     .category_type{
+        margin-top: 0px;
         flex-wrap: wrap;
         font-size: 12px;
     }
     .input_box{
         flex-wrap: wrap;
     }
-    .input_box .button, .input_box .search_box{
+    .search_box{
         width: 100%;
-        margin: 10px 20px;
+        margin: 5px 10px;
+        flex-wrap: wrap;
+    }
+    .search_box  > input, .search_box > div{
+        width: 100%;
+    }
+    .input_box .button{
+        width: 100%;
+        margin: 5px 10px;
     }
     .Header_date{
         display: none;
     }
     .category_type .button{
-        margin-top: 15px;
+        margin-top: 5px;
     }
-    .category_name{
+    /* .category_name{
         margin-left: 10px;
-    }
+    } */
     .header_div div:nth-child(3){
         margin-right: 10px;
     }
@@ -137,7 +148,7 @@ input:focus{
         margin-top: 10px;
       }
       .masjid_list{
-          margin-top: 70px;
+          margin-top: 100px;
           justify-content: flex-start;
       }
 }

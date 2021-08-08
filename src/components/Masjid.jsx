@@ -70,8 +70,11 @@ const Masjid = () => {
     <div className="main_div">
       <Header name="مسجد" />
         <div className="input_box">
-        <div className="button expense" onClick={toggleModal}>
+        {/* <div className="button expense" onClick={toggleModal}>
           خرچہ
+        </div> */}
+        <div className="button expense" onClick={toggleModal}>
+          مسجد کا اندراج
         </div>
         
         <div className="search_box">
@@ -83,9 +86,6 @@ const Masjid = () => {
             placeholder="انداج کریں"
             onChange={(e) => setstate(e.target.value)}
           />
-        </div>
-        <div className="button expense" onClick={toggleModal}>
-          مسجد کا اندراج
         </div>
       </div>
       <div className="category_type">
