@@ -70,9 +70,6 @@ const Masjid = () => {
     <div className="main_div">
       <Header name="مسجد" />
         <div className="input_box">
-        {/* <div className="button expense" onClick={toggleModal}>
-          خرچہ
-        </div> */}
         <div className="button expense" onClick={toggleModal}>
           مسجد کا اندراج
         </div>
@@ -295,6 +292,9 @@ const Masjid = () => {
           if (data) {
             return (
               <div className="filter_Masjid_name" key={data.name}>
+                <p>500000</p>
+                <p>{data.manager}</p>
+                <p>{data.area} ,{data.province}</p>
                 <h1>{data.name}</h1>
               </div>
             );

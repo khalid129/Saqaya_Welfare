@@ -94,12 +94,23 @@ input:focus{
 }
 .filter_Masjid_name{
     width: 90%;
-    text-align: right;
+    /* text-align: right; */
     background: #e1e1e1;
     margin: 10px 30px;
     padding: 10px 20px;
     border-radius: 20px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.filter_Masjid_name p{
+    margin-right: 20px;
+    font-size: 20px;
+}
+.filter_Masjid_name h1{
+    width: 250px;
+    text-align: right;
 }
 /* Resposive CSS  */
 
@@ -150,6 +161,11 @@ input:focus{
       .masjid_list{
           margin-top: 100px;
           justify-content: flex-start;
+      }
+      .filter_Masjid_name{
+          flex-wrap: wrap;
+          align-items: flex-end;
+          flex-direction: column-reverse;
       }
 }
 
