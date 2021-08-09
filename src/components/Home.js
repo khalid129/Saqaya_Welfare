@@ -1,5 +1,6 @@
 import React from "react";
 import '../css/home.css';
+import '../css/masjid.css';
 import Header from './Header';
 import { Card, CardImg, CardText, CardTitle, CardBody } from "reactstrap";
 import { FadeTransform } from "react-animation-components";
@@ -41,6 +42,8 @@ function RenderCard(props) {
 
 export default function Home() {
   return (
+    <div className="main_div">
+    <Header />
     <div className="container main_div">
       <div className="row flex-direction-row align-items-center justify-content-center">
         <div className="col-12 col-md-6 col-lg-3 m-4">
@@ -73,6 +76,7 @@ export default function Home() {
           </Link>
         </div>
       </div>
+    </div>
     </div>
   );
 }

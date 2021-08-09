@@ -10,7 +10,6 @@ const Accountinfo = (props) => {
       </div>
       <div className="account_ledger">
         <div className="button accoutDetail">{props.accountDetail}</div>
-        <div className="button">{props.form}</div>
         <div className="balance">
           <label htmlFor="balance">بقیہ : </label>
           <span id="balance">{props.balance}</span>
