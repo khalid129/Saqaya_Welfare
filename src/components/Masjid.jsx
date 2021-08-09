@@ -12,6 +12,7 @@ import {
 import "../css/masjid.css";
 import Header from "./Header";
 import { MASAJID } from "../data";
+import { Link } from "react-router-dom";
 
 const initialState = {
   number: 0,
@@ -288,19 +289,23 @@ const Masjid = () => {
         </ModalBody>
       </Modal>
       <div className="masjid_list">
-        {masjidList.map((data, index) => {
-          if (data) {
-            return (
-              <div className="filter_Masjid_name" key={data.name}>
+      {masjidList.map((data, index) => {
+        if (data) {
+          return (
+            <div className="filter_Masjid_name" key={data.name}>
+            <Link to={`/masjid/${data.id}`} className="link" style={{textDecoration:"none"}}>
+              <div style={{color:"black"}} className="data">
                 <p>500000</p>
                 <p>{data.manager}</p>
                 <p>{data.area} ,{data.province}</p>
                 <h1>{data.name}</h1>
               </div>
-            );
-          }
-          return null;
-        })}
+            </Link>
+            </div>
+          );
+        }
+        return null;
+      })}
       </div>
     </div>
   );

@@ -91,24 +91,27 @@ input:focus{
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
+    margin-top: 10px;
 }
 .filter_Masjid_name{
     width: 90%;
-    /* text-align: right; */
-    background: #e1e1e1;
-    margin: 10px 30px;
-    padding: 10px 20px;
-    border-radius: 20px;
-    cursor: pointer;
+    margin-top: 10px;
+}
+.data{
+    width: 100%;
+    color: black;
+    background: red;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    background: #E1E1E1;
+    border-radius: 10px;
 }
-.filter_Masjid_name p{
+.data p{
     margin-right: 20px;
     font-size: 20px;
 }
-.filter_Masjid_name h1{
+.data h1{
     width: 250px;
     text-align: right;
 }
@@ -162,10 +165,11 @@ input:focus{
           margin-top: 100px;
           justify-content: flex-start;
       }
-      .filter_Masjid_name{
+      .data{
           flex-wrap: wrap;
           align-items: flex-end;
           flex-direction: column-reverse;
+          padding:10px;
       }
 }
 
