@@ -102,7 +102,7 @@ input:focus{
     cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-around;
 }
 .filter_Masjid_name p{
     margin-right: 20px;
