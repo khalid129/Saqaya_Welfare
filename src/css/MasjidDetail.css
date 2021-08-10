@@ -1,0 +1,24 @@
+.masjid_detail{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+}
+.masjid_detail .button{
+    flex: 0.1;
+}
+.masjid_header_info{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: center;
+    flex: 0.8;
+}
+.masjid_header_info h1{
+    margin-right: 40px;
+}
+.masjid_header_info p{
+    margin-bottom: 0px;
+    font-size: 18px;
+}
