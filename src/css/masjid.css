@@ -21,6 +21,7 @@
 .header_div div:nth-child(3){
     margin-right: 20px;
 }
+
 /* Check Box Part */
 .input_box{
     width: 100%;
@@ -138,8 +139,18 @@ input:focus{
         width: 100%;
         margin: 5px 10px;
     }
-    .Header_date{
+    .header_div{
+        display: flex;
+        justify-content: center;
+        background: red;
+    }
+    .Header_date, .category_name{
         display: none;
+    }
+    .header_div > .welfare_name{
+        margin-right: 0px;
+        width: 100%;
+        text-align: center;
     }
     .category_type .button{
         margin-top: 5px;

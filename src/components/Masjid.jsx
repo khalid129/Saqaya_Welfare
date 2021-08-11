@@ -1,14 +1,5 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-} from "reactstrap";
+import { Button, Modal,ModalHeader,ModalBody,Form,FormGroup,Input,Label,} from "reactstrap";
 import "../css/masjid.css";
 import Header from "./Header";
 import { MASAJID } from "../data";

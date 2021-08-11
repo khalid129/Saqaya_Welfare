@@ -10,7 +10,7 @@ const Header = (props) => {
 	let  yyyy 		= today.getFullYear();
 	return dd + '-' + mm + '-' + yyyy; }
     return (
-        <div className='header_div'>
+    <div className='header_div'>
         <div className="Header_date">
             <h3>{getDate()}</h3>
         </div>

@@ -22,3 +22,25 @@
     margin-bottom: 0px;
     font-size: 18px;
 }
+.expense_table{
+    padding: 10px;
+}
+TableBody TableRow TableCell{
+    background-color: red !important;
+}
+@media only screen and (max-width: 768px){
+    .masjid_detail{
+        flex-wrap: wrap;
+        flex-direction: column;
+        margin-top: 20px;
+    }
+    .masjid_header_info{
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        flex-direction: column;
+        margin-top: 10px;
+    }
+    .masjid_header_info h1{
+        margin-right: 0px;
+    }
+}
