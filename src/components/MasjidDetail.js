@@ -2,7 +2,6 @@ import React from "react";
 import "../css/masjid.css";
 import "../css/MasjidDetail.css";
 import Header from "./Header";
-// Table
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -11,6 +10,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { TRANSACTION } from "../transaction.js";
 
 const useStyles = makeStyles({
     table: {
@@ -19,24 +19,9 @@ const useStyles = makeStyles({
   });
 
 const tableStyle = {fontWeight:'bold', fontSize:'20px', textAlign:'center'};
-  
-  function createData(date, voucher, bank, reciever, detail, voucherNo, amount) {
-    return { date, voucher, bank, reciever, detail, voucherNo, amount };
-  }
-  
-  const rows = [
-    createData('6/17/2021','واؤچر','سقایہ ویلفئیر سوسائٹی','محمد امین خان','-','-',100000),
-    createData('6/17/2021','واؤچر','سقایہ ویلفئیر سوسائٹی','محمد امین خان','-','-',100000),
-    createData('6/17/2021','واؤچر','سقایہ ویلفئیر سوسائٹی','محمد امین خان','-','-',100000),
-    createData('6/17/2021','واؤچر','سقایہ ویلفئیر سوسائٹی','محمد امین خان','-','-',100000),
-    createData('6/17/2021','واؤچر','سقایہ ویلفئیر سوسائٹی','محمد امین خان','-','-',100000),
-    createData('6/17/2021','واؤچر','سقایہ ویلفئیر سوسائٹی','محمد امین خان','-','-',100000),
-    createData('6/17/2021','واؤچر','سقایہ ویلفئیر سوسائٹی','محمد امین خان','-','-',100000)
-  ];
-  
-
 const MasjidDetail = () => {
-
+  
+let filterTransaction = TRANSACTION.filter((transaction)=>{return transaction.transType == 'expense';})
     const classes = useStyles();
 
 
@@ -67,15 +52,15 @@ const MasjidDetail = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
-              <TableCell align="center">{row.amount}</TableCell>
-              <TableCell align="center">{row.voucherNo}</TableCell>
-              <TableCell align="center">{row.detail}</TableCell>
-              <TableCell align="center">{row.reciever}</TableCell>
-              <TableCell align="center">{row.bank}</TableCell>
-              <TableCell align="center">{row.voucher}</TableCell>
-              <TableCell align="center">{row.date}</TableCell>
+          { filterTransaction.map((transaction) => (
+            <TableRow key={transaction.name}>
+              <TableCell align="center">{transaction.amount}</TableCell>
+              <TableCell align="center">{transaction.voucherNo}</TableCell>
+              <TableCell align="center">{transaction.detail}</TableCell>
+              <TableCell align="center">{transaction.reciever}</TableCell>
+              <TableCell align="center">{transaction.bank}</TableCell>
+              <TableCell align="center">{transaction.voucher}</TableCell>
+              <TableCell align="center">{transaction.date}</TableCell>
             </TableRow>
           ))}
         </TableBody>
