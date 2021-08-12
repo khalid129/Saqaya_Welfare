@@ -11,7 +11,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { TRANSACTION } from "../transaction.js";
-
+import { ACCOUNT } from "../accounts.js";
 const useStyles = makeStyles({
     table: {
       minWidth: 500,
@@ -42,6 +42,7 @@ let filterTransaction = TRANSACTION.filter((transaction)=>{return transaction.tr
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
+            <TableCell style={tableStyle}>کھاتہ</TableCell>
             <TableCell style={tableStyle}>بھیجی ہوئی رقم</TableCell>
             <TableCell style={tableStyle}>واؤچرنمبر</TableCell>
             <TableCell style={tableStyle}>تفصیل </TableCell>
@@ -54,6 +55,10 @@ let filterTransaction = TRANSACTION.filter((transaction)=>{return transaction.tr
         <TableBody>
           { filterTransaction.map((transaction) => (
             <TableRow key={transaction.name}>
+              <TableCell align="center">{ACCOUNT.map((accountName)=>{
+                if(accountName.id===transaction.id)
+                {return accountName.name}})}
+              </TableCell>
               <TableCell align="center">{transaction.amount}</TableCell>
               <TableCell align="center">{transaction.voucherNo}</TableCell>
               <TableCell align="center">{transaction.detail}</TableCell>
