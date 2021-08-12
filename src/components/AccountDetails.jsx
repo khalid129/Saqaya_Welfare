@@ -4,13 +4,30 @@ import Accountinfo from "./Accountinfo";
 import AccountTransaction from "./AccountTransaction";
 import "../css/Account.css";
 import "../css/masjid.css";
+import { Link } from "react-router-dom";
 
-const AccountDetails = () => {
+const AccountDetails = (props) => {
+
+  console.log(props);
+  const data = props.account
+
   return (
     <div className="main_div">
       <Header name="کھاتہ کی تفصیل" />
       <div className="account_details">
-        <Accountinfo name="بلال" balance="1000" expense="14000" income="15000" form="فارم" accountDetail="آمدن کی تفصیل"/>
+        <Accountinfo 
+        data={data} 
+        income = {props.transaction.reduce((acc, list) => {
+          if(list.transType === "income") 
+          acc+= list.amount;
+          return acc;
+          }, 0)}
+        expense = {props.transaction.reduce((acc, list) => {
+          if(list.transType === "expense") 
+          acc+= list.amount;
+          return acc;
+          }, 0)}
+        />
       </div>
       <div className="account_header">
         <div className="account_text">
@@ -20,13 +37,14 @@ const AccountDetails = () => {
           <div className="place">
             <span>جگہ خرچ</span>
           </div>
-          <div className="date">
-            <span>تاریخ</span>
-          </div>
+          
+          
         </div>
       </div>
-      <AccountTransaction expenseAmount = "2000" expensePlace = "مسجد" expenseDate="12-7-2021"/>
-      <AccountTransaction expenseAmount = "12000" expensePlace = "جانور" expenseDate="10-7-2021"/>
+      <Link to="/MasjidExpense" style={{textDecoration:"none"}}><AccountTransaction expenseAmount = "500000" expensePlace = "مسجد" /></Link>
+      <AccountTransaction expenseAmount = "12000" expensePlace = "جانور" />
+      <AccountTransaction expenseAmount = "2000" expensePlace = "پانی" />
+      <AccountTransaction expenseAmount = "0" expensePlace = "راشن" />
     </div>
   );
 };

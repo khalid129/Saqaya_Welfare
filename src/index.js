@@ -5,13 +5,10 @@ import 'font-awesome/css/font-awesome.css';
 import 'bootstrap-social/bootstrap-social.css';
 import './css/index.css';
 import App from './components/App';
-import MasjidDetail from './components/MasjidDetail';
 import reportWebVitals from './reportWebVitals';
 
-
 ReactDOM.render(
-  // <App/>,
-  <MasjidDetail/>,
+  <App/>,
   document.getElementById('root')
 );
 

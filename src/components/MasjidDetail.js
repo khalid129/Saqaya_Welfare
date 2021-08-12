@@ -10,7 +10,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { TRANSACTION } from "../transaction.js";
+import { TRANSACTION } from "../transactions";
 import { ACCOUNT } from "../accounts.js";
 const useStyles = makeStyles({
     table: {
