@@ -30,7 +30,7 @@ const Masjid = () => {
   const [state, setstate] = useState("");
   const [modal, setModal] = useState(false);
   const [form, setForm] = useState(initialState);
-  var amount=[];
+  var amount=null;
   // console.log(filterTransaction);
   const toggleModal = () => {
     setModal(!modal);
@@ -289,10 +289,11 @@ const Masjid = () => {
             <Link to={`/masjid/${data.id}`} className="link" style={{textDecoration:"none"}}>
               <div style={{color:"black"}} className="data">
                 <p>
-                {filterTransaction.map((totalAmmount)=>{
+                {filterTransaction.map((totalAmmount,index)=>{
                   if(totalAmmount.masjidId===data.id)
-                      {return amount=totalAmmount.amount}
+                      {amount+=totalAmmount.amount}
                 })}
+                {amount} {amount=0}
                 </p>
                 <p>{data.manager}</p>
                 <p>{data.area} ,{data.province}</p>
