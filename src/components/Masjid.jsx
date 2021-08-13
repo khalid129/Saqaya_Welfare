@@ -4,7 +4,7 @@ import "../css/masjid.css";
 import Header from "./Header";
 import { MASAJID } from "../masjids";
 import { Link } from "react-router-dom";
-import {filterTransaction} from "../transactions";
+import {TRANSACTION} from "../transactions";
 
 const initialState = {
   number: 0,
@@ -31,7 +31,7 @@ const Masjid = () => {
   const [modal, setModal] = useState(false);
   const [form, setForm] = useState(initialState);
   var amount=null;
-  // console.log(filterTransaction);
+  const filterMasjid = TRANSACTION.filter((transaction)=>{return transaction.transType == 'expense';})
   const toggleModal = () => {
     setModal(!modal);
   };
@@ -289,7 +289,7 @@ const Masjid = () => {
             <Link to={`/masjid/${data.id}`} className="link" style={{textDecoration:"none"}}>
               <div style={{color:"black"}} className="data">
                 <p>
-                {filterTransaction.map((totalAmmount,index)=>{
+                {filterMasjid.map((totalAmmount,index)=>{
                   if(totalAmmount.masjidId===data.id)
                       {amount+=totalAmmount.amount}
                 })}

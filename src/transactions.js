@@ -265,4 +265,4 @@ export const TRANSACTION = [
     },
   ];
 
-export const filterTransaction = TRANSACTION.filter((transaction)=>{return transaction.transType == 'expense';})
+
