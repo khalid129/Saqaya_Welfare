@@ -4,6 +4,7 @@ import "../css/masjid.css";
 import Header from "./Header";
 import { MASAJID } from "../masjids";
 import { Link } from "react-router-dom";
+import {filterTransaction} from "../transactions";
 
 const initialState = {
   number: 0,
@@ -29,7 +30,8 @@ const Masjid = () => {
   const [state, setstate] = useState("");
   const [modal, setModal] = useState(false);
   const [form, setForm] = useState(initialState);
-
+  var amount=[];
+  // console.log(filterTransaction);
   const toggleModal = () => {
     setModal(!modal);
   };
@@ -286,7 +288,12 @@ const Masjid = () => {
             <div className="filter_Masjid_name" key={data.name}>
             <Link to={`/masjid/${data.id}`} className="link" style={{textDecoration:"none"}}>
               <div style={{color:"black"}} className="data">
-                <p>500000</p>
+                <p>
+                {filterTransaction.map((totalAmmount)=>{
+                  if(totalAmmount.masjidId===data.id)
+                      {return amount=totalAmmount.amount}
+                })}
+                </p>
                 <p>{data.manager}</p>
                 <p>{data.area} ,{data.province}</p>
                 <h1>{data.name}</h1>

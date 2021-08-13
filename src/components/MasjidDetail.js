@@ -10,7 +10,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { TRANSACTION } from "../transactions";
+import {filterTransaction} from "../transactions";
 import { ACCOUNT } from "../accounts.js";
 const useStyles = makeStyles({
     table: {
@@ -20,10 +20,8 @@ const useStyles = makeStyles({
 
 const tableStyle = {fontWeight:'bold', fontSize:'20px', textAlign:'center'};
 const MasjidDetail = () => {
-  
-let filterTransaction = TRANSACTION.filter((transaction)=>{return transaction.transType == 'expense';})
-    const classes = useStyles();
 
+    const classes = useStyles();
 
   return (
     <div className="main_div">

@@ -15,4 +15,8 @@ export const ACCOUNT = [
     id: 3,
     name: "خالد",
   },
+  {
+    id: 4,
+    name: "صائم",
+  },
 ];
