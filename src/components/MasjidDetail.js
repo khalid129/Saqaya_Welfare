@@ -56,7 +56,7 @@ let filterTransaction = TRANSACTION.filter((transaction)=>{return transaction.tr
           { filterTransaction.map((transaction) => (
             <TableRow key={transaction.name}>
               <TableCell align="center">{ACCOUNT.map((accountName)=>{
-                if(accountName.id===transaction.id)
+                if(accountName.id===transaction.accountId)
                 {return accountName.name}})}
               </TableCell>
               <TableCell align="center">{transaction.amount}</TableCell>

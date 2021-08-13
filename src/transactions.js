@@ -8,7 +8,7 @@ export const TRANSACTION = [
     },
     {
       id: 1,
-      accountId: 0,
+      accountId: 1,
       transType: "expense",
       date: "2021-08-19",
       voucher: "واؤچر", 
@@ -20,14 +20,14 @@ export const TRANSACTION = [
     },
     {
       id: 2,
-      accountId: 0,
+      accountId: 2,
       transType: "income",
       amount: 50000,
       date: "2021-08-10",
     },
     {
       id: 3,
-      accountId: 0,
+      accountId: 3,
       transType: "expense",
       date: "2021-08-13",
       voucher: "واؤچر", 
@@ -40,7 +40,7 @@ export const TRANSACTION = [
     ////////////////////////////////////////////////////
     {
       id: 4,
-      accountId: 1,
+      accountId: 0,
       transType: "income",
       date: "2021-08-16",
       amount: 10000,
@@ -54,7 +54,7 @@ export const TRANSACTION = [
     },
     {
       id: 6,
-      accountId: 1,
+      accountId: 2,
       transType: "expense",
       date: "2021-08-19",
       voucher: "واؤچر", 
@@ -67,14 +67,14 @@ export const TRANSACTION = [
     //////////////////////////////
     {
       id: 7,
-      accountId: 2,
+      accountId: 3,
       transType: "income",
       date: "2021-08-1",
       amount: 800000,
     },
     {
       id: 8,
-      accountId: 2,
+      accountId: 0,
       transType: "expense",
       date: "2021-08-8",
       voucher: "واؤچر", 
@@ -86,7 +86,7 @@ export const TRANSACTION = [
     },
     {
       id: 9,
-      accountId: 2,
+      accountId: 1,
       transType: "income",
       date: "2021-08-3",
       amount: 200000,
@@ -113,7 +113,7 @@ export const TRANSACTION = [
     },
     {
       id: 12,
-      accountId: 3,
+      accountId: 0,
       transType: "expense",
       date: "2021-08-19",
       voucher: "واؤچر", 
@@ -125,14 +125,14 @@ export const TRANSACTION = [
     },
     {
       id: 13,
-      accountId: 3,
+      accountId: 1,
       transType: "income",
       amount: 50000,
       date: "2021-06-19",
     },
     {
       id: 14,
-      accountId: 3,
+      accountId: 2,
       transType: "expense",
       date: "2021-08-22",
       voucher: "واؤچر", 
@@ -144,7 +144,7 @@ export const TRANSACTION = [
     },
     {
       id: 15,
-      accountId: 1,
+      accountId: 3,
       transType: "expense",
       date: "2021-08-16",
       voucher: "واؤچر", 
