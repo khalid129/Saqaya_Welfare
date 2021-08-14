@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import '../css/home.css';
 import '../css/masjid.css';
 import Header from './Header';
+import {TRANSACTION} from "../transactions";
 import { Card, CardImg, CardText, CardTitle, CardBody } from "reactstrap";
 import { FadeTransform } from "react-animation-components";
 import image1 from "./images/image1.jpeg";
@@ -12,6 +13,7 @@ import image5 from "./images/image5.png";
 import { Link } from "react-router-dom";
 
 function RenderCard(props) {
+  
   return (
     <FadeTransform
       in
@@ -41,6 +43,12 @@ function RenderCard(props) {
 }
 
 export default function Home() {
+  let totalAmount = TRANSACTION.reduce((acc,list)=>{
+    if(list.transType==="expense"){
+      acc=list.amount+acc;
+    }
+    return acc;
+  },0)
   return (
     <div className="main_div">
     <Header />
@@ -48,7 +56,7 @@ export default function Home() {
       <div className="row flex-direction-row align-items-center justify-content-center">
         <div className="col-12 col-md-6 col-lg-3 m-4">
           <Link to="/masjid" style={{textDecoration:"none"}}>
-            <RenderCard img={image1} name={"مساجد"} des={5000000} />
+            <RenderCard img={image1} name={"مساجد"} des={totalAmount} />
           </Link>
         </div>
 

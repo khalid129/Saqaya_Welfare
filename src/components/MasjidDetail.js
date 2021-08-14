@@ -21,7 +21,7 @@ const useStyles = makeStyles({
 const tableStyle = {fontWeight:'bold', fontSize:'20px', textAlign:'center'};
 const MasjidDetail = () => {
 
-const filterTransaction = TRANSACTION.filter((transaction)=>{return transaction.transType == 'expense';})
+    const filterTransaction = TRANSACTION.filter((transaction)=>{return transaction.transType == 'expense';})
     const classes = useStyles();
 
   return (

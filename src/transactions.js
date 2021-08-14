@@ -264,5 +264,3 @@ export const TRANSACTION = [
       amount: 10000,
     },
   ];
-
-
