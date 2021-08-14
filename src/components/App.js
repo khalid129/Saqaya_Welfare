@@ -23,7 +23,11 @@ function App() {
 
   const MasjidWithId = ({match}) => {
     return(
-      <MasjidDetail masjid={masjids.filter((masjid) => masjid.id === parseInt(match.params.id,10))[0]}/>
+      <MasjidDetail 
+      masjid={masjids.filter((masjid) => masjid.id === parseInt(match.params.id,10))[0]}
+      expenses = {transactions.filter((transaction)=> 
+      transaction.masjidId === parseInt(match.params.id,10) && transaction.transType === "expense")}
+      />
     );
   };
   const AccountWithId = ({match}) => {
@@ -34,6 +38,25 @@ function App() {
       />
     );
   };
+
+  const AccountIncomeWithId = ({match}) => {
+    return(
+      <AccountIncome
+       account={accounts.filter((account) => account.id === parseInt(match.params.id,10))[0]}
+       incomes = {transactions.filter((transaction)=> transaction.accountId === parseInt(match.params.id,10) && transaction.transType === "income")}
+       income = {transactions.reduce((acc, list) => {
+        if(list.accountId === parseInt(match.params.id,10) && list.transType === "income") 
+        acc+= list.amount;
+        return acc;
+        }, 0)}
+        expense = {transactions.reduce((acc, list) => {
+          if(list.accountId === parseInt(match.params.id,10) && list.transType === "expense") 
+          acc+= list.amount;
+          return acc;
+          }, 0)}
+      />
+    )
+  }
 
 
   useEffect(() => {
@@ -52,7 +75,7 @@ function App() {
     <Route path="/MasjidExpense" component={MasjidExpense} />
     <Route path='/masjid/:id' component={MasjidWithId} />
     <Route exact path='/account/:id' component={AccountWithId} />
-    <Route path='/account/:id/accountIncome' component={AccountIncome} />
+    <Route exact path='/account/:id/accountIncome' component={AccountIncomeWithId} />
 
     <div className="App">
       {toggle
