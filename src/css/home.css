@@ -1,4 +1,12 @@
 body {
     background-color: #ADD9E6;
   }
-
+.link{
+  color: #000;
+}
+.link:hover{
+  color: #000;
+}
+.welfare_name{
+  margin-right: 30px;
+}

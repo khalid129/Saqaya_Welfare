@@ -49,7 +49,6 @@ const Accountinfo = (props) => {
               <h1>{props.data.name}</h1>
             </div>
             <div className="account_ledger">
-            
             {useLocation().pathname===`/account/${props.data.id}` && <div className="form">
             <Link to={`/account/${props.data.id}/accountIncome`} style={{textDecoration:"none"}}>
             <div className="button accoutDetail" style={{ color: "black"}}>آمدن کی تفصیل</div>

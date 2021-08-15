@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import Accountinfo from "./Accountinfo";
-import AccountTransaction from "./AccountTransaction";
+import MasjidTransaction from "./MasjidTransaction";
 import "../css/Account.css";
 import "../css/masjid.css";
 
@@ -10,34 +10,36 @@ const MasjidExpense = ({props}) => {
     <div className="main_div">
       <Header name="خرچ کی تفصیل" />
       <div className="account_details">
-        <Accountinfo
+        {/* <Accountinfo
           name="بلال"
           balance="1000"
           expense="14000"
           income="15000"
           form="فارم"
           accountDetail="آمدن کی تفصیل"
-        />
+        /> */}
       </div>
       <div className="account_header">
         <div className="account_text">
           <div className="amount">
             <span>کل رقم</span>
           </div>
-          {
-            props &&
+          <div className="amount">
+            <span>علاقہ ، صوبہ</span>
+          </div>
             <div className="place">
             <span>مسجد کا نام</span>
           </div>
-          }
-          
           <div className="date">
-            <span>تاریخ</span>
+            <span>مسجد نمبر</span>
           </div>
         </div>
       </div>
-      <AccountTransaction expenseAmount = "2000" expenseDate="12-7-2021"/>
-      <AccountTransaction expenseAmount = "3000" expenseDate="10-7-2021"/>
+      <div className="masjidTransaction">
+        <MasjidTransaction/>
+        <MasjidTransaction/>
+        <MasjidTransaction/>
+      </div>
     </div>
   );
 };

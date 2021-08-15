@@ -71,6 +71,7 @@ function App() {
     <Switch>
     <Route exact path="/masjid" component={Masjid} />
     <Route exact path="/account" component={Account} />
+    <Route exact path="/home" component={Home} />
     <Route path="/accountDetails" component={AccountDetails} />
     <Route path="/MasjidExpense" component={MasjidExpense} />
     <Route path='/masjid/:id' component={MasjidWithId} />

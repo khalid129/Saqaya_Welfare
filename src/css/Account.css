@@ -42,5 +42,8 @@
   height: 30px;
 }
 
-
-
+/* Masjid Expense */
+.account_ledger_details div, .account_text div{
+  width: 200px;
+  text-align: center;
+}
