@@ -47,3 +47,14 @@
   width: 200px;
   text-align: center;
 }
+
+/* Responsive  */
+@media only screen and (max-width: 768px){
+  .account_ledger_details div span, .account_text div span{
+    font-size: 14px;
+  }
+  .account_text{
+    display: flex;
+    justify-content: space-between;
+  }
+}

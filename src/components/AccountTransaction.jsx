@@ -1,20 +1,18 @@
 import React from 'react';
 import "../css/Account.css";
 
-const AccountTransaction = ({expenseAmount,expensePlace,expenseDate}) => {
-    return (
+const AccountTransaction = (props) => {
+
+  return (
         <div className="account_ledger_details">
         <div className="expense_amount">
-          <span id="amount">{expenseAmount}</span>
+        <span id="amount">{props.income.amount}</span>
         </div>
-        {
-          expensePlace && 
-          <div className="expense_place">
-          <span id="expense">{expensePlace}</span>
+        <div className="expense_place">
+          <span id="expense">مسجد</span>
         </div>
-        }
         <div className="expense_date">
-          <span id="income">{expenseDate}</span>
+        <span id="income">{props.income.date}</span>
         </div>
       </div>
     )

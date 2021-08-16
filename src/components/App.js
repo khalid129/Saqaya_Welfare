@@ -25,9 +25,10 @@ function App() {
     return(
       <MasjidDetail 
       masjid={masjids.filter((masjid) => masjid.id === parseInt(match.params.id,10))[0]}
-      expenses = {transactions.filter((transaction)=> 
-      transaction.masjidId === parseInt(match.params.id,10) && transaction.transType === "expense")}
+      expenses = {transactions.filter((transaction)=> transaction.masjidId === parseInt(match.params.id,10) && transaction.transType === "expense")}
+      
       />
+      
     );
   };
   const AccountWithId = ({match}) => {
@@ -58,6 +59,25 @@ function App() {
     )
   }
 
+  const MasjidExpenseWithId = ({match}) => {
+    return(
+      <MasjidExpense 
+      account={accounts.filter((account) => account.id === parseInt(match.params.id,10))[0]}
+      expenses = {transactions.filter((transaction)=> transaction.accountId === parseInt(match.params.id,10) && transaction.transType === "expense")}
+      income = {transactions.reduce((acc, list) => {
+        if(list.accountId === parseInt(match.params.id,10) && list.transType === "income") 
+        acc+= list.amount;
+        return acc;
+        }, 0)}
+        expense = {transactions.reduce((acc, list) => {
+          if(list.accountId === parseInt(match.params.id,10) && list.transType === "expense") 
+          acc+= list.amount;
+          return acc;
+          }, 0)}
+      />
+    )
+  }
+
 
   useEffect(() => {
     const intervalID = setTimeout(() =>  {
@@ -71,12 +91,11 @@ function App() {
     <Switch>
     <Route exact path="/masjid" component={Masjid} />
     <Route exact path="/account" component={Account} />
-    <Route exact path="/home" component={Home} />
     <Route path="/accountDetails" component={AccountDetails} />
-    <Route path="/MasjidExpense" component={MasjidExpense} />
     <Route path='/masjid/:id' component={MasjidWithId} />
     <Route exact path='/account/:id' component={AccountWithId} />
     <Route exact path='/account/:id/accountIncome' component={AccountIncomeWithId} />
+    <Route path="/account/:id/masjidExpense" component={MasjidExpenseWithId} />
 
     <div className="App">
       {toggle

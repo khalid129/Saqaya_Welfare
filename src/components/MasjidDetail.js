@@ -61,7 +61,9 @@ console.log(props);
     toggleModal();
   };
 
-  // const filterTransaction = TRANSACTION.filter((transaction)=>{return transaction.transType == 'expense';})
+  
+
+
   const classes = useStyles();
 
   return (
