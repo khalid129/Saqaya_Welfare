@@ -4,19 +4,21 @@ import {Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label } f
 import Accountinfo from "./Accountinfo";
 import "../css/Account.css";
 import { Link } from "react-router-dom";
-import {ACCOUNT} from '../accounts'
-import {TRANSACTION} from '../transactions'
+import { useDispatch  } from 'react-redux'
+
 
 const initialState = {
-  id:0,
+  id:null,
   name:""
 }
 
-const Account = () => {
+const Account = (props) => {
+  const dispatch = useDispatch()
+
   const [input, setInput] = useState('');
-  const [allAccounts, setallAccounts] = useState(ACCOUNT)
-  const [accountList, setAccountList] = useState(ACCOUNT);
-  const [allTransactions, setallTransactions] = useState(TRANSACTION)
+  const [allAccounts, setallAccounts] = useState(props.accounts)
+  const [accountList, setAccountList] = useState(props.accounts);
+  const [allTransactions, setallTransactions] = useState(props.transactions)
   const [state, setstate] = useState("")
   const [modal,setModal]=useState(false);
   const [form,setForm]=useState(initialState);
@@ -36,7 +38,9 @@ const Account = () => {
   
   const handleSubmit=(event)=>{
     event.preventDefault();
-    console.log(form);
+    dispatch(props.postAccount(form.id,form.name))
+    setallAccounts(dispatch(props.fetchAccounts()))
+    setAccountList(dispatch(props.fetchAccounts()))
     setForm(initialState)
     toggleModal();
   }
@@ -72,8 +76,8 @@ const Account = () => {
         <ModalBody>
         <Form style={{textAlign:'right'}} onSubmit={handleSubmit}>
         <FormGroup>
-            <Label style={{fontSize:"4vh"}} htmlFor="number">کھاتہ نمبر</Label>
-            <Input type="number" id="number" name="number"  onChange={handleChange} value={form.id} />
+            <Label style={{fontSize:"4vh"}} htmlFor="id">کھاتہ نمبر</Label>
+            <Input type="id" id="id" name="id"  onChange={handleChange} value={form.id} />
           </FormGroup>
           <FormGroup>
             <Label style={{fontSize:"4vh"}} htmlFor="name">نام</Label>

@@ -4,17 +4,20 @@ import "../css/Account.css";
 import "../css/masjid.css";
 import { useLocation } from 'react-router-dom'
 import { Link } from "react-router-dom";
+import { fetchTransactions, postIncome } from '../redux/ActionCreators';
+import { useDispatch  } from 'react-redux'
 
 
 const initialState = {
   date:"",
   place:"",
-  description:"",
-  amount:0
+  detail:"",
+  amount:null
 }
 
 
 const Accountinfo = (props) => {
+  const dispatch = useDispatch() 
 const [modal,setModal]=useState(false);
 const [form,setForm]=useState(initialState);
 
@@ -25,7 +28,6 @@ const toggleModal=() => {
 
 
 const handleChange = ({ target: { name, value } }) => {
-  // console.log({ name, value });
   setForm((prev) => ({
     ...prev,
     [name]: value
@@ -34,30 +36,28 @@ const handleChange = ({ target: { name, value } }) => {
 
 const handleSubmit=(event)=>{
   event.preventDefault();
-  console.log(form);
+  dispatch(postIncome(parseInt(props.data.id),null,"income",form.date,"", "", "", form.detail, "",parseInt(form.amount)))
+  dispatch(fetchTransactions())
   setForm(initialState)
   toggleModal();
 }
-
-
-// console.log(props);
-
+// console.log(props.data);
 
     return (
 
       <>
         <div className="account">
           <div className="account_name">
-            <h1>{props.data.name}</h1>
+            <h1>{props.data?.name}</h1>
           </div>
           <div className="account_ledger">
           
-          {useLocation().pathname===`/account/${props.data.id}` && <div className="form">
-          <Link to={`/account/${props.data.id}/accountIncome`} style={{textDecoration:"none"}}>
+          {useLocation().pathname===`/account/${props.data?.id}` && <div className="form">
+          <Link to={`/account/${props.data?.id}/accountIncome`} style={{textDecoration:"none"}}>
           <div className="button accoutDetail" style={{ color: "black"}}>آمدن کی تفصیل</div>
           </Link>
           </div>}
-          {useLocation().pathname===`/account/${props.data.id}` && <div className="form">
+          {useLocation().pathname===`/account/${props.data?.id}` && <div className="form">
             <div className="button" onClick={toggleModal}>آمدن اندراج کریں</div>
           </div>}
             <div className="balance">
@@ -83,12 +83,12 @@ const handleSubmit=(event)=>{
             <Input type="date" id="date" name="date" onChange={handleChange} value={form.date}/>
           </FormGroup>
           <FormGroup>
-            <Label style={{fontSize:"4vh"}} htmlFor="place">مد</Label>
-            <Input style={{textAlign:'right'}} type="text" id="place" name="place" onChange={handleChange} value={form.place} />
+            <Label style={{fontSize:"4vh"}} htmlFor="purpose">مد</Label>
+            <Input style={{textAlign:'right'}} type="text" id="purpose" name="purpose" onChange={handleChange} value={form.purpose} />
           </FormGroup>
           <FormGroup>
-            <Label style={{fontSize:"4vh"}} htmlFor="description">تفصیل</Label>
-            <Input style={{textAlign:'right'}} type="text" id="description" name="description" onChange={handleChange} value={form.description}/>
+            <Label style={{fontSize:"4vh"}} htmlFor="detail">تفصیل</Label>
+            <Input style={{textAlign:'right'}} type="text" id="detail" name="detail" onChange={handleChange} value={form.detail}/>
           </FormGroup>
           <FormGroup>
             <Label style={{fontSize:"4vh"}} htmlFor="amount">رقم</Label>

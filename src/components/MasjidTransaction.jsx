@@ -1,12 +1,15 @@
 import React from "react";
 import "../css/Account.css";
 import "../css/masjid.css";
-
+import { Link,useParams } from "react-router-dom";
 
 const MasjidTransaction = (props) => {
-  console.log(props.masjid);
+
+  const { id } = useParams();
   return (
+    <Link to={`/masjid/${props.masjid[0].id}/${id}`} style={{textDecoration:"none"}}>
     <div className="account_ledger_details">
+    
       <div className="amount">
         <span id="amount">{props.data.amount}</span>
       </div>
@@ -19,7 +22,9 @@ const MasjidTransaction = (props) => {
       <div className="masjid_number">
         <span id="id">{props.data.masjidId}</span>
       </div>
+      
     </div>
+    </Link>
   );
 };
 

@@ -1,10 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
+@font-face {
+  font-family: 'Jameel';
+  src: url(../Fonts/Jameel\ Noori\ Nastaleeq\ Regular.ttf) format("truetype");
+}
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Jameel';
+}
+body {
+  font-family: 'Jameel'!important;
 }
 body{
   overflow-x: hidden;

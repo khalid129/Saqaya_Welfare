@@ -7,7 +7,6 @@ import "../css/masjid.css";
 
 const AccountIncome = (props) => {
 
-  // console.log(props.incomes);
   return (
     <div className="main_div">
       <Header name="آمدن کی تفصیل" />

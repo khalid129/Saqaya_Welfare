@@ -6,11 +6,9 @@ import 'bootstrap-social/bootstrap-social.css';
 import './css/index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
-import MasjidExpense from './components/MasjidExpense';
 
 ReactDOM.render(
   <App/>,
-  // <MasjidExpense/>,
   document.getElementById('root')
 );
 

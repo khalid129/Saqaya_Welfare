@@ -15,6 +15,7 @@
   padding: 10px 20px;
   border-radius: 20px;
   cursor: pointer;
+  color: black;
 }
 
 .account_ledger,
@@ -46,15 +47,4 @@
 .account_ledger_details div, .account_text div{
   width: 200px;
   text-align: center;
-}
-
-/* Responsive  */
-@media only screen and (max-width: 768px){
-  .account_ledger_details div span, .account_text div span{
-    font-size: 14px;
-  }
-  .account_text{
-    display: flex;
-    justify-content: space-between;
-  }
 }

@@ -1,17 +1,12 @@
-import React, { useState } from "react";
-import { Collapse, Button, CardBody, Card } from "reactstrap";
+import React from "react";
 import Header from "./Header";
 import Accountinfo from "./Accountinfo";
 import MasjidTransaction from "./MasjidTransaction";
-import { MASAJID } from "../masjids";
 import "../css/Account.css";
 import "../css/masjid.css";
 
 const MasjidExpense = (props) => {
-  const [state, setstate] = useState(MASAJID);
-  const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => setIsOpen(!isOpen);
-  // console.log(props.expenses);
+
 
   let uniqueMasjids = [
     ...new Set(props.expenses.map((expense) => expense.masjidId)),
@@ -23,7 +18,7 @@ const MasjidExpense = (props) => {
     };
   });
 
-  console.log(uniqueMasjids);
+
   return (
     <div className="main_div">
       <Header name="خرچ کی تفصیل" />
@@ -52,44 +47,15 @@ const MasjidExpense = (props) => {
           </div>
         </div>
       </div>
-      <div className="masjidTransaction" onClick={toggle}>
+      <div className="masjidTransaction" >
         {uniqueMasjids.map((expense) => {
           return (
-            <>
               <MasjidTransaction
                 data={expense}
-                masjid={state.filter((masjid) => {
+                masjid={props.masjids.filter((masjid) => {
                   return masjid.id === expense.masjidId;
                 })}
               />
-              <Collapse
-                style={{
-                  marginTop: "1rem",
-                  marginLeft: "2.5rem",
-                  marginRight: "2.5rem",
-                }}
-                isOpen={isOpen}
-              >
-                <Card>
-                  <CardBody style={{ backgroundColor: "transparent" }}>
-                    <div className="account_ledger_details">
-                      <div className="expense_amount">
-                        <span id="amount">{expense.amount}</span>
-                      </div>
-                      <div className="date">
-                        <span>Area</span>
-                      </div>
-                      <div className="expense_place">
-                        <span id="expense">name</span>
-                      </div>
-                      <div className="expense_date">
-                        <span id="income">12-Aug-2019</span>
-                      </div>
-                    </div>
-                  </CardBody>
-                </Card>
-              </Collapse>
-            </>
           );
         })}
       </div>

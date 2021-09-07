@@ -2,32 +2,23 @@ import React,{useState} from "react";
 import {Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label } from "reactstrap";
 import "../css/masjid.css";
 import Header from "./Header";
-import {MASAJID} from '../masjids';
 import { Link } from "react-router-dom";
-import {TRANSACTION} from "../transactions";
-
+import { useDispatch  } from 'react-redux'
 
 const initialState = {
-  number:0,
-  masjidName:"",
-  nigranName:"",
-  // date:"",
-  area:"",
-  // voucher:"",
-  // bankName:"",
-  // inTheNameOf:"",
+  id:0,
+  name:"",
   province:"",
-  // description:"",
-  // SNo:"",
-  // amount:0,
-  // account:""
+  area:"",
+  manager:"",
 }
 
-const Masjid = () => {
+const Masjid = ({masjids, masjidLoading, masjidErrMess, transactions, transactionLoading, transactionErrMess, postMasjid, fetchMasjids}) => {
+  const dispatch = useDispatch()
   const [input, setInput] = useState('');
-  const [allMasjid, setallMasjid] = useState(MASAJID)
-  const [masjidList, setMasjidList] = useState(MASAJID);
-  const [allTransactions, setallTransactions] = useState(TRANSACTION)
+  const [allMasjid, setallMasjid] = useState(masjids)
+  const [masjidList, setMasjidList] = useState(masjids);
+  const [allTransactions, setallTransactions] = useState(transactions)
   const [button, setButton] = useState("id")
   const [state, setstate] = useState("")
   const [modal,setModal]=useState(false);
@@ -40,7 +31,6 @@ const toggleModal=() => {
 
 
 const handleChange = ({ target: { name, value } }) => {
-  // console.log({ name, value });
   setForm((prev) => ({
     ...prev,
     [name]: value
@@ -49,7 +39,9 @@ const handleChange = ({ target: { name, value } }) => {
 
 const handleSubmit=(event)=>{
   event.preventDefault();
-  console.log(form);
+  dispatch(postMasjid(form.id,form.name,form.province,form.area,form.manager))
+  setallMasjid(dispatch(fetchMasjids()))
+  setMasjidList(dispatch(fetchMasjids()))
   setForm(initialState)
   toggleModal();
 }
@@ -64,6 +56,18 @@ const handleSubmit=(event)=>{
      setInput(input);
      setMasjidList(filtered);
 }
+
+if (masjidLoading) {
+  return(
+    <h4>Loading</h4>
+  );
+}
+else if (masjidErrMess) {
+  return(
+      <h4>{masjidErrMess}</h4>
+  );
+}
+else
 
   return (
     <div className="main_div">
@@ -96,42 +100,44 @@ const handleSubmit=(event)=>{
         <ModalBody>
         <Form style={{textAlign:'right'}} onSubmit={handleSubmit}>
         <FormGroup>
-            <Label style={{fontSize:"4vh"}} htmlFor="number">مسجد نمبر</Label>
-            <Input type="number" id="number" name="number"  onChange={handleChange} value={form.number} />
+            <Label style={{fontSize:"4vh"}} htmlFor="id">مسجد نمبر</Label>
+            <Input type="id" id="id" name="id"  onChange={handleChange} value={form.id} />
           </FormGroup>
           <FormGroup>
-            <Label style={{fontSize:"4vh"}} htmlFor="masjidName">مسجد کا نام</Label>
-            <Input style={{textAlign:'right'}} type="text" id="name" name="masjidName" onChange={handleChange} value={form.masjidName} />
+            <Label style={{fontSize:"4vh"}} htmlFor="name">مسجد کا نام</Label>
+            <Input style={{textAlign:'right'}} type="text" id="name" name="name" onChange={handleChange} value={form.name} />
           </FormGroup>
           <FormGroup>
-            <Label style={{fontSize:"4vh"}} htmlFor="nigranName">نگران کا نام</Label>
-            <Input style={{textAlign:'right'}} type="text" id="nigranName" name="nigranName" onChange={handleChange} value={form.nigranName} />
+            <Label style={{fontSize:"4vh"}} htmlFor="province">صوبہ</Label>
+            <Input style={{textAlign:'right'}} type="text" id="province" name="province" onChange={handleChange} value={form.province} />
           </FormGroup>
           <FormGroup>
             <Label style={{fontSize:"4vh"}} htmlFor="area">علاقہ</Label>
             <Input style={{textAlign:'right'}} type="text" id="area" name="area" onChange={handleChange} value={form.area} />
           </FormGroup>
          <FormGroup>
-            <Label style={{fontSize:"4vh"}} htmlFor="province">صوبہ</Label>
-            <Input style={{textAlign:'right'}} type="text" id="province" name="province" onChange={handleChange} value={form.province} />
+            <Label style={{fontSize:"4vh"}} htmlFor="manager">نگران کا نام</Label>
+            <Input style={{textAlign:'right'}} type="text" id="manager" name="manager" onChange={handleChange} value={form.manager} />
           </FormGroup>
           <Button type="submit" value="submit" style={{backgroundColor:"#90DAF2",color:'black',borderColor:'#90DAF2',marginTop:'10px'}}>اندراج کریں</Button>
         </Form>
         </ModalBody>
       </Modal>
       <div className="masjid_list">
-      {masjidList.map((data, index) => {
+      {masjidList && masjidList.map((data, index) => {
         if (data) {
           return (
             <div className="filter_Masjid_name" key={data.name}>
             <Link to={`/masjid/${data.id}`} className="link" style={{textDecoration:"none"}}>
               <div style={{color:"black"}} className="data">
                 <p>
-                {allTransactions.reduce((acc, list) => {
+                {allTransactions? 
+                  allTransactions.reduce((acc, list) => {
                   if(list.masjidId === data.id && list.transType === "expense") 
                   acc+= list.amount;
                   return acc;
-                  }, 0)}
+                  }, 0)
+                  :null}
                 </p>
                 
                 <p>{data.manager}</p>
@@ -150,3 +156,6 @@ const handleSubmit=(event)=>{
 };
 
 export default Masjid;
+
+
+

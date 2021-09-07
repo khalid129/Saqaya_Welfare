@@ -20,9 +20,19 @@ function IndividualExpense(props) {
 }
 
 const AccountDetails = (props) => {
-  console.log(props);
   const data = props.account;
-
+  if (props.transactionLoading) {
+    return(
+      <h4>Loading</h4>
+    );
+  }
+  else if (props.transactionErrMess) {
+    return(
+        <h4>{props.transactionErrMess}</h4>
+    );
+  }
+  else
+  if(data){
   return (
     <div className="main_div">
       <Header name="کھاتہ کی تفصیل" />
@@ -37,6 +47,8 @@ const AccountDetails = (props) => {
             if (list.transType === "expense") acc += list.amount;
             return acc;
           }, 0)}
+          // fetchTransactions={props.fetchTransactions}
+          // postIncome={props.postIncome}
         />
       </div>
       <div className="account_header">
@@ -60,6 +72,12 @@ const AccountDetails = (props) => {
       <IndividualExpense amount={0} purpose={"راشن"} />
     </div>
   );
+    }
+    else{
+      return(
+        <h4>No such account of this id</h4>
+      );
+    }
 };
 
 export default AccountDetails;
