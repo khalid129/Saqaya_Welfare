@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/Saqaya_Welfare/static/css/main.91f72d25.chunk.css",
+    "main.js": "/Saqaya_Welfare/static/js/main.71c7f070.chunk.js",
+    "main.js.map": "/Saqaya_Welfare/static/js/main.71c7f070.chunk.js.map",
+    "runtime-main.js": "/Saqaya_Welfare/static/js/runtime-main.b805621d.js",
+    "runtime-main.js.map": "/Saqaya_Welfare/static/js/runtime-main.b805621d.js.map",
+    "static/css/2.fbf35c36.chunk.css": "/Saqaya_Welfare/static/css/2.fbf35c36.chunk.css",
+    "static/js/2.aaa18f59.chunk.js": "/Saqaya_Welfare/static/js/2.aaa18f59.chunk.js",
+    "static/js/2.aaa18f59.chunk.js.map": "/Saqaya_Welfare/static/js/2.aaa18f59.chunk.js.map",
+    "static/js/3.fa6161ed.chunk.js": "/Saqaya_Welfare/static/js/3.fa6161ed.chunk.js",
+    "static/js/3.fa6161ed.chunk.js.map": "/Saqaya_Welfare/static/js/3.fa6161ed.chunk.js.map",
+    "index.html": "/Saqaya_Welfare/index.html",
+    "static/css/2.fbf35c36.chunk.css.map": "/Saqaya_Welfare/static/css/2.fbf35c36.chunk.css.map",
+    "static/css/main.91f72d25.chunk.css.map": "/Saqaya_Welfare/static/css/main.91f72d25.chunk.css.map",
+    "static/js/2.aaa18f59.chunk.js.LICENSE.txt": "/Saqaya_Welfare/static/js/2.aaa18f59.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/Saqaya_Welfare/static/media/Jameel Noori Nastaleeq Regular.a1d0cd1f.ttf",
+    "static/media/font-awesome.css": "/Saqaya_Welfare/static/media/fontawesome-webfont.f691f37e.woff",
+    "static/media/image1.5850d09f.jpeg": "/Saqaya_Welfare/static/media/image1.5850d09f.jpeg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b805621d.js",
+    "static/css/2.fbf35c36.chunk.css",
+    "static/js/2.aaa18f59.chunk.js",
+    "static/css/main.91f72d25.chunk.css",
+    "static/js/main.71c7f070.chunk.js"
+  ]
+}
