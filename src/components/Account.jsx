@@ -60,6 +60,7 @@ const Account = (props) => {
       <Header name="کھاتہ" />
       <div className="input_box">
       <div className="button"  onClick={toggleModal}>کھاتہ کا اندراج</div>
+      <div className="button"  onClick={toggleModal}>آمدن کا اندراج</div>
         <div className="search_box">
         <div className="button" onClick={() => updateInput(state)}>
           تلاش کریں

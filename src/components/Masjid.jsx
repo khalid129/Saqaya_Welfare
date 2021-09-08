@@ -76,14 +76,16 @@ else
         <div className="button expense" onClick={toggleModal}>
           مسجد کا اندراج
         </div>
-        
+        <div className="button expense" onClick={toggleModal}>
+          خرچ کا اندراج
+        </div>
         <div className="search_box">
         <div className="button" onClick={() => updateInput(state, button)}>
           تلاش کریں
         </div>
           <input
             type="text"
-            placeholder="انداج کریں"
+            placeholder="تلاش کریں"
             onChange={(e) => setstate(e.target.value)}
           />
         </div>
