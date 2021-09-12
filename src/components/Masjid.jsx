@@ -97,6 +97,14 @@ else
   <div className="button" onClick={()=>setButton("name")}>مسجد کا نام</div>
   <div className="button" onClick={()=>setButton("id")}>مسجد نمبر</div>
 </div>
+<div className="masjid_header">
+  <h3>مسجد نمبر</h3>
+  <h3>مسجد کا نام</h3>
+  <h3>علاقہ</h3>
+  <h3>صوبہ</h3>
+  <h3>نگران کا نام</h3>
+  <h3>کل رقم</h3>
+</div>
 <Modal isOpen={modal} toggle={toggleModal}>
         <ModalHeader>نئی مسجد کا اندراج</ModalHeader>
         <ModalBody>
@@ -141,10 +149,11 @@ else
                   }, 0)
                   :null}
                 </p>
-                
                 <p>{data.manager}</p>
-                <p>{data.area} ,{data.province}</p>
-                <h1>{data.name}</h1>
+                <p>{data.province}</p>
+                <p>{data.area}</p> 
+                <p>{data.name}</p>
+                <p>{data.id}</p>
               </div>
             </Link>
             </div>
