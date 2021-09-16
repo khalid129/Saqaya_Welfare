@@ -259,6 +259,10 @@ const MasjidDetail = (props) => {
             </Form>
           </ModalBody>
         </Modal>
+        <div className="total_amount">
+          <div><h2>10000</h2></div>
+          <div><h2>: کل رقم </h2></div>
+        </div>
       </div>
     );
   }
