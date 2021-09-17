@@ -104,6 +104,14 @@ function Main() {
         fetchTransactions={fetchTransactions}
         fetchAccounts={fetchAccounts}
         postExpense={postExpense}
+        totalExpense={allTransactions.transactions.reduce((acc,list)=>{
+          if(
+            list.masjidId === parseInt(match.params.id, 10) &&
+            list.transType === "expense"
+          )
+          acc += list.amount;
+          return acc
+        },0)}
         />
       )
       

@@ -13,8 +13,11 @@ const MasjidTransaction = (props) => {
       <div className="amount">
         <span id="amount">{props.data.amount}</span>
       </div>
+      <div className="province">
+        <span id="area">{props.masjid[0].province}</span>
+      </div>
       <div className="ares">
-        <span id="area">{props.masjid[0].area} ,{props.masjid[0].province}</span>
+        <span id="area">{props.masjid[0].area}</span>
       </div>
       <div className="masjid_name">
         <span id="name">{props.masjid[0].name}</span>

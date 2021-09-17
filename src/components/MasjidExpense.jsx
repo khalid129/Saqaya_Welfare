@@ -37,7 +37,10 @@ const MasjidExpense = (props) => {
             <span>کل رقم</span>
           </div>
           <div className="amount">
-            <span>علاقہ ، صوبہ</span>
+            <span>صوبہ</span>
+          </div>
+          <div className="amount">
+            <span>علاقہ</span>
           </div>
           <div className="place">
             <span>مسجد کا نام</span>

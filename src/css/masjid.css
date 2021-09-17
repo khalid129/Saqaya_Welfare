@@ -28,7 +28,9 @@
     justify-content: space-around;
     margin: 10px 70px;
 }
-
+.masjid_header .province{
+    margin-right: 45px;
+}
 /* Check Box Part */
 .input_box{
     width: 100%;
@@ -105,6 +107,17 @@ input:focus{
     width: 90%;
     margin-top: 10px;
 }
+.active {
+    width: 150px;
+    height: 45px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #E1E1E1;
+    cursor: pointer;
+  }
 .data{
     width: 100%;
     color: black;

@@ -94,8 +94,9 @@ const MasjidDetail = (props) => {
           </div>
           <div className="masjid_header_info">
             <p>مسجد نمبر :{props.masjid.id}</p>
-            <h1>{props.masjid.name}</h1>
-            <p>علاقہ : {props.masjid.area} , {props.masjid.province}</p>
+            <p>{props.masjid.name}</p>
+            <p>علاقہ : {props.masjid.area}</p>
+            <p> صوبہ :{props.masjid.province}</p>
             <p>نگران : {props.masjid.manager}</p>
           </div>
         </div>
@@ -135,6 +136,7 @@ const MasjidDetail = (props) => {
               </TableBody>
             </Table>
           </TableContainer>
+          <h1>{props.totalExpense}</h1>
         </div>
         <Modal isOpen={modal} toggle={toggleModal}>
           <ModalHeader>خرچے کا اندراج</ModalHeader>
@@ -259,10 +261,10 @@ const MasjidDetail = (props) => {
             </Form>
           </ModalBody>
         </Modal>
-        <div className="total_amount">
+        {/* <div className="total_amount">
           <div><h2>10000</h2></div>
           <div><h2>: کل رقم </h2></div>
-        </div>
+        </div> */}
       </div>
     );
   }
