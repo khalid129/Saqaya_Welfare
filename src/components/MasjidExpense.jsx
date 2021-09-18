@@ -6,8 +6,6 @@ import "../css/Account.css";
 import "../css/masjid.css";
 
 const MasjidExpense = (props) => {
-
-
   let uniqueMasjids = [
     ...new Set(props.expenses.map((expense) => expense.masjidId)),
   ].map((id) => {
@@ -17,7 +15,6 @@ const MasjidExpense = (props) => {
       amount: expenses.reduce((prev, curr) => prev + curr.amount, 0),
     };
   });
-
 
   return (
     <div className="main_div">
@@ -50,15 +47,15 @@ const MasjidExpense = (props) => {
           </div>
         </div>
       </div>
-      <div className="masjidTransaction" >
+      <div className="masjidTransaction">
         {uniqueMasjids.map((expense) => {
           return (
-              <MasjidTransaction
-                data={expense}
-                masjid={props.masjids.filter((masjid) => {
-                  return masjid.id === expense.masjidId;
-                })}
-              />
+            <MasjidTransaction
+              data={expense}
+              masjid={props.masjids.filter((masjid) => {
+                return masjid.id === expense.masjidId;
+              })}
+            />
           );
         })}
       </div>

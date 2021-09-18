@@ -1,9 +1,17 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import "../css/masjid.css";
-import "../css/index.css";
 import "../css/MasjidDetail.css";
 import Header from "./Header";
-import {Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label } from "reactstrap";
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  Form,
+  FormGroup,
+  Input,
+  Label,
+} from "reactstrap";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -12,19 +20,12 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { useDispatch  } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
-
-
 const useStyles = makeStyles({
-  root: {
-    minWidth: 500,
-    fontFamily: 'Jameel'
-  },
   table: {
     minWidth: 500,
-    fontFamily: 'Jameel'
   },
 });
 
@@ -42,14 +43,16 @@ const initialState = {
   detail: "",
   voucherNo: "",
   amount: null,
-  accountId: null,
+  accountName: "",
 };
 
 const MasjidDetail = (props) => {
-  const dispatch = useDispatch()
- const [transactions,setTransactions] = useState(props.expenses)
+  let sum = 0
+  const dispatch = useDispatch();
+  const [transactions, setTransactions] = useState(props.expenses);
+  const [allAccounts,setAccounts] = useState(props.accounts)
   const [modal, setModal] = useState(false);
-  const [form, setForm] = useState(initialState);  
+  const [form, setForm] = useState(initialState);
 
   const toggleModal = () => {
     setModal(!modal);
@@ -64,27 +67,37 @@ const MasjidDetail = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(props.postExpense(parseInt(form.accountId),props.masjid.id,"expense",form.date,form.voucher, form.bank, form.reciever, form.detail, form.voucherNo,parseInt(form.amount)))
-    setTransactions(dispatch(props.fetchTransactions()))
+    const account = allAccounts.filter((account) => account.name === form.accountName)[0]
+    dispatch(
+      props.postExpense(
+        account.id,
+        props.masjid.id,
+        "expense",
+        form.date,
+        form.voucher,
+        form.bank,
+        form.reciever,
+        form.detail,
+        form.voucherNo,
+        parseInt(form.amount)
+      )
+    );
+    setTransactions(dispatch(props.fetchTransactions()));
     setForm(initialState);
     toggleModal();
   };
-  
+
+  const grandTotal = (value) => {
+    sum+=value
+  }
 
   const classes = useStyles();
 
   if (props.transactionLoading) {
-    return(
-      <h4>Loading</h4>
-    );
-  }
-  else if (props.transactionErrMess) {
-    return(
-        <h4>{props.transactionErrMess}</h4>
-    );
-  }
-  else
-  if(props.masjid){
+    return <h4>Loading</h4>;
+  } else if (props.transactionErrMess) {
+    return <h4>{props.transactionErrMess}</h4>;
+  } else if (props.masjid) {
     return (
       <div className="main_div">
         <Header name="اخراجات کی تفصیل" />
@@ -94,11 +107,16 @@ const MasjidDetail = (props) => {
           </div>
           <div className="masjid_header_info">
             <p>مسجد نمبر :{props.masjid.id}</p>
-            <p>{props.masjid.name}</p>
-            <p>علاقہ : {props.masjid.area}</p>
-            <p> صوبہ :{props.masjid.province}</p>
+            <h1>{props.masjid.name}</h1>
+            <p>
+              علاقہ : {props.masjid.area}
+            </p>
+            <p>
+              صوبہ : {props.masjid.province}
+            </p>
             <p>نگران : {props.masjid.manager}</p>
           </div>
+          
         </div>
         <div className="expense_table">
           <TableContainer component={Paper}>
@@ -118,25 +136,33 @@ const MasjidDetail = (props) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-              { transactions.map((transaction) => (
-                <TableRow key={transaction.name}>
-                  <TableCell align="center">{props.accounts.map((accountName)=>{
-                    if(accountName.id===transaction.accountId)
-                    {return accountName.name}})}
-                  </TableCell>
-                  <TableCell align="center">{transaction.amount}</TableCell>
-                  <TableCell align="center">{transaction.voucherNo}</TableCell>
-                  <TableCell align="center">{transaction.detail}</TableCell>
-                  <TableCell align="center">{transaction.reciever}</TableCell>
-                  <TableCell align="center">{transaction.bank}</TableCell>
-                  <TableCell align="center">{transaction.voucher}</TableCell>
-                  <TableCell align="center">{transaction.date}</TableCell>
-                </TableRow>
-              ))}
+                {transactions.map((transaction) => (
+                  <TableRow key={transaction.name}>
+                    <TableCell align="center">
+                      {props.accounts.map((accountName) => {
+                        if (accountName.id === transaction.accountId) {
+                          return accountName.name;
+                        }
+                      })}
+                    </TableCell>
+                    <TableCell align="center">
+                    {transaction.amount}
+                    
+                    </TableCell>
+                    {grandTotal(transaction.amount)}
+                    <TableCell align="center">
+                      {transaction.voucherNo}
+                    </TableCell>
+                    <TableCell align="center">{transaction.detail}</TableCell>
+                    <TableCell align="center">{transaction.reciever}</TableCell>
+                    <TableCell align="center">{transaction.bank}</TableCell>
+                    <TableCell align="center">{transaction.voucher}</TableCell>
+                    <TableCell align="center">{transaction.date}</TableCell>
+                  </TableRow>
+                ))}
               </TableBody>
             </Table>
           </TableContainer>
-          <h1>{props.totalExpense}</h1>
         </div>
         <Modal isOpen={modal} toggle={toggleModal}>
           <ModalHeader>خرچے کا اندراج</ModalHeader>
@@ -154,7 +180,7 @@ const MasjidDetail = (props) => {
                   value={form.date}
                 />
               </FormGroup>
-  
+
               <FormGroup>
                 <Label style={{ fontSize: "4vh" }} htmlFor="voucher">
                   واسطہ/واؤچر
@@ -168,7 +194,7 @@ const MasjidDetail = (props) => {
                   value={form.voucher}
                 />
               </FormGroup>
-  
+
               <FormGroup>
                 <Label style={{ fontSize: "4vh" }} htmlFor="bank">
                   بینک کا نام/مد
@@ -239,11 +265,11 @@ const MasjidDetail = (props) => {
                 </Label>
                 <Input
                   style={{ textAlign: "right" }}
-                  type="number"
-                  id="accountId"
-                  name="accountId"
+                  type="text"
+                  id="accountName"
+                  name="accountName"
                   onChange={handleChange}
-                  value={form.accountId}
+                  value={form.accountName}
                 />
               </FormGroup>
               <Button
@@ -261,19 +287,16 @@ const MasjidDetail = (props) => {
             </Form>
           </ModalBody>
         </Modal>
-        {/* <div className="total_amount">
-          <div><h2>10000</h2></div>
+        <div className="total_amount">
+          <div><h2>{sum}</h2></div>
           <div><h2>: کل رقم </h2></div>
-        </div> */}
+        </div>
       </div>
     );
+  } else {
+    return <h4>No such masjid of this id</h4>;
   }
-  else{
-    return(
-      <h4>No such masjid of this id</h4>
-    );
-  }
-  
 };
 
 export default MasjidDetail;
+

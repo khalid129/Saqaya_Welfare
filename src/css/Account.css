@@ -25,8 +25,6 @@
   flex-direction: row;
   flex: 1;
   justify-content: space-around;
-  /* display: grid;
-  grid-template-columns: repeat(3, 1fr); */
   font-size: 20px;
 }
 .account_header span {
@@ -35,16 +33,39 @@
 }
 
 /* Account Info */
-.account .account_ledger{
+.account .account_ledger {
   display: flex;
   justify-content: space-around;
 }
-.account_ledger .button{
+.account_ledger .button {
   height: 30px;
 }
 
 /* Masjid Expense */
-.account_ledger_details div, .account_text div{
+.account_ledger_details div,
+.account_text div {
   width: 200px;
   text-align: center;
+}
+
+@media only screen and (max-width: 768px){
+  .account_ledger_details{
+    flex-direction: column-reverse;
+    align-items:center;
+  }
+  .account{
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  .account .account_name{
+    text-align: center;
+  }
+  .account .account_ledger{
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .account_ledger .accoutDetail{
+    margin-bottom: 5px;
+  }
 }

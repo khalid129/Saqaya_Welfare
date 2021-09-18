@@ -51,7 +51,6 @@ const handleSubmit=(event)=>{
             <h1>{props.data?.name}</h1>
           </div>
           <div className="account_ledger">
-          
           {useLocation().pathname===`/account/${props.data?.id}` && <div className="form">
           <Link to={`/account/${props.data?.id}/accountIncome`} style={{textDecoration:"none"}}>
           <div className="button accoutDetail" style={{ color: "black"}}>آمدن کی تفصیل</div>
@@ -61,16 +60,16 @@ const handleSubmit=(event)=>{
             <div className="button" onClick={toggleModal}>آمدن اندراج کریں</div>
           </div>}
             <div className="balance">
-              <label htmlFor="balance">بقیہ : </label>
               <span id="balance">{props.income-props.expense}</span>
+              <label htmlFor="balance">: بقیہ</label>
             </div>
             <div className="expense">
-              <label htmlFor="expense">خرچہ : </label>
               <span id="expense">{props.expense}</span>
+              <label htmlFor="expense">: خرچہ</label>
             </div>
             <div className="income">
-              <label htmlFor="income">آمدن : </label>
               <span id="income">{props.income}</span>
+              <label htmlFor="income">: آمدن</label>
             </div> 
           </div>
         </div>

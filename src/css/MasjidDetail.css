@@ -58,4 +58,9 @@ TableBody TableRow TableCell{
     .masjid_header_info h1{
         margin-right: 0px;
     }
+    .total_amount{
+        position: sticky;
+        bottom: 10px;
+        left: 10px;
+    }
 }
