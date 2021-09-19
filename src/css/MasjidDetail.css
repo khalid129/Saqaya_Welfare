@@ -31,8 +31,8 @@ TableBody TableRow TableCell{
     background-color: red !important;
 }
 .total_amount{
-    position: absolute;
-    bottom: 10px;
+    position: sticky;
+    top: 100%;
     left: 10px;
     display: flex;
     align-items: center;

@@ -1,5 +1,6 @@
 body {
   background-color: #ADD9E6;
+  min-height: 100vh;
 }
 .link{
 color: #000;
