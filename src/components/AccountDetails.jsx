@@ -54,10 +54,16 @@ const AccountDetails = (props) => {
       <div className="account_header">
         <div className="account_text">
           <div className="amount">
-            <span>رقم</span>
+            <span>بقیہ</span>
+          </div>
+          <div className="amount">
+            <span>خرچ</span>
+          </div>
+          <div className="amount">
+            <span>آمدن</span>
           </div>
           <div className="place">
-            <span>جگہ خرچ</span>
+            <span>نام</span>
           </div>
         </div>
       </div>
