@@ -25,11 +25,15 @@
 .masjid_header{
     display: flex;
     flex-direction: row-reverse;
-    justify-content: space-around;
-    margin: 10px 70px;
+    justify-content: space-evenly;
+    margin-top: 10px;
+    box-sizing: inherit;
 }
-.masjid_header .province{
-    margin-right: 45px;
+.masjid_header h3{
+    width: 150px;
+}
+.masjid_header .edit{
+    text-align: center;
 }
 /* Check Box Part */
 .input_box{
@@ -61,7 +65,10 @@
     padding: 10px 20px;
     color: #000;
 }
-
+.search_box .search {
+    display: flex;
+    justify-content: space-around;
+}
 input:focus{
     outline: none;
 }
@@ -130,7 +137,7 @@ input:focus{
 .data p{
     margin-right: 20px;
     font-size: 20px;
-    width: 400px;
+    width: 150px;
     text-align: center;
 }
 /* Resposive CSS  */

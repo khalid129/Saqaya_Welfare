@@ -19,6 +19,8 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 import Paper from "@material-ui/core/Paper";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -123,6 +125,7 @@ const MasjidDetail = (props) => {
             <Table className={classes.table} aria-label="simple table">
               <TableHead>
                 <TableRow>
+                  <TableCell style={tableStyle}>تبدیلی</TableCell>
                   <TableCell style={tableStyle}>کھاتہ</TableCell>
                   <TableCell style={tableStyle}>بھیجی ہوئی رقم</TableCell>
                   <TableCell style={tableStyle}>واؤچرنمبر</TableCell>
@@ -138,6 +141,12 @@ const MasjidDetail = (props) => {
               <TableBody>
                 {transactions.map((transaction) => (
                   <TableRow key={transaction.name}>
+                    <TableCell>
+                      <div className="edits">
+                        <DeleteIcon/>
+                        <EditIcon/>
+                      </div>
+                    </TableCell>
                     <TableCell align="center">
                       {props.accounts.map((accountName) => {
                         if (accountName.id === transaction.accountId) {
@@ -299,4 +308,3 @@ const MasjidDetail = (props) => {
 };
 
 export default MasjidDetail;
-

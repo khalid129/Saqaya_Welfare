@@ -1,9 +1,22 @@
 import React, { useState } from "react";
-import {Button,Modal,ModalHeader,ModalBody,Form,FormGroup,Input,Label,} from "reactstrap";
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  Form,
+  FormGroup,
+  Input,
+  Label,
+} from "reactstrap";
 import "../css/masjid.css";
 import Header from "./Header";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
+import SearchIcon from '@material-ui/icons/Search';
+
 
 const initialState = {
   id: 0,
@@ -11,6 +24,17 @@ const initialState = {
   province: "",
   area: "",
   manager: "",
+};
+const initialState2 = {
+  masjidId: null,
+  date: "",
+  voucher: "",
+  bank: "",
+  reciever: "",
+  detail: "",
+  voucherNo: "",
+  amount: null,
+  accountName: "",
 };
 
 const Masjid = ({
@@ -22,16 +46,57 @@ const Masjid = ({
   transactionErrMess,
   postMasjid,
   fetchMasjids,
+  fetchTransactions,
+  postExpense,
+  accounts,
 }) => {
   const dispatch = useDispatch();
   const [input, setInput] = useState("");
   const [allMasjid, setallMasjid] = useState(masjids);
   const [masjidList, setMasjidList] = useState(masjids);
+  const [allAccounts, setAccounts] = useState(accounts);
   const [allTransactions, setallTransactions] = useState(transactions);
   const [button, setButton] = useState("id");
   const [state, setstate] = useState("");
   const [modal, setModal] = useState(false);
   const [form, setForm] = useState(initialState);
+  const [modal2, setModal2] = useState(false);
+  const [form2, setForm2] = useState(initialState2);
+
+  const toggleModal2 = () => {
+    setModal2(!modal2);
+  };
+
+  const handleChange2 = ({ target: { name, value } }) => {
+    setForm2((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit2 = (event) => {
+    event.preventDefault();
+    const account = allAccounts.filter(
+      (account) => account.name === form2.accountName
+    )[0];
+    // console.log(account,"ye account");
+    dispatch(
+      postExpense(
+        account.id,
+        parseInt(form2.masjidId),
+        "expense",
+        form2.date,
+        form2.voucher,
+        form2.bank,
+        form2.reciever,
+        form2.detail,
+        form2.voucherNo,
+        parseInt(form2.amount)
+      )
+    );
+    setForm2(initialState);
+    toggleModal2();
+  };
 
   const toggleModal = () => {
     setModal(!modal);
@@ -71,17 +136,17 @@ const Masjid = ({
   } else
     return (
       <div className="main_div">
-        <Header name="مسجد" />
+        <Header name="مساجد" />
         <div className="input_box">
           <div className="button expense" onClick={toggleModal}>
             مسجد کا اندراج
           </div>
-          <div className="button expense" onClick={toggleModal}>
+          <div className="button expense" onClick={toggleModal2}>
             خرچ کا اندراج
           </div>
           <div className="search_box">
-            <div className="button" onClick={() => updateInput(state, button)}>
-              تلاش کریں
+          <div className="button search" onClick={() => updateInput(state, button)}>
+            <SearchIcon/> تلاش کریں
             </div>
             <input
               type="text"
@@ -91,45 +156,32 @@ const Masjid = ({
           </div>
         </div>
         <div className="category_type">
-          <div
-            className={button === "manager" ? "active" : "button"}
-            onClick={() => setButton("manager")}
-          >
+          <div className={button==="manager"?"active":"button"} onClick={() => setButton("manager")}>
             نگران کا نام
           </div>
-          <div
-            className={button === "province" ? "active" : "button"}
-            onClick={() => setButton("province")}
-          >
+          <div className={button==="province"?"active":"button"} onClick={() => setButton("province")}>
             صوبہ کا نام
           </div>
-          <div
-            className={button === "area" ? "active" : "button"}
-            onClick={() => setButton("area")}
-          >
+          <div className={button==="area"?"active":"button"} onClick={() => setButton("area")}>
             علاقہ کا نام
           </div>
-          <div
-            className={button === "name" ? "active" : "button"}
-            onClick={() => setButton("name")}
-          >
+          <div className={button==="name"?"active":"button"} onClick={() => setButton("name")}>
             مسجد کا نام
           </div>
-          <div
-            className={button === "id" ? "active" : "button"}
-            onClick={() => setButton("id")}
-          >
+          <div className={button==="id"?"active":"button"} onClick={() => setButton("id")}>
             مسجد نمبر
           </div>
         </div>
         <div className="masjid_header">
-          <h3>مسجد نمبر</h3>
-          <h3>مسجد کا نام</h3>
-          <h3>علاقہ</h3>
+          <h3 className="masjid_id">مسجد نمبر</h3>
+          <h3 className="masjid_name">مسجد کا نام</h3>
+          <h3 className="area">علاقہ</h3>
           <h3 className="province">صوبہ</h3>
-          <h3>نگران کا نام</h3>
-          <h3>کل رقم</h3>
+          <h3 className="manager">نگران کا نام</h3>
+          <h3 className="total">کل رقم</h3>
+          <h3 className="edit">تبدیلی</h3>
         </div>
+
         <Modal isOpen={modal} toggle={toggleModal}>
           <ModalHeader>نئی مسجد کا اندراج</ModalHeader>
           <ModalBody>
@@ -213,42 +265,183 @@ const Masjid = ({
             </Form>
           </ModalBody>
         </Modal>
+        <Modal isOpen={modal2} toggle={toggleModal2}>
+          <ModalHeader>خرچے کا اندراج</ModalHeader>
+          <ModalBody>
+            <Form style={{ textAlign: "right" }} onSubmit={handleSubmit2}>
+              <FormGroup>
+                <Label style={{ fontSize: "4vh" }} htmlFor="id">
+                  مسجد نمبر
+                </Label>
+                <Input
+                  type="number"
+                  id="masjidId"
+                  name="masjidId"
+                  onChange={handleChange2}
+                  value={form2.masjidId}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label style={{ fontSize: "4vh" }} htmlFor="date">
+                  تاریخ
+                </Label>
+                <Input
+                  type="date"
+                  id="date"
+                  name="date"
+                  onChange={handleChange2}
+                  value={form2.date}
+                />
+              </FormGroup>
+
+              <FormGroup>
+                <Label style={{ fontSize: "4vh" }} htmlFor="voucher">
+                  واسطہ/واؤچر
+                </Label>
+                <Input
+                  style={{ textAlign: "right" }}
+                  type="text"
+                  id="voucher"
+                  name="voucher"
+                  onChange={handleChange2}
+                  value={form2.voucher}
+                />
+              </FormGroup>
+
+              <FormGroup>
+                <Label style={{ fontSize: "4vh" }} htmlFor="bank">
+                  بینک کا نام/مد
+                </Label>
+                <Input
+                  style={{ textAlign: "right" }}
+                  type="text"
+                  id="bank"
+                  name="bank"
+                  onChange={handleChange2}
+                  value={form2.bank}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label style={{ fontSize: "4vh" }} htmlFor="reciever">
+                  کھاتہ بنام/وصول کنندہ کا نام
+                </Label>
+                <Input
+                  style={{ textAlign: "right" }}
+                  type="text"
+                  id="reciever"
+                  name="reciever"
+                  onChange={handleChange2}
+                  value={form2.reciever}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label style={{ fontSize: "4vh" }} htmlFor="detail">
+                  تفصیل
+                </Label>
+                <Input
+                  style={{ textAlign: "right" }}
+                  type="text"
+                  id="detail"
+                  name="detail"
+                  onChange={handleChange2}
+                  value={form2.detail}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label style={{ fontSize: "4vh" }} htmlFor="voucherNo">
+                  S.No/واؤچر نمبر
+                </Label>
+                <Input
+                  style={{ textAlign: "right" }}
+                  type="text"
+                  id="voucherNo"
+                  name="voucherNo"
+                  onChange={handleChange2}
+                  value={form2.voucherNo}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label style={{ fontSize: "4vh" }} htmlFor="amount">
+                  بھیجی ہوئی رقم
+                </Label>
+                <Input
+                  type="number"
+                  id="amount"
+                  name="amount"
+                  onChange={handleChange2}
+                  value={form2.amount}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label style={{ fontSize: "4vh" }} htmlFor="accountId">
+                  کھاتہ
+                </Label>
+                <Input
+                  style={{ textAlign: "right" }}
+                  type="text"
+                  id="accountName"
+                  name="accountName"
+                  onChange={handleChange2}
+                  value={form2.accountName}
+                />
+              </FormGroup>
+              <Button
+                type="submit"
+                value="submit"
+                style={{
+                  backgroundColor: "#90DAF2",
+                  color: "black",
+                  borderColor: "#90DAF2",
+                  marginTop: "10px",
+                }}
+              >
+                اندراج کریں
+              </Button>
+            </Form>
+          </ModalBody>
+        </Modal>
         <div className="masjid_list">
           {masjidList &&
-            masjidList.map((data, index) => {
-              if (data) {
-                return (
-                  <div className="filter_Masjid_name" key={data.name}>
-                    <Link
-                      to={`/masjid/${data.id}`}
-                      className="link"
-                      style={{ textDecoration: "none" }}
-                    >
-                      <div style={{ color: "black" }} className="data">
-                        <p>
-                          {allTransactions
-                            ? allTransactions.reduce((acc, list) => {
-                                if (
-                                  list.masjidId === data.id &&
-                                  list.transType === "expense"
-                                )
-                                  acc += list.amount;
-                                return acc;
-                              }, 0)
-                            : null}
-                        </p>
-                        <p>{data.manager}</p>
-                        <p>{data.province}</p>
-                        <p>{data.area}</p>
-                        <p>{data.name}</p>
-                        <p>{data.id}</p>
-                      </div>
-                    </Link>
-                  </div>
-                );
-              }
-              return null;
-            })}
+            masjidList
+              .slice(0)
+              .reverse()
+              .map((data, index) => {
+                if (data) {
+                  return (
+                    <div className="filter_Masjid_name" key={data.name}>
+                      <Link
+                        to={`/masjid/${data.id}`}
+                        className="link"
+                        style={{ textDecoration: "none" }}
+                      >
+                        <div style={{ color: "black" }} className="data">
+                          <DeleteIcon/>
+                          <EditIcon/>
+                          <p>
+                            {allTransactions
+                              ? allTransactions.reduce((acc, list) => {
+                                  if (
+                                    list.masjidId === data.id &&
+                                    list.transType === "expense"
+                                  )
+                                    acc += list.amount;
+                                  return acc;
+                                }, 0)
+                              : null}
+                          </p>
+
+                          <p>{data.manager}</p>
+                          <p>{data.province}</p>
+                          <p>{data.area}</p>
+                          <p>{data.name}</p>
+                          <p>{data.id}</p>
+                        </div>
+                      </Link>
+                    </div>
+                  );
+                }
+                return null;
+              })}
         </div>
       </div>
     );

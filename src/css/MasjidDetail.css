@@ -30,6 +30,11 @@
 TableBody TableRow TableCell{
     background-color: red !important;
 }
+
+.edits{
+    display: flex;
+    justify-content: space-around;
+}
 .total_amount{
     position: sticky;
     top: 100%;

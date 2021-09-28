@@ -5,14 +5,26 @@ import AccountTransaction from "./AccountTransaction";
 import "../css/Account.css";
 import "../css/masjid.css";
 import { Link } from "react-router-dom";
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 function IndividualExpense(props) {
   return (
     <div className="account_ledger_details">
-      <div className="expense_amount">
-        <span id="amount">{props.amount}</span>
+      <div className="edit">
+            <DeleteIcon/>
+            <EditIcon/>
       </div>
-      <div className="expense_place">
+      <div className="balance_amount">
+        <span id="amount">{props.income-props.expense}</span>
+      </div>
+      <div className="expense_amount">
+        <span id="amount">{props.expense}</span>
+      </div>
+      <div className="income_amount">
+        <span id="amount">{props.income}</span>
+      </div>
+      <div className="place">
         <span id="expense">{props.purpose}</span>
       </div>
     </div>
@@ -53,13 +65,16 @@ const AccountDetails = (props) => {
       </div>
       <div className="account_header">
         <div className="account_text">
-          <div className="amount">
+          <div className="edit">
+            <span>تبدیلی</span>
+          </div>
+          <div className="balance">
             <span>بقیہ</span>
           </div>
-          <div className="amount">
+          <div className="expense">
             <span>خرچ</span>
           </div>
-          <div className="amount">
+          <div className="income">
             <span>آمدن</span>
           </div>
           <div className="place">
@@ -68,14 +83,20 @@ const AccountDetails = (props) => {
         </div>
       </div>
       <Link to={`/account/${data.id}/masjidExpense`} style={{textDecoration:"none"}}>
-      <IndividualExpense amount={props.transaction.reduce((acc, list) => {
+      <IndividualExpense 
+      expense={props.transaction.reduce((acc, list) => {
         if (list.transType === "expense") acc += list.amount;
         return acc;
-      }, 0)} purpose={"مسجد"} />
+      }, 0)} 
+      income={props.transaction.reduce((acc, list) => {
+        if (list.transType === "income") acc += list.amount;
+        return acc;
+      }, 0)}
+      purpose={"مسجد"} />
       </Link>
-      <IndividualExpense amount={0} purpose={"جانور"} />
-      <IndividualExpense amount={0} purpose={"پانی"} />
-      <IndividualExpense amount={0} purpose={"راشن"} />
+      <IndividualExpense expense={0} income={0} purpose={"جانور"} />
+      <IndividualExpense expense={0} income={0} purpose={"پانی"} />
+      <IndividualExpense expense={0} income={0} purpose={"راشن"} />
     </div>
   );
     }

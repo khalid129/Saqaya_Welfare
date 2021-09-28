@@ -10,6 +10,7 @@ import image2 from "./images/image2.png";
 import image3 from "./images/image3.jpeg";
 import image4 from "./images/image4.png";
 import image5 from "./images/image5.png";
+import image6 from "./images/image6.png";
 import { Link } from "react-router-dom";
 
 function RenderCard(props) {
@@ -121,6 +122,16 @@ export default function Home({ transactions }) {
                 img={image5}
                 name={"کھاتہ"}
                 des={<CountUp end={totalIncomeAmount} duration={1.5} />}
+              />
+            </Link>
+          </div>
+
+          <div className="col-12 col-md-5 col-lg-3 m-4">
+            <Link to="/loan" style={{ textDecoration: "none" }}>
+              <RenderCard
+                img={image6}
+                name={"قرضہ جات"}
+                des={<CountUp end={totalMasjidAmount} duration={1.5} />}
               />
             </Link>
           </div>

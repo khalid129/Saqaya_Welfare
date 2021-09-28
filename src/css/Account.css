@@ -47,6 +47,11 @@
   width: 200px;
   text-align: center;
 }
+.edit{
+  width: 70px;
+  display: flex;
+  justify-content: space-around;
+}
 
 @media only screen and (max-width: 768px){
   .account_ledger_details{

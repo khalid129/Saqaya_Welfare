@@ -6,6 +6,8 @@ import { useLocation } from 'react-router-dom'
 import { Link } from "react-router-dom";
 import { fetchTransactions, postIncome } from '../redux/ActionCreators';
 import { useDispatch  } from 'react-redux'
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 
 const initialState = {
@@ -53,12 +55,21 @@ const handleSubmit=(event)=>{
           <div className="account_ledger">
           {useLocation().pathname===`/account/${props.data?.id}` && <div className="form">
           <Link to={`/account/${props.data?.id}/accountIncome`} style={{textDecoration:"none"}}>
+          <div className="button accoutDetail" style={{ color: "black"}}>قرض کی تفصیل</div>
+          </Link>
+          </div>}
+          {useLocation().pathname===`/account/${props.data?.id}` && <div className="form">
+          <Link to={`/account/${props.data?.id}/accountIncome`} style={{textDecoration:"none"}}>
           <div className="button accoutDetail" style={{ color: "black"}}>آمدن کی تفصیل</div>
           </Link>
           </div>}
           {useLocation().pathname===`/account/${props.data?.id}` && <div className="form">
             <div className="button" onClick={toggleModal}>آمدن اندراج کریں</div>
           </div>}
+            <div className="edit">
+            <DeleteIcon/>
+            <EditIcon/>
+            </div>
             <div className="balance">
               <span id="balance">{props.income-props.expense}</span>
               <label htmlFor="balance">: بقیہ</label>
