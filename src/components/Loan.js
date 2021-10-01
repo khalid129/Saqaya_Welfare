@@ -13,7 +13,10 @@ import {
 import "../css/Account.css";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useLocation } from 'react-router-dom'
 import SearchIcon from '@material-ui/icons/Search';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const initialState = {
   accountName: "",
@@ -22,6 +25,29 @@ const initialState = {
   detail: "",
   amount: null,
 };
+
+function LoanInfo(props) {
+  return(
+  <div className="account">
+      <div className="account_name">
+          <h1>{props.name}</h1>
+      </div>
+      <div className="account_ledger">
+        <div className="edit">
+          <DeleteIcon/>
+          <EditIcon/>
+        </div>
+        <Link to={`/account/${props.data?.id}/accountIncome`} style={{textDecoration:"none"}}>
+        <div className="button accoutDetail" style={{ color: "black"}}>قرض کی تفصیل</div>
+        </Link>
+        <div className="loan">
+            <span id="loan">{props.loan}</span>
+            <label htmlFor="loan"> : قرض</label>
+        </div>
+      </div>
+  </div>
+  );
+}
 
 const Loan = (props) => {
   const dispatch = useDispatch();
@@ -59,7 +85,6 @@ const Loan = (props) => {
     setForm(initialState);
     toggleModal();
   };
-
   return (
     <div className="main_div">
       <Header name="قرضہ " />
@@ -112,6 +137,7 @@ const Loan = (props) => {
           </Form>
         </ModalBody>
       </Modal>
+      <LoanInfo name="بلال" loan="1000"/>
     </div>
   );
 };
