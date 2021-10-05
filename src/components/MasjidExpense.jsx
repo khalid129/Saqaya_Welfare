@@ -25,6 +25,7 @@ const MasjidExpense = (props) => {
             data={props.account}
             expense={props.expense}
             income={props.income}
+            loan={props.loan}
           />
         }
       </div>

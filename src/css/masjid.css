@@ -129,12 +129,13 @@ input:focus{
     width: 100%;
     color: black;
     display: flex;
-    align-items: center;
+    align-items:center;
     justify-content: space-around;
     background: #E1E1E1;
     border-radius: 10px;
 }
 .data p{
+    margin-top: 10px;
     margin-right: 20px;
     font-size: 20px;
     width: 150px;
@@ -202,7 +203,6 @@ input:focus{
     }
     
     .data{
-        /* flex-wrap: wrap; */
         flex-direction: column-reverse;
         justify-content: center;
         align-items: center;

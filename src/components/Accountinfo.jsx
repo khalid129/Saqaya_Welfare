@@ -66,13 +66,21 @@ const handleSubmit=(event)=>{
           {useLocation().pathname===`/account/${props.data?.id}` && <div className="form">
             <div className="button" onClick={toggleModal}>آمدن اندراج کریں</div>
           </div>}
-            <div className="edit">
-            <DeleteIcon/>
-            <EditIcon/>
-            </div>
+            {useLocation().pathname===`/account` && <div className="edit">
+            <Link to={'/account'}>
+            <DeleteIcon onClick={props.deleted} style={{color: "#D11A2A"}}/>
+            </Link>
+            <Link to={'/account'}>
+            <EditIcon onClick={props.edit} style={{color:"#4CAF50", cursor:"pointer"}}/>
+            </Link>
+            </div>}
             <div className="balance">
-              <span id="balance">{props.income-props.expense}</span>
+              <span id="balance">{props.income-props.expense-props.loan}</span>
               <label htmlFor="balance">: بقیہ</label>
+            </div>
+            <div className="expense">
+              <span id="loan">{props.loan}</span>
+              <label htmlFor="loan">: قرضہ</label>
             </div>
             <div className="expense">
               <span id="expense">{props.expense}</span>

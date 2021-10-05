@@ -11,10 +11,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 function IndividualExpense(props) {
   return (
     <div className="account_ledger_details">
-      <div className="edit">
-            <DeleteIcon/>
-            <EditIcon/>
-      </div>
       <div className="balance_amount">
         <span id="amount">{props.income-props.expense}</span>
       </div>
@@ -56,7 +52,11 @@ const AccountDetails = (props) => {
             return acc;
           }, 0)}
           expense={props.transaction.reduce((acc, list) => {
-            if (list.transType === "expense") acc += list.amount;
+            if (list.transType === "expense" && !list.loan) acc += list.amount;
+            return acc;
+          }, 0)}
+          loan={props.transaction.reduce((acc, list) => {
+            if (list.loan) acc += list.amount;
             return acc;
           }, 0)}
           // fetchTransactions={props.fetchTransactions}
@@ -65,9 +65,6 @@ const AccountDetails = (props) => {
       </div>
       <div className="account_header">
         <div className="account_text">
-          <div className="edit">
-            <span>تبدیلی</span>
-          </div>
           <div className="balance">
             <span>بقیہ</span>
           </div>

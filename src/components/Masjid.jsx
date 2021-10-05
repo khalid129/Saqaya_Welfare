@@ -10,6 +10,7 @@ import {
   Label,
 } from "reactstrap";
 import "../css/masjid.css";
+import "../css/home.css";
 import Header from "./Header";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -34,6 +35,7 @@ const initialState2 = {
   detail: "",
   voucherNo: "",
   amount: null,
+  loan:false,
   accountName: "",
 };
 
@@ -57,6 +59,7 @@ const Masjid = ({
   const [allAccounts, setAccounts] = useState(accounts);
   const [allTransactions, setallTransactions] = useState(transactions);
   const [button, setButton] = useState("id");
+  const [changeButton, setChangeButton] = useState("اندراج کریں")
   const [state, setstate] = useState("");
   const [modal, setModal] = useState(false);
   const [form, setForm] = useState(initialState);
@@ -91,6 +94,7 @@ const Masjid = ({
         form2.reciever,
         form2.detail,
         form2.voucherNo,
+        form2.loan,
         parseInt(form2.amount)
       )
     );
@@ -98,7 +102,9 @@ const Masjid = ({
     toggleModal2();
   };
 
+
   const toggleModal = () => {
+    setChangeButton("اندراج کریں");
     setModal(!modal);
   };
 
@@ -128,6 +134,17 @@ const Masjid = ({
     setInput(input);
     setMasjidList(filtered);
   };
+
+  const deleteMasjid = (data,index)=>{
+    console.log(index)
+    alert(`کیا آپ ${data.name} مسجد کے ریکارڈ کو تلف کرنا چاھتے ھیں؟`)
+  }
+
+  const editMasjid = (index)=>{
+    toggleModal();
+    setChangeButton("تبدیل کریں")
+    console.log(index)
+  }
 
   if (masjidLoading) {
     return <h4>Loading</h4>;
@@ -260,7 +277,7 @@ const Masjid = ({
                   marginTop: "10px",
                 }}
               >
-                اندراج کریں
+              {changeButton}
               </Button>
             </Form>
           </ModalBody>
@@ -415,8 +432,12 @@ const Masjid = ({
                         style={{ textDecoration: "none" }}
                       >
                         <div style={{ color: "black" }} className="data">
-                          <DeleteIcon/>
-                          <EditIcon/>
+                        <Link to={'/masjid'} class="editIcon" >
+                          <DeleteIcon onClick={()=>{deleteMasjid(data,index)}} style={{color: "#D11A2A"}}/>
+                        </Link>
+                        <Link to={'/masjid'} class="editIcon" >
+                          <EditIcon onClick={()=>{editMasjid(index)}} style={{color:"#4CAF50"}}/>
+                        </Link>
                           <p>
                             {allTransactions
                               ? allTransactions.reduce((acc, list) => {

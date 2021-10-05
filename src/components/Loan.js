@@ -11,9 +11,9 @@ import {
   Label,
 } from "reactstrap";
 import "../css/Account.css";
+import "../css/loan.css";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useLocation } from 'react-router-dom'
 import SearchIcon from '@material-ui/icons/Search';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -28,36 +28,35 @@ const initialState = {
 
 function LoanInfo(props) {
   return(
-  <div className="account">
+  <div className="loan">
       <div className="account_name">
           <h1>{props.name}</h1>
       </div>
-      <div className="account_ledger">
-        <div className="edit">
-          <DeleteIcon/>
-          <EditIcon/>
-        </div>
-        <Link to={`/account/${props.data?.id}/accountIncome`} style={{textDecoration:"none"}}>
-        <div className="button accoutDetail" style={{ color: "black"}}>قرض کی تفصیل</div>
-        </Link>
-        <div className="loan">
-            <span id="loan">{props.loan}</span>
-            <label htmlFor="loan"> : قرض</label>
-        </div>
+      <div className="loanAmount">
+        <h4>{props.loan}:قرض</h4>
+      </div>
+      <Link to={`/account/${props.data?.id}/accountIncome`} style={{textDecoration:"none"}}>
+        <div className="button accoutDetail" style={{ color: "black", marginTop:"5px"}}>قرض کی تفصیل</div>
+      </Link>
+      <div className="edit">
+        <DeleteIcon onClick={props.delete} style={{color: "#D11A2A", cursor:"pointer"}}/>
+        <EditIcon onClick={props.edit} style={{color:"#4CAF50", cursor:"pointer"}}/>
       </div>
   </div>
   );
 }
 
 const Loan = (props) => {
-  const dispatch = useDispatch();
+const dispatch = useDispatch();
 
   const [input, setInput] = useState("");
   const [state, setstate] = useState("");
   const [modal, setModal] = useState(false);
   const [form, setForm] = useState(initialState);
+  const [button, setbutton] = useState("اندراج کریں")
 
   const toggleModal = () => {
+    setbutton("اندراج کریں")
     setModal(!modal);
   };
 
@@ -85,11 +84,18 @@ const Loan = (props) => {
     setForm(initialState);
     toggleModal();
   };
+
+  const editLoan = ()=>{
+    toggleModal()
+    setbutton("تبدیل کریں");
+  }
+  const deleteLoan = ()=>{
+    alert("کیا اپ لین دین حذف کریں کرنا چا ھتے ھیں")
+  }
   return (
     <div className="main_div">
       <Header name="قرضہ " />
       <div className="input_box">
-       
         <div className="button" onClick={toggleModal}>
         قرضے کا اندراج
         </div>
@@ -132,12 +138,15 @@ const Loan = (props) => {
                 marginTop: "10px",
               }}
             >
-              اندراج کریں
+              {button}
             </Button>
           </Form>
         </ModalBody>
       </Modal>
-      <LoanInfo name="بلال" loan="1000"/>
+      <div className="loanList">
+      <LoanInfo name="بلال" loan="1000" edit={editLoan} delete={deleteLoan}/>
+      <LoanInfo name="خالد" loan="20000" edit={editLoan} delete={deleteLoan}/>
+      </div>
     </div>
   );
 };

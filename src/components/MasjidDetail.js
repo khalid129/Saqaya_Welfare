@@ -45,6 +45,7 @@ const initialState = {
   detail: "",
   voucherNo: "",
   amount: null,
+  loan:false,
   accountName: "",
 };
 
@@ -55,8 +56,10 @@ const MasjidDetail = (props) => {
   const [allAccounts,setAccounts] = useState(props.accounts)
   const [modal, setModal] = useState(false);
   const [form, setForm] = useState(initialState);
+  const [button, setbutton] = useState("اندراج کریں")
 
   const toggleModal = () => {
+    setbutton("اندراج کریں")
     setModal(!modal);
   };
 
@@ -81,19 +84,31 @@ const MasjidDetail = (props) => {
         form.reciever,
         form.detail,
         form.voucherNo,
+        form.loan,
         parseInt(form.amount)
       )
     );
     setTransactions(dispatch(props.fetchTransactions()));
     setForm(initialState);
     toggleModal();
-  };
 
+  };
   const grandTotal = (value) => {
     sum+=value
   }
 
   const classes = useStyles();
+
+  const deleteTransaction = (transaction)=>{
+    console.log(transaction.id);
+    alert("کیا اپ لین دین حذف کریں کرنا چا ھتے ھیں")
+  }
+
+  const editTransaction = (transaction)=>{
+    toggleModal();
+    setbutton("تبدیل کریں")
+    console.log(transaction.id);
+  }
 
   if (props.transactionLoading) {
     return <h4>Loading</h4>;
@@ -143,8 +158,8 @@ const MasjidDetail = (props) => {
                   <TableRow key={transaction.name}>
                     <TableCell>
                       <div className="edits">
-                        <DeleteIcon/>
-                        <EditIcon/>
+                    <DeleteIcon onClick={()=>{deleteTransaction(transaction)}} style={{color: "#D11A2A", cursor:"pointer"}}/>
+                    <EditIcon onClick={()=>{editTransaction(transaction,toggleModal)}} style={{color:"#4CAF50", cursor:"pointer"}}/>
                       </div>
                     </TableCell>
                     <TableCell align="center">
@@ -291,7 +306,7 @@ const MasjidDetail = (props) => {
                   marginTop: "10px",
                 }}
               >
-                اندراج کریں
+                {button}
               </Button>
             </Form>
           </ModalBody>

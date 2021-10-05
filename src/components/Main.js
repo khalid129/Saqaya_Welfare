@@ -185,7 +185,15 @@ function Main() {
         expense={allTransactions.transactions.reduce((acc, list) => {
           if (
             list.accountId === parseInt(match.params.id, 10) &&
-            list.transType === "expense"
+            list.transType === "expense" && !list.loan
+          )
+            acc += list.amount;
+          return acc;
+        }, 0)}
+        loan={allTransactions.transactions.reduce((acc, list) => {
+          if (
+            list.accountId === parseInt(match.params.id, 10) &&
+            list.loan
           )
             acc += list.amount;
           return acc;
@@ -193,7 +201,7 @@ function Main() {
       />
     );
   };
-
+/////////////////
   const MasjidExpenseWithId = ({ match }) => {
     return (
       <MasjidExpense
@@ -218,7 +226,15 @@ function Main() {
         expense={allTransactions.transactions.reduce((acc, list) => {
           if (
             list.accountId === parseInt(match.params.id, 10) &&
-            list.transType === "expense"
+            list.transType === "expense" && !list.loan
+          )
+            acc += list.amount;
+          return acc;
+        }, 0)}
+        loan={allTransactions.transactions.reduce((acc, list) => {
+          if (
+            list.accountId === parseInt(match.params.id, 10) &&
+            list.loan
           )
             acc += list.amount;
           return acc;
@@ -230,7 +246,15 @@ function Main() {
 
   const loanPage = () => {
     return(
-      <Loan />
+      <Loan 
+        accounts={allAccounts.accounts}
+        accountLoading={allAccounts.isLoading}
+        accountErrMess={allAccounts.errMess}
+        transaction={allTransactions.transactions.filter(
+          (transaction) =>
+            transaction.loan
+        )}
+      />
     )
   }
 

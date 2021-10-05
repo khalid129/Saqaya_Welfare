@@ -6,16 +6,18 @@ import "../css/Account.css";
 import "../css/masjid.css";
 
 const AccountIncome = (props) => {
-
   return (
     <div className="main_div">
       <Header name="آمدن کی تفصیل" />
       <div className="account_details">
-        {<Accountinfo
-          data={props.account}
-          income={props.income}
-          expense={props.expense}
-        />}
+        {
+          <Accountinfo
+            data={props.account}
+            income={props.income}
+            expense={props.expense}
+            loan={props.loan}
+          />
+        }
       </div>
       <div className="account_header">
         <div className="account_text">
@@ -32,14 +34,8 @@ const AccountIncome = (props) => {
       </div>
 
       {props.incomes.map((income) => {
-        return(
-          <AccountTransaction income={income}/>
-        )
-      })
-      }
-      
-
-
+        return <AccountTransaction income={income} />;
+      })}
     </div>
   );
 };

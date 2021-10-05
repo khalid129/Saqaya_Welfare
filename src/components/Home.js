@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import "../css/home.css";
 import "../css/masjid.css";
 import Header from "./Header";
