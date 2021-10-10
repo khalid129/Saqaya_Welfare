@@ -4,9 +4,8 @@ import Accountinfo from "./Accountinfo";
 import AccountTransaction from "./AccountTransaction";
 import "../css/Account.css";
 import "../css/masjid.css";
+import "../css/MasjidDetail.css";
 import { Link } from "react-router-dom";
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
 
 function IndividualExpense(props) {
   return (
@@ -91,9 +90,9 @@ const AccountDetails = (props) => {
       }, 0)}
       purpose={"مسجد"} />
       </Link>
-      <IndividualExpense expense={0} income={0} purpose={"جانور"} />
-      <IndividualExpense expense={0} income={0} purpose={"پانی"} />
-      <IndividualExpense expense={0} income={0} purpose={"راشن"} />
+      <IndividualExpense id={data.id} expense={0} income={0} purpose={"جانور"} />
+      <IndividualExpense id={data.id} expense={0} income={0} purpose={"پانی"} />
+      <IndividualExpense id={data.id} expense={0} income={0} purpose={"راشن"} />
     </div>
   );
     }

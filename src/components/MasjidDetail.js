@@ -56,10 +56,10 @@ const MasjidDetail = (props) => {
   const [allAccounts,setAccounts] = useState(props.accounts)
   const [modal, setModal] = useState(false);
   const [form, setForm] = useState(initialState);
-  const [button, setbutton] = useState("اندراج کریں")
+  const [changeButton, setChangeButton] = useState(null)
 
   const toggleModal = () => {
-    setbutton("اندراج کریں")
+    setChangeButton(true)
     setModal(!modal);
   };
 
@@ -101,12 +101,12 @@ const MasjidDetail = (props) => {
 
   const deleteTransaction = (transaction)=>{
     console.log(transaction.id);
-    alert("کیا اپ لین دین حذف کریں کرنا چا ھتے ھیں")
+    alert("Do you want to Delete Transaction?")
   }
 
   const editTransaction = (transaction)=>{
     toggleModal();
-    setbutton("تبدیل کریں")
+    setChangeButton(false)
     console.log(transaction.id);
   }
 
@@ -158,8 +158,8 @@ const MasjidDetail = (props) => {
                   <TableRow key={transaction.name}>
                     <TableCell>
                       <div className="edits">
-                    <DeleteIcon onClick={()=>{deleteTransaction(transaction)}} style={{color: "#D11A2A", cursor:"pointer"}}/>
-                    <EditIcon onClick={()=>{editTransaction(transaction,toggleModal)}} style={{color:"#4CAF50", cursor:"pointer"}}/>
+                      <DeleteIcon onClick={()=>{deleteTransaction(transaction)}} style={{color: "#D11A2A", cursor:"pointer"}}/>
+                      <EditIcon onClick={()=>{editTransaction(transaction,toggleModal)}} style={{color:"#4CAF50", cursor:"pointer"}}/>
                       </div>
                     </TableCell>
                     <TableCell align="center">
@@ -306,7 +306,7 @@ const MasjidDetail = (props) => {
                   marginTop: "10px",
                 }}
               >
-                {button}
+                {changeButton?"اندراج کریں":"تبدیل کریں"}
               </Button>
             </Form>
           </ModalBody>

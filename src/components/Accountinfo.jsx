@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import { fetchTransactions, postIncome } from '../redux/ActionCreators';
 import { useDispatch  } from 'react-redux'
 import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
 
 
 const initialState = {
@@ -67,9 +66,7 @@ const handleSubmit=(event)=>{
             <div className="button" onClick={toggleModal}>آمدن اندراج کریں</div>
           </div>}
             {useLocation().pathname===`/account` && <div className="edit">
-            <Link to={'/account'}>
-            <DeleteIcon onClick={props.deleted} style={{color: "#D11A2A"}}/>
-            </Link>
+            
             <Link to={'/account'}>
             <EditIcon onClick={props.edit} style={{color:"#4CAF50", cursor:"pointer"}}/>
             </Link>

@@ -15,7 +15,6 @@ import Header from "./Header";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
 import SearchIcon from '@material-ui/icons/Search';
 
 
@@ -59,7 +58,7 @@ const Masjid = ({
   const [allAccounts, setAccounts] = useState(accounts);
   const [allTransactions, setallTransactions] = useState(transactions);
   const [button, setButton] = useState("id");
-  const [changeButton, setChangeButton] = useState("اندراج کریں")
+  const [changeButton, setChangeButton] = useState(null);
   const [state, setstate] = useState("");
   const [modal, setModal] = useState(false);
   const [form, setForm] = useState(initialState);
@@ -104,7 +103,7 @@ const Masjid = ({
 
 
   const toggleModal = () => {
-    setChangeButton("اندراج کریں");
+    setChangeButton(true)
     setModal(!modal);
   };
 
@@ -135,15 +134,10 @@ const Masjid = ({
     setMasjidList(filtered);
   };
 
-  const deleteMasjid = (data,index)=>{
-    console.log(index)
-    alert(`کیا آپ ${data.name} مسجد کے ریکارڈ کو تلف کرنا چاھتے ھیں؟`)
-  }
-
   const editMasjid = (index)=>{
-    toggleModal();
-    setChangeButton("تبدیل کریں")
     console.log(index)
+    setChangeButton(false);
+    setModal(!modal);
   }
 
   if (masjidLoading) {
@@ -268,6 +262,7 @@ const Masjid = ({
                 />
               </FormGroup>
               <Button
+                id="update"
                 type="submit"
                 value="submit"
                 style={{
@@ -277,7 +272,7 @@ const Masjid = ({
                   marginTop: "10px",
                 }}
               >
-              {changeButton}
+              {changeButton?"اندراج کریں":"تبدیل کریں"}
               </Button>
             </Form>
           </ModalBody>
@@ -432,9 +427,6 @@ const Masjid = ({
                         style={{ textDecoration: "none" }}
                       >
                         <div style={{ color: "black" }} className="data">
-                        <Link to={'/masjid'} class="editIcon" >
-                          <DeleteIcon onClick={()=>{deleteMasjid(data,index)}} style={{color: "#D11A2A"}}/>
-                        </Link>
                         <Link to={'/masjid'} class="editIcon" >
                           <EditIcon onClick={()=>{editMasjid(index)}} style={{color:"#4CAF50"}}/>
                         </Link>

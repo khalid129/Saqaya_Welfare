@@ -40,10 +40,9 @@ const Account = (props) => {
   const [form, setForm] = useState(initialState);
   const [modal2, setModal2] = useState(false);
   const [form2, setForm2] = useState(initialState2);
-  const [button, setbutton] = useState("اندراج کریں")
+  const [changeButton, setchangeButton] = useState(null)
 
   const toggleModal2 = () => {
-    setbutton("اندراج کریں")
     setModal2(!modal2);
   };
 
@@ -77,6 +76,7 @@ const Account = (props) => {
   };
 
   const toggleModal = () => {
+    setchangeButton(true)
     setModal(!modal);
   };
 
@@ -107,14 +107,9 @@ const Account = (props) => {
   // console.log(allTransactions[5].accountId);
 
   const editData = (data) =>{
-    toggleModal2()
-    setbutton("تبدیل کریں")
+    setchangeButton(false)
+    setModal(!modal);
     console.log(data.id);
-  }
-  
-  const deleteData = (data) =>{
-    console.log(data.id);
-    alert(`کیا آپ ${data.name}  صاحب کے کھا تے کو تلف کرنا چا ھتے ھیں؟`)
   }
 
   return (
@@ -164,7 +159,7 @@ const Account = (props) => {
                 marginTop: "10px",
               }}
             >
-              اندراج کریں
+              {changeButton?"اندراج کریں":"تبدیل کریں"}
             </Button>
           </Form>
         </ModalBody>
@@ -245,7 +240,7 @@ const Account = (props) => {
                 marginTop: "10px",
               }}
             >
-            {button}
+            اندراج کریں
             </Button>
           </Form>
         </ModalBody>
@@ -278,7 +273,6 @@ const Account = (props) => {
                   return acc;
                 }, 0)}
                 edit={()=>{editData(data)}}
-                deleted = {()=>{deleteData(data)}}
               />
             </Link>
           );
