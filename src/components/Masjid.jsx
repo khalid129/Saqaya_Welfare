@@ -64,6 +64,7 @@ const Masjid = ({
   const [form, setForm] = useState(initialState);
   const [modal2, setModal2] = useState(false);
   const [form2, setForm2] = useState(initialState2);
+  const [enter, setenter] = useState('')
 
   const toggleModal2 = () => {
     setModal2(!modal2);
@@ -140,6 +141,16 @@ const Masjid = ({
     setModal(!modal);
   }
 
+  // Press enter functionality
+
+  const handler = (e)=>{
+    if(e.key==="Enter"){
+      console.log(e.key)
+      updateInput(state, button)
+    }
+  }
+  
+
   if (masjidLoading) {
     return <h4>Loading</h4>;
   } else if (masjidErrMess) {
@@ -156,13 +167,16 @@ const Masjid = ({
             خرچ کا اندراج
           </div>
           <div className="search_box">
-          <div className="button search" onClick={() => updateInput(state, button)}>
+          <div className="button search" className="searchBtn" 
+          onClick={() => updateInput(state, button)} 
+          >
             <SearchIcon/> تلاش کریں
-            </div>
+          </div>
             <input
               type="text"
               placeholder="تلاش کریں"
               onChange={(e) => setstate(e.target.value)}
+              onKeyPress={(e)=>handler(e)}
             />
           </div>
         </div>
