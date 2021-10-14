@@ -22,6 +22,7 @@ function RenderCard(props) {
     >
       <div>
         <Card
+          className="home_card"
           style={{
             backgroundColor: "white",
             paddingTop: "30px",

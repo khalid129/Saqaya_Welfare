@@ -24,6 +24,9 @@ const AccountIncome = (props) => {
           <div className="amount">
             <span>کل رقم</span>
           </div>
+          <div className="amount">
+            <span>کل رقم</span>
+          </div>
           <div className="place">
             <span>مد</span>
           </div>

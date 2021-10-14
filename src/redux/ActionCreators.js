@@ -289,6 +289,50 @@ export const postIncome = (accountId,masjidId,transType,date,voucher, bank, reci
   console.log(newTransaction);
 };
 
+export const deleteTrans =
+(
+  id
+) =>
+(dispatch) => {
+
+
+  //   return fetch(baseUrl + "comments", {
+  //     method: "POST",
+  //     body: JSON.stringify(newComment),
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     credentials: "same-origin",
+  //   })
+  //     .then(
+  //       (response) => {
+  //         if (response.ok) {
+  //           return response;
+  //         } else {
+  //           var error = new Error(
+  //             "Error " + response.status + ": " + response.statusText
+  //           );
+  //           error.response = response;
+  //           throw error;
+  //         }
+  //       },
+  //       (error) => {
+  //         throw error;
+  //       }
+  //     )
+  //     .then((response) => response.json())
+  //     .then((response) => dispatch(addComment(response)))
+  //     .catch((error) => {
+  //       console.log("post comments", error.message);
+  //       alert("Your comment could not be posted\nError: " + error.message);
+  //     });
+
+  // dispatch(addMasjids(newMasjid));
+  TRANSACTION.filter((item) => item.id !== id )
+  console.log(TRANSACTION);
+  // dispatch(deleteTransaction(id))
+  // transactions.filter((item, index) => index !== action.payload)
+};
 
 export const transactionsLoading = () => ({
   type: ActionTypes.TRANSACTIONS_LOADING,
@@ -303,3 +347,8 @@ export const addTransactions = (transactions) => ({
   type: ActionTypes.ADD_TRANSACTIONS,
   payload: transactions,
 });
+
+export const deleteTransaction = (id) => ({
+  type: ActionTypes.DELETE_TRANSACTION,
+  payload: id
+})

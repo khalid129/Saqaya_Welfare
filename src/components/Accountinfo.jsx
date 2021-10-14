@@ -53,7 +53,7 @@ const handleSubmit=(event)=>{
           </div>
           <div className="account_ledger">
           {useLocation().pathname===`/account/${props.data?.id}` && <div className="form">
-          <Link to={`/account/${props.data?.id}/accountIncome`} style={{textDecoration:"none"}}>
+          <Link to={`/account/${props.data?.id}/LoanDetail`} style={{textDecoration:"none"}}>
           <div className="button accoutDetail" style={{ color: "black"}}>قرض کی تفصیل</div>
           </Link>
           </div>}
@@ -66,9 +66,8 @@ const handleSubmit=(event)=>{
             <div className="button" onClick={toggleModal}>آمدن اندراج کریں</div>
           </div>}
             {useLocation().pathname===`/account` && <div className="edit">
-            
             <Link to={'/account'}>
-            <EditIcon onClick={props.edit} style={{color:"#4CAF50", cursor:"pointer"}}/>
+            <EditIcon className='editIcon' onClick={props.edit} style={{color:"#4CAF50", cursor:"pointer"}}/>
             </Link>
             </div>}
             <div className="balance">

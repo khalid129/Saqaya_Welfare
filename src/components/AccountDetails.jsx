@@ -6,6 +6,8 @@ import "../css/Account.css";
 import "../css/masjid.css";
 import "../css/MasjidDetail.css";
 import { Link } from "react-router-dom";
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 function IndividualExpense(props) {
   return (
@@ -51,6 +53,7 @@ const AccountDetails = (props) => {
             return acc;
           }, 0)}
           expense={props.transaction.reduce((acc, list) => {
+            if (list.transType === "expense") acc += list.amount;
             if (list.transType === "expense" && !list.loan) acc += list.amount;
             return acc;
           }, 0)}

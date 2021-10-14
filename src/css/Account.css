@@ -3,11 +3,13 @@
   height: 100vh;
   background-color: #add8e6;
 }
-
+.input_box{
+  width: 82%;
+}
 .account,
 .account_header,
 .account_ledger_details {
-  width: 94%;
+  width: 80%;
   background: #e1e1e1;
   margin: 0 auto;
   margin-top: 10px;
@@ -27,6 +29,9 @@
   justify-content: space-around;
   font-size: 20px;
 }
+.account_header{
+  background-color: #76d1f0;
+}
 .account_header span {
   font-size: 24px;
   font-weight: bold;
@@ -37,6 +42,14 @@
   display: flex;
   justify-content: space-around;
 }
+
+.account:hover, .account_ledger_details:hover{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transition: all .3s ease-in-out;
+  position:relative;
+  width: 82%;
+}
+
 .account_ledger .button {
   height: 30px;
 }
@@ -48,9 +61,17 @@
   text-align: center;
 }
 .edit{
-  width: 70px;
+  /* width: 70px; */
   display: flex;
   justify-content: space-around;
+}
+
+.editIcon:hover{
+  color: black;
+}
+
+EditIcon:hover{
+  color: black;
 }
 
 @media only screen and (max-width: 768px){

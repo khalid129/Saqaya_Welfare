@@ -10,6 +10,7 @@ export const TRANSACTION = [
     reciever : "", 
     detail : "", 
     voucherNo : "",
+    loan:false,
     amount: 100000,
   },
   {
@@ -23,6 +24,7 @@ export const TRANSACTION = [
     reciever : "", 
     detail : "", 
     voucherNo : "",
+    loan:false,
     amount: 50000,
   },
   {
@@ -36,6 +38,7 @@ export const TRANSACTION = [
     reciever : "محمد امین خان", 
     detail : "-", 
     voucherNo : "-",
+    loan:true,
     amount: 10000,
   },
   {
@@ -49,6 +52,7 @@ export const TRANSACTION = [
     reciever : "محمد امین خان", 
     detail : "-", 
     voucherNo : "-",
+    loan:false,
     amount: 20000,
   },
   {
@@ -62,6 +66,7 @@ export const TRANSACTION = [
     reciever : "محمد امین خان", 
     detail : "-", 
     voucherNo : "-",
+    loan:false,
     amount: 10000,
   },
   {
@@ -75,6 +80,7 @@ export const TRANSACTION = [
     reciever : "محمد امین خان", 
     detail : "-", 
     voucherNo : "-",
+    loan:false,
     amount: 20000,
   },
   {
@@ -88,6 +94,7 @@ export const TRANSACTION = [
     reciever : "محمد امین خان", 
     detail : "-", 
     voucherNo : "-",
+    loan:false,
     amount: 10000,
   },
   {
@@ -101,6 +108,7 @@ export const TRANSACTION = [
     reciever : "محمد امین خان", 
     detail : "-", 
     voucherNo : "-",
+    loan:false,
     amount: 20000,
   },
    ////////////////////////////////////////////////////
@@ -115,6 +123,7 @@ export const TRANSACTION = [
     reciever : "", 
     detail : "", 
     voucherNo : "",
+    loan:false,
     amount: 50000,
   },
   {
@@ -128,6 +137,7 @@ export const TRANSACTION = [
     reciever : "", 
     detail : "", 
     voucherNo : "",
+    loan:false,
     amount: 10000,
   },
   {
@@ -141,6 +151,7 @@ export const TRANSACTION = [
     reciever : "محمد امین خان", 
     detail : "-", 
     voucherNo : "-",
+    loan:false,
     amount: 10000,
   },
   {
@@ -154,6 +165,7 @@ export const TRANSACTION = [
     reciever : "محمد امین خان", 
     detail : "-", 
     voucherNo : "-",
+    loan:false,
     amount: 20000,
   },
    ////////////////////////////////////////////////////
@@ -168,6 +180,7 @@ export const TRANSACTION = [
     reciever : "", 
     detail : "", 
     voucherNo : "",
+    loan:false,
     amount: 30000,
   },
   {
@@ -181,6 +194,7 @@ export const TRANSACTION = [
     reciever : "", 
     detail : "", 
     voucherNo : "",
+    loan:false,
     amount: 40000,
   },
   {
@@ -194,6 +208,7 @@ export const TRANSACTION = [
     reciever : "محمد امین خان", 
     detail : "-", 
     voucherNo : "-",
+    loan:false,
     amount: 50000,
   },
   {
@@ -207,6 +222,7 @@ export const TRANSACTION = [
     reciever : "محمد امین خان", 
     detail : "-", 
     voucherNo : "-",
+    loan:false,
     amount: 10000,
   },
    ////////////////////////////////////////////////////
@@ -221,6 +237,7 @@ export const TRANSACTION = [
     reciever : "", 
     detail : "", 
     voucherNo : "",
+    loan:false,
     amount: 200000,
   },
   {
@@ -234,6 +251,7 @@ export const TRANSACTION = [
     reciever : "", 
     detail : "", 
     voucherNo : "",
+    loan:false,
     amount: 50000,
   },
   {
@@ -247,6 +265,7 @@ export const TRANSACTION = [
     reciever : "محمد امین خان", 
     detail : "-", 
     voucherNo : "-",
+    loan:false,
     amount: 40000,
   },
   {
@@ -260,6 +279,7 @@ export const TRANSACTION = [
     reciever : "محمد امین خان", 
     detail : "-", 
     voucherNo : "-",
+    loan:false,
     amount: 50000,
   },
    ////////////////////////////////////////////////////
@@ -274,6 +294,7 @@ export const TRANSACTION = [
     reciever : "", 
     detail : "", 
     voucherNo : "",
+    loan:false,
     amount: 30000,
   },
   {
@@ -287,6 +308,7 @@ export const TRANSACTION = [
     reciever : "", 
     detail : "", 
     voucherNo : "",
+    loan:false,
     amount: 30000,
   },
   {
@@ -300,6 +322,7 @@ export const TRANSACTION = [
     reciever : "محمد امین خان", 
     detail : "-", 
     voucherNo : "-",
+    loan:false,
     amount: 20000,
   },
   {
@@ -313,6 +336,7 @@ export const TRANSACTION = [
     reciever : "محمد امین خان", 
     detail : "-", 
     voucherNo : "-",
+    loan:false,
     amount: 10000,
   },
   {
@@ -326,6 +350,7 @@ export const TRANSACTION = [
     reciever : "محمد امین خان", 
     detail : "-", 
     voucherNo : "-",
+    loan:false,
     amount: 1000,
   },
 ];

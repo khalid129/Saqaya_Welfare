@@ -14,6 +14,7 @@ import Accountinfo from "./Accountinfo";
 import "../css/Account.css";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import SearchIcon from '@material-ui/icons/Search';
 
 const initialState = {
   id: null,
@@ -112,6 +113,15 @@ const Account = (props) => {
     console.log(data.id);
   }
 
+  // Press enter functionality
+
+  const handler = (e)=>{
+    if(e.key==="Enter"){
+      console.log(e.key)
+      updateInput(state)
+    }
+  }
+
   return (
     <div className="main_div">
       <Header name="کھاتہ" />
@@ -121,13 +131,16 @@ const Account = (props) => {
         </div>
         <div className="button"  onClick={toggleModal2}>آمدن کا اندراج</div>
         <div className="search_box">
-          <div className="button" onClick={() => updateInput(state)}>
-            تلاش کریں
+          <div className="button search"
+          onClick={() => updateInput(state)} 
+          >
+            <SearchIcon/> تلاش کریں
           </div>
           <input
             type="text"
             placeholder="تلاش کریں"
             onChange={(e) => setstate(e.target.value)}
+            onKeyPress={(e)=>handler(e)}
           />
         </div>
       </div>
@@ -259,6 +272,7 @@ const Account = (props) => {
                 expense={allTransactions.reduce((acc, list) => {
                   if (
                     list.accountId === data.id &&
+                    list.transType === "expense" && 
                     list.transType === "expense" && !list.loan
                   )
                     acc += list.amount;

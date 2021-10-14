@@ -35,6 +35,7 @@ const tableStyle = {
   fontWeight: "bold",
   fontSize: "20px",
   textAlign: "center",
+  fontFamily: "Jameel"
 };
 
 const initialState = {
@@ -156,20 +157,20 @@ const MasjidDetail = (props) => {
               <TableBody>
                 {transactions.map((transaction) => (
                   <TableRow key={transaction.name}>
-                    <TableCell>
+                    <TableCell style={tableStyle}>
                       <div className="edits">
                       <DeleteIcon onClick={()=>{deleteTransaction(transaction)}} style={{color: "#D11A2A", cursor:"pointer"}}/>
                       <EditIcon onClick={()=>{editTransaction(transaction,toggleModal)}} style={{color:"#4CAF50", cursor:"pointer"}}/>
                       </div>
                     </TableCell>
-                    <TableCell align="center">
+                    <TableCell align="center" style={tableStyle}>
                       {props.accounts.map((accountName) => {
                         if (accountName.id === transaction.accountId) {
                           return accountName.name;
                         }
                       })}
                     </TableCell>
-                    <TableCell align="center">
+                    <TableCell align="center" style={tableStyle}>
                     {transaction.amount}
                     
                     </TableCell>
@@ -177,11 +178,11 @@ const MasjidDetail = (props) => {
                     <TableCell align="center">
                       {transaction.voucherNo}
                     </TableCell>
-                    <TableCell align="center">{transaction.detail}</TableCell>
-                    <TableCell align="center">{transaction.reciever}</TableCell>
-                    <TableCell align="center">{transaction.bank}</TableCell>
-                    <TableCell align="center">{transaction.voucher}</TableCell>
-                    <TableCell align="center">{transaction.date}</TableCell>
+                    <TableCell style={tableStyle} align="center">{transaction.detail}</TableCell>
+                    <TableCell style={tableStyle} align="center">{transaction.reciever}</TableCell>
+                    <TableCell style={tableStyle} align="center">{transaction.bank}</TableCell>
+                    <TableCell style={tableStyle} align="center">{transaction.voucher}</TableCell>
+                    <TableCell style={tableStyle} align="center">{transaction.date}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -295,6 +296,17 @@ const MasjidDetail = (props) => {
                   onChange={handleChange}
                   value={form.accountName}
                 />
+              </FormGroup>
+              <FormGroup check>
+                <Label check style={{ fontSize: "4vh" }}>
+                  <Input 
+                  type="checkbox" 
+                  name="loan"
+                  onChange={()=>setForm((prev)=>({...prev,loan:!form.loan}))}
+                  checked={form.loan}
+                  />{' '}
+                  قرضہ
+                </Label>
               </FormGroup>
               <Button
                 type="submit"

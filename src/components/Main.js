@@ -12,6 +12,7 @@ import AccountDetails from "./AccountDetails";
 import AccountIncome from "./AccountIncome";
 import MasjidExpense from "./MasjidExpense";
 import MasjidDetail from "./MasjidDetail";
+import LoanDetail from "./LoanDetail";
 import {
   fetchMasjids,
   fetchAccounts,
@@ -20,6 +21,7 @@ import {
   postExpense,
   postAccount,
   postIncome,
+  deleteTrans
 } from "../redux/ActionCreators";
 
 //   function mapStateToProps(state) {
@@ -102,6 +104,7 @@ function Main() {
         fetchTransactions={fetchTransactions}
         fetchAccounts={fetchAccounts}
         postExpense={postExpense}
+        deleteTrans={deleteTrans}
       />
     );
   };
@@ -185,6 +188,7 @@ function Main() {
         expense={allTransactions.transactions.reduce((acc, list) => {
           if (
             list.accountId === parseInt(match.params.id, 10) &&
+            list.transType === "expense" &&
             list.transType === "expense" && !list.loan
           )
             acc += list.amount;
@@ -275,6 +279,7 @@ function Main() {
         <Route exact path="/masjid/:id" component={MasjidWithId} />
         <Route path="/masjid/:id/:accountId" component={MasjidWithAccountId} />
         <Route exact path="/account/:id" component={AccountWithId} />
+        <Route exact path="/account/:id/LoanDetail" component={LoanDetail} />
         <Route
           exact
           path="/account/:id/accountIncome"

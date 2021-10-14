@@ -29,6 +29,7 @@
 }
 .button{
     height: 32px;
+    margin-left: 10px;
 }
 .loan .account_name{
     margin-right: 20px;

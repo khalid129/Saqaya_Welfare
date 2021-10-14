@@ -167,7 +167,7 @@ const Masjid = ({
             خرچ کا اندراج
           </div>
           <div className="search_box">
-          <div className="button search" className="searchBtn" 
+          <div className="button search"
           onClick={() => updateInput(state, button)} 
           >
             <SearchIcon/> تلاش کریں
@@ -198,13 +198,13 @@ const Masjid = ({
           </div>
         </div>
         <div className="masjid_header">
-          <h3 className="masjid_id">مسجد نمبر</h3>
-          <h3 className="masjid_name">مسجد کا نام</h3>
-          <h3 className="area">علاقہ</h3>
-          <h3 className="province">صوبہ</h3>
-          <h3 className="manager">نگران کا نام</h3>
-          <h3 className="total">کل رقم</h3>
-          <h3 className="edit">تبدیلی</h3>
+          <span className="masjid_id">مسجد نمبر</span>
+          <span className="masjid_name">مسجد کا نام</span>
+          <span className="area">علاقہ</span>
+          <span className="province">صوبہ</span>
+          <span className="manager">نگران کا نام</span>
+          <span className="total">کل رقم</span>
+          <span className="edits">تبدیلی</span>
         </div>
 
         <Modal isOpen={modal} toggle={toggleModal}>
@@ -411,6 +411,17 @@ const Masjid = ({
                   value={form2.accountName}
                 />
               </FormGroup>
+              <FormGroup check>
+                <Label check style={{ fontSize: "4vh" }}>
+                  <Input 
+                  type="checkbox" 
+                  name="loan"
+                  onChange={()=>setForm2((prev)=>({...prev,loan:!form2.loan}))}
+                  checked={form2.loan}
+                  />{' '}
+                  قرضہ
+                </Label>
+              </FormGroup>
               <Button
                 type="submit"
                 value="submit"
@@ -459,8 +470,8 @@ const Masjid = ({
 
                           <p>{data.manager}</p>
                           <p>{data.province}</p>
-                          <p>{data.area}</p>
-                          <p>{data.name}</p>
+                          <p className="area">{data.area}</p>
+                          <p className="area">{data.name}</p>
                           <p>{data.id}</p>
                         </div>
                       </Link>

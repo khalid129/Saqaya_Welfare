@@ -21,20 +21,43 @@
 .header_div div:nth-child(3){
     margin-right: 30px;
 }
+
+
 /* Filter Masjid Header */
 .masjid_header{
+    width: 80%;
+    height: 50px;
+    margin: 0 auto;
     display: flex;
     flex-direction: row-reverse;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    align-items: center;
     margin-top: 10px;
-    box-sizing: inherit;
+    background-color: #76d1f0;
+    border-radius: 20px;
 }
-.masjid_header h3{
+.masjid_header span{
+    font-size: 20px;
+    width: 100px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.masjid_header .masjid_id, .masjid_header .province{
     width: 150px;
 }
-.masjid_header .edit{
-    text-align: center;
+
+.masjid_header .area{
+    width: 160px;
 }
+.masjid_header .masjid_name, .masjid_header .masjid_id{
+    text-align: right;
+}
+
+.masjid_header .manager, .masjid_header .total, .masjid_header .province, .masjid_header .area{
+    text-align: left;
+}
+
 /* Check Box Part */
 .input_box{
     width: 100%;
@@ -60,7 +83,7 @@
     border: none;
     font-size: 16px;
     background: #E1E1E1;
-    border-radius: 10px;
+    border-radius: 20px;
     text-align: right;
     padding: 10px 20px;
     color: #000;
@@ -80,20 +103,25 @@ input:focus{
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 20px;
     background-color: #76d1f0;
     cursor: pointer;
 }
 /* .expense{
     background-color: #10b4f0;
 } */
+
+.button:hover{
+    transition: 0.5s ease-in-out;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
 .input_box .button{
     font-weight: bold;
 }
 .category_type{
-    width: 100%;
-    max-height: 50px;
-    height: 100%;
+    width: 95%;
+    height: 50px;
+    margin: 0 auto;
     margin-top: 10px;
     display: flex;
     justify-content: space-evenly;
@@ -104,6 +132,8 @@ input:focus{
     text-shadow: 1px 1px 2px rgb(158, 158, 158), 0 0 1em rgb(175, 175, 175), 0 0 0.2em rgb(216, 216, 216);
 }
 .masjid_list{
+    width: 95%;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -121,25 +151,37 @@ input:focus{
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 20px;
     background-color: #E1E1E1;
     cursor: pointer;
   }
 .data{
-    width: 100%;
-    color: black;
+    width: 94%;
+    margin: 0 auto;
     display: flex;
     align-items:center;
     justify-content: space-around;
     background: #E1E1E1;
-    border-radius: 10px;
+    color: black;
+    border-radius: 20px;
+}
+.data .area{
+    width: 150px;
+    text-align: center;
 }
 .data p{
     margin-top: 10px;
     margin-right: 20px;
     font-size: 20px;
-    width: 150px;
     text-align: center;
+}
+
+.data:hover{
+    background: #e0e0e0;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: all .3s ease-in-out;
+    position:relative;
+    width: 98%;
 }
 /* Resposive CSS  */
 

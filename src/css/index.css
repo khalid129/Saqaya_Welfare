@@ -15,3 +15,7 @@ body {
 body{
   overflow-x: hidden;
 }
+
+.expense_table{
+  font-family: 'Jameel'!important;
+}
