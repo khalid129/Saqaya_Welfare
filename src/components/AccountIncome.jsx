@@ -9,7 +9,7 @@ const AccountIncome = (props) => {
   return (
     <div className="main_div">
       <Header name="آمدن کی تفصیل" />
-      <div className="account_details">
+      {/* <div className="account_details">
         {
           <Accountinfo
             data={props.account}
@@ -18,7 +18,7 @@ const AccountIncome = (props) => {
             loan={props.loan}
           />
         }
-      </div>
+      </div> */}
       <div className="account_header">
         <div className="account_text">
           <div className="amount">

@@ -63,13 +63,16 @@ const handleSubmit=(event)=>{
           </Link>
           </div>}
           {useLocation().pathname===`/account/${props.data?.id}` && <div className="form">
-            <div className="button" onClick={toggleModal}>آمدن اندراج کریں</div>
+          <div className="button" onClick={toggleModal}>آمدن اندراج کریں</div>
           </div>}
-            {useLocation().pathname===`/account` && <div className="edit">
-            <Link to={'/account'}>
-            <EditIcon className='editIcon' onClick={props.edit} style={{color:"#4CAF50", cursor:"pointer"}}/>
-            </Link>
-            </div>}
+          {useLocation().pathname===`/account/${props.data?.id}/accountIncome` && <div className="form">
+          <div className="button" onClick={toggleModal}>آمدن اندراج کریں</div>
+          </div>}
+          {useLocation().pathname===`/account` && <div className="edit">
+          <Link to={'/account'}>
+          <EditIcon className='editIcon' onClick={props.edit} style={{color:"#4CAF50", cursor:"pointer"}}/>
+          </Link>
+          </div>}
             <div className="balance">
               <span id="balance">{props.income-props.expense-props.loan}</span>
               <label htmlFor="balance">: بقیہ</label>

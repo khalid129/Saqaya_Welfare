@@ -53,7 +53,6 @@ const AccountDetails = (props) => {
             return acc;
           }, 0)}
           expense={props.transaction.reduce((acc, list) => {
-            if (list.transType === "expense") acc += list.amount;
             if (list.transType === "expense" && !list.loan) acc += list.amount;
             return acc;
           }, 0)}

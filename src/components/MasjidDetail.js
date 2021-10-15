@@ -71,44 +71,65 @@ const MasjidDetail = (props) => {
     }));
   };
 
+  const handleUpdate = () => {
+    const index = transactions.findIndex(transaction => transaction.id === form.id)
+    const updatedTransactions = [...transactions]
+    updatedTransactions[index] = form
+    setTransactions(updatedTransactions)  
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const account = allAccounts.filter((account) => account.name === form.accountName)[0]
-    dispatch(
-      props.postExpense(
-        account.id,
-        props.masjid.id,
-        "expense",
-        form.date,
-        form.voucher,
-        form.bank,
-        form.reciever,
-        form.detail,
-        form.voucherNo,
-        form.loan,
-        parseInt(form.amount)
-      )
-    );
-    setTransactions(dispatch(props.fetchTransactions()));
-    setForm(initialState);
+    console.log(form);
+    if(!changeButton){
+      handleUpdate();
+    } 
+    else{
+      const account = allAccounts.filter((account) => account.name === form.accountName)[0]
+      dispatch(
+        props.postExpense(
+          account.id,
+          props.masjid.id,
+          "expense",
+          form.date,
+          form.voucher,
+          form.bank,
+          form.reciever,
+          form.detail,
+          form.voucherNo,
+          form.loan,
+          form.amount
+        )
+      );
+      setTransactions(dispatch(props.fetchTransactions()));
+      setForm(initialState);
+
+    }
     toggleModal();
 
   };
+
   const grandTotal = (value) => {
     sum+=value
   }
 
   const classes = useStyles();
 
-  const deleteTransaction = (transaction)=>{
-    console.log(transaction.id);
-    alert("Do you want to Delete Transaction?")
+  const deleteTransaction = (id)=>{
+    // console.log(id,"id");
+    alert("Do you want to Delete Transaction")
+    dispatch(props.deleteTrans(id));
+    setTransactions(dispatch(props.fetchTransactions()));
+    setTransactions(transactions.filter(transaction => transaction.id !== id))
   }
 
   const editTransaction = (transaction)=>{
-    toggleModal();
-    setChangeButton(false)
-    console.log(transaction.id);
+    setChangeButton(false);
+    const accountName = allAccounts.filter((account) => account.id === transaction.accountId)[0]
+    setForm(transaction)
+    setForm( prev => ({...prev,accountName:accountName.name}))
+    setModal(!modal);
+    console.log(transaction);
   }
 
   if (props.transactionLoading) {
@@ -159,8 +180,8 @@ const MasjidDetail = (props) => {
                   <TableRow key={transaction.name}>
                     <TableCell style={tableStyle}>
                       <div className="edits">
-                      <DeleteIcon onClick={()=>{deleteTransaction(transaction)}} style={{color: "#D11A2A", cursor:"pointer"}}/>
-                      <EditIcon onClick={()=>{editTransaction(transaction,toggleModal)}} style={{color:"#4CAF50", cursor:"pointer"}}/>
+                      <DeleteIcon onClick={()=>{deleteTransaction(transaction.id)}} style={{color: "#D11A2A", cursor:"pointer"}}/>
+                      <EditIcon onClick={()=>{editTransaction(transaction)}} style={{color:"#4CAF50", cursor:"pointer"}}/>
                       </div>
                     </TableCell>
                     <TableCell align="center" style={tableStyle}>

@@ -109,8 +109,10 @@ const Account = (props) => {
 
   const editData = (data) =>{
     setchangeButton(false)
+    setForm(data)
+    setForm( prev => ({...prev,name:data.name}))
     setModal(!modal);
-    console.log(data.id);
+    console.log(data.name);
   }
 
   // Press enter functionality
@@ -272,7 +274,6 @@ const Account = (props) => {
                 expense={allTransactions.reduce((acc, list) => {
                   if (
                     list.accountId === data.id &&
-                    list.transType === "expense" && 
                     list.transType === "expense" && !list.loan
                   )
                     acc += list.amount;
