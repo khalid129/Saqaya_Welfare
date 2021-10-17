@@ -48,9 +48,12 @@ const AccountTransaction = (props) => {
   }
 
   const editTransaction = ()=>{
-    console.log(props.income.id)
-    toggleModal();
-    console.log(allAccounts)
+    const accounts = props.account
+    const income = props.income
+    // setForm(income);
+    setForm( prev => ({...prev,amount:income.amount}))
+    setModal(!modal);
+    console.log(income)
   }
  
   return (
@@ -90,7 +93,7 @@ const AccountTransaction = (props) => {
             <Label style={{fontSize:"4vh"}} htmlFor="amount">رقم</Label>
             <Input type="number" id="amount" name="amount"  onChange={handleChange} value={form.amount} />
           </FormGroup>
-          <Button type="submit" value="submit" style={{backgroundColor:"#90DAF2",color:'black',borderColor:'#90DAF2',marginTop:'10px'}}>اندراج کریں</Button>
+          <Button type="submit" value="submit" style={{backgroundColor:"#90DAF2",color:'black',borderColor:'#90DAF2',marginTop:'10px'}}>تبدیل کریں</Button>
         </Form>
         </ModalBody>
       </Modal>

@@ -38,6 +38,8 @@ function LoanInfo({id,name,loan}) {
 const Loan = (props) => {
   const dispatch = useDispatch();
   const [accounts,setAccounts] = useState(props.accounts)
+  const [allAccounts, setallAccounts] = useState(props.accounts);
+  const [accountList, setAccountList] = useState(props.accounts);
   const [transactions,setTransactions] = useState(props.transaction)
   const [input, setInput] = useState("");
   const [state, setstate] = useState("");
@@ -48,11 +50,11 @@ const Loan = (props) => {
   
  
   const updateInput = async (input) => {
-    // const filtered = allAccounts.filter((account) => {
-    //   return account.name.toString().includes(input);
-    // });
-    // setInput(input);
-    // setAccountList(filtered);
+    const filtered = allAccounts.filter((account) => {
+      return account.name.toString().includes(input);
+    });
+    setInput(input);
+    setAccountList(filtered);
   };
 
  

@@ -37,7 +37,7 @@ const AccountIncome = (props) => {
       </div>
 
       {props.incomes.map((income) => {
-        return <AccountTransaction income={income} />;
+        return <AccountTransaction income={income} account = {props.account}/>;
       })}
     </div>
   );
