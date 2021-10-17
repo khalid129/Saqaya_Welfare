@@ -188,7 +188,6 @@ function Main() {
         expense={allTransactions.transactions.reduce((acc, list) => {
           if (
             list.accountId === parseInt(match.params.id, 10) &&
-            list.transType === "expense" &&
             list.transType === "expense" && !list.loan
           )
             acc += list.amount;
