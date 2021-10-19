@@ -22,6 +22,8 @@ import TableRow from "@material-ui/core/TableRow";
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Paper from "@material-ui/core/Paper";
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -132,6 +134,28 @@ const MasjidDetail = (props) => {
     console.log(transaction);
   }
 
+  const columns = [
+    {title:"Name", field:"name"},
+    {title:"Amount", field:"amount"},
+    {title:"VoucherNo", field:"voucherNo"},
+    {title:"Detail", field:"detail"},
+    {title:"Reciever", field:"reciever" },
+    {title:"Bank", field:"bank" },
+    {title:"Voucher", field:"voucher" },
+    {title:"Date", field:"date" },
+    ]
+  const printTransaction = ()=>{
+    console.log(transactions)
+    const doc = new jsPDF();
+    doc.addFont('../Fonts/fonts/NotoNastaliqUrdu-Regular.ttf', 'NotoNastaliqUrdu-Regular', 'normal');
+    doc.setFont('NotoNastaliqUrdu-Regular');
+    doc.text("Jeee", 20,20);
+    doc.autoTable({
+      columns:columns.map(col=>({...col,dataKey:col.field})),
+      body:transactions})
+    doc.save('table.pdf');
+  }
+
   if (props.transactionLoading) {
     return <h4>Loading</h4>;
   } else if (props.transactionErrMess) {
@@ -144,6 +168,9 @@ const MasjidDetail = (props) => {
           <div className="button" onClick={toggleModal}>
             خرچ کا اندراج
           </div>
+          <div className="button" onClick={printTransaction}>
+            Print
+          </div>
           <div className="masjid_header_info">
             <p>مسجد نمبر :{props.masjid.id}</p>
             <h1>{props.masjid.name}</h1>
@@ -155,7 +182,6 @@ const MasjidDetail = (props) => {
             </p>
             <p>نگران : {props.masjid.manager}</p>
           </div>
-          
         </div>
         <div className="expense_table">
           <TableContainer component={Paper}>
