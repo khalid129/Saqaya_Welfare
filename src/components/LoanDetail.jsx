@@ -30,7 +30,6 @@ function LoanDetail(props) {
                 <div className="account_ledger_details">
                     <div className="edits">
                       <DeleteIcon style={{color: "#D11A2A", cursor:"pointer"}}/>
-                      <EditIcon style={{color:"#4CAF50", cursor:"pointer"}}/>
                     </div>
                     <div className="expense_amount">
                         <span id="amount">10000</span>

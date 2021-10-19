@@ -64,10 +64,10 @@ const MasjidDetail = (props) => {
     setModal(!modal);
   };
 
-  const handleChange = ({ target: { name, value } }) => {
+  const handleChange = ({ target: { name, value, type } }) => {
     setForm((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: type === "number" ? parseInt(value) : value
     }));
   };
 
@@ -116,10 +116,10 @@ const MasjidDetail = (props) => {
   const classes = useStyles();
 
   const deleteTransaction = (id)=>{
-    // console.log(id,"id");
-    alert("Do you want to Delete Transaction")
-    dispatch(props.deleteTrans(id));
-    setTransactions(dispatch(props.fetchTransactions()));
+    console.log(id,"id");
+    // alert("Do you want to Delete Transaction")
+    // dispatch(props.deleteTrans(id));
+    // setTransactions(dispatch(props.fetchTransactions()));
     setTransactions(transactions.filter(transaction => transaction.id !== id))
   }
 

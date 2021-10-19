@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Header from "./Header";
 import Accountinfo from "./Accountinfo";
 import AccountTransaction from "./AccountTransaction";
@@ -6,6 +6,14 @@ import "../css/Account.css";
 import "../css/masjid.css";
 
 const AccountIncome = (props) => {
+  const [income, setIncome] = useState(props.incomes)
+  
+  const deleteTransaction = (id)=>{
+    alert("Do you want to Delete Transaction?")
+    console.log(id)
+    setIncome(income.filter(income =>income.id!==id))
+  }
+
   return (
     <div className="main_div">
       <Header name="آمدن کی تفصیل" />
@@ -36,8 +44,8 @@ const AccountIncome = (props) => {
         </div>
       </div>
 
-      {props.incomes.map((income) => {
-        return <AccountTransaction income={income} account = {props.account}/>;
+      {income.map((incomeTransaction) => {
+        return <AccountTransaction id={incomeTransaction.id} income={incomeTransaction} account = {props.account} delete={deleteTransaction}/>;
       })}
     </div>
   );

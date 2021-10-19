@@ -89,12 +89,24 @@ const Account = (props) => {
     }));
   };
 
+  const handleUpdate = () => { 
+    const index = allAccounts.findIndex(account => account.id === form.id)
+    const updatedAccounts = [...allAccounts]
+    updatedAccounts[index] = form 
+    setAccountList(updatedAccounts)
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(props.postAccount(Math.floor(Math.random() * (20 - 10)) + 10, form.name));
-    setallAccounts(dispatch(props.fetchAccounts()));
-    setAccountList(dispatch(props.fetchAccounts()));
-    setForm(initialState);
+    if(!changeButton){
+      handleUpdate();
+    }
+    else{
+      dispatch(props.postAccount(Math.floor(Math.random() * (20 - 10)) + 10, form.name));
+      setallAccounts(dispatch(props.fetchAccounts()));
+      setAccountList(dispatch(props.fetchAccounts()));
+      setForm(initialState);
+    }
     toggleModal();
   };
 
@@ -109,10 +121,9 @@ const Account = (props) => {
 
   const editData = (data) =>{
     setchangeButton(false)
+    console.log(data,"data");
     setForm(data)
-    setForm( prev => ({...prev,name:data.name}))
     setModal(!modal);
-    console.log(data.name);
   }
 
   // Press enter functionality

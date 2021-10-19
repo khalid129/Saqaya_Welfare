@@ -115,14 +115,27 @@ const Masjid = ({
     }));
   };
 
+  const handleUpdate = () => { 
+    const index = allMasjid.findIndex(masjid => masjid.id === form.id)
+    const updatedMasjid = [...allMasjid]
+    updatedMasjid[index] = form 
+    setMasjidList(updatedMasjid)
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(
-      postMasjid(form.id, form.name, form.province, form.area, form.manager)
-    );
-    setallMasjid(dispatch(fetchMasjids()));
-    setMasjidList(dispatch(fetchMasjids()));
-    setForm(initialState);
+    if(!changeButton){
+      handleUpdate();
+    }
+    else{
+      event.preventDefault();
+      dispatch(
+        postMasjid(form.id, form.name, form.province, form.area, form.manager)
+        );
+        setallMasjid(dispatch(fetchMasjids()));
+        setMasjidList(dispatch(fetchMasjids()));
+        setForm(initialState);
+      }
     toggleModal();
   };
 
@@ -135,11 +148,13 @@ const Masjid = ({
     setMasjidList(filtered);
   };
 
-  const editMasjid = (index)=>{
-    console.log(index)
+  const editMasjid = (data) =>{
     setChangeButton(false);
+    console.log(data,"data");
+    setForm(data)
     setModal(!modal);
   }
+
 
   // Press enter functionality
 
@@ -453,7 +468,7 @@ const Masjid = ({
                       >
                         <div style={{ color: "black" }} className="data">
                         <Link to={'/masjid'} class="editIcon" >
-                          <EditIcon onClick={()=>{editMasjid(index)}} style={{color:"#4CAF50"}}/>
+                          <EditIcon onClick={()=>{editMasjid(data)}} style={{color:"#4CAF50"}}/>
                         </Link>
                           <p>
                             {allTransactions

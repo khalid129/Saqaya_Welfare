@@ -42,11 +42,6 @@ const AccountTransaction = (props) => {
     toggleModal();
   }
 
-  
-  const deleteTransaction = ()=>{
-    alert("Do you want to Delete Transaction?")
-  }
-
   const editTransaction = ()=>{
     const accounts = props.account
     const income = props.income
@@ -60,7 +55,7 @@ const AccountTransaction = (props) => {
     <>
       <div className="account_ledger_details">
         <div className="edits">
-          <DeleteIcon onClick={()=>{deleteTransaction()}} style={{color: "#D11A2A", cursor:"pointer"}}/>
+          <DeleteIcon onClick={()=>{props.delete(props.id)}} style={{color: "#D11A2A", cursor:"pointer"}}/>
           <EditIcon onClick={()=>{editTransaction()}} style={{color:"#4CAF50", cursor:"pointer"}}/>
         </div>
         <div className="expense_amount">
