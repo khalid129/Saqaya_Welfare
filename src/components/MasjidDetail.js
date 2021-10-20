@@ -24,6 +24,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Paper from "@material-ui/core/Paper";
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import moment from 'moment';
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -127,11 +128,14 @@ const MasjidDetail = (props) => {
 
   const editTransaction = (transaction)=>{
     setChangeButton(false);
+    var date = moment(transaction.date).format("DD/MM/YYYY");
     const accountName = allAccounts.filter((account) => account.id === transaction.accountId)[0]
     setForm(transaction)
-    setForm( prev => ({...prev,accountName:accountName.name}))
+    // setForm( prev => ({...prev,accountName:accountName.name,date:date}))
+    setForm( prev => ({...prev,date:date}))
     setModal(!modal);
-    console.log(transaction);
+    console.log(transaction.date);
+    console.log(date);
   }
 
   const columns = [

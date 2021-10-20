@@ -33,6 +33,7 @@ const AccountIncome = (props) => {
   });
 
   const tableStyle = {
+    width: "500px",
     fontWeight: "bold",
     fontSize: "20px",
     textAlign: "center",
