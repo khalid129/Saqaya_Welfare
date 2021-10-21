@@ -21,6 +21,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import PrintIcon from '@material-ui/icons/Print';
 import Paper from "@material-ui/core/Paper";
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
@@ -35,11 +36,20 @@ const useStyles = makeStyles({
 });
 
 const tableStyle = {
-  fontWeight: "bold",
   fontSize: "20px",
   textAlign: "center",
   fontFamily: "Jameel"
 };
+
+const HeaderStyle = {
+  width: "500px",
+  fontWeight: "bold",
+  fontSize: "20px",
+  textAlign: "center",
+  fontFamily: "Jameel",
+  backgroundColor:"#48dbfb"
+};
+
 
 const initialState = {
   date: "",
@@ -126,16 +136,27 @@ const MasjidDetail = (props) => {
     setTransactions(transactions.filter(transaction => transaction.id !== id))
   }
 
+  function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+
   const editTransaction = (transaction)=>{
     setChangeButton(false);
-    var date = moment(transaction.date).format("DD/MM/YYYY");
     const accountName = allAccounts.filter((account) => account.id === transaction.accountId)[0]
     setForm(transaction)
-    // setForm( prev => ({...prev,accountName:accountName.name,date:date}))
-    setForm( prev => ({...prev,date:date}))
+    setForm( prev => ({...prev,accountName:accountName.name,date:formatDate(transaction.date)}))
     setModal(!modal);
     console.log(transaction.date);
-    console.log(date);
   }
 
   const columns = [
@@ -172,8 +193,8 @@ const MasjidDetail = (props) => {
           <div className="button" onClick={toggleModal}>
             خرچ کا اندراج
           </div>
-          <div className="button" onClick={printTransaction}>
-            Print
+          <div onClick={printTransaction}>
+            <PrintIcon className="print-pdf"/>
           </div>
           <div className="masjid_header_info">
             <p>مسجد نمبر :{props.masjid.id}</p>
@@ -192,17 +213,17 @@ const MasjidDetail = (props) => {
             <Table className={classes.table} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell style={tableStyle}>تبدیلی</TableCell>
-                  <TableCell style={tableStyle}>کھاتہ</TableCell>
-                  <TableCell style={tableStyle}>بھیجی ہوئی رقم</TableCell>
-                  <TableCell style={tableStyle}>واؤچرنمبر</TableCell>
-                  <TableCell style={tableStyle}>تفصیل </TableCell>
-                  <TableCell style={tableStyle}>
+                  <TableCell style={HeaderStyle}>تبدیلی</TableCell>
+                  <TableCell style={HeaderStyle}>کھاتہ</TableCell>
+                  <TableCell style={HeaderStyle}>بھیجی ہوئی رقم</TableCell>
+                  <TableCell style={HeaderStyle}>واؤچرنمبر</TableCell>
+                  <TableCell style={HeaderStyle}>تفصیل </TableCell>
+                  <TableCell style={HeaderStyle}>
                     کھاتہ بنام /وصول کنندہ کا نام
                   </TableCell>
-                  <TableCell style={tableStyle}>بینک کا نام/مد </TableCell>
-                  <TableCell style={tableStyle}>واسطہ/واؤچر</TableCell>
-                  <TableCell style={tableStyle}>تاریخ</TableCell>
+                  <TableCell style={HeaderStyle}>بینک کا نام/مد </TableCell>
+                  <TableCell style={HeaderStyle}>واسطہ/واؤچر</TableCell>
+                  <TableCell style={HeaderStyle}>تاریخ</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

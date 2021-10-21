@@ -47,6 +47,12 @@ TableBody TableRow TableCell{
     border-radius: 10px;
     padding: 10px;
 }
+
+/* Print PDF */
+.print-pdf{
+    cursor: pointer;
+}
+
 @media only screen and (max-width: 768px){
     .masjid_detail{
         flex-wrap: wrap;

@@ -2,6 +2,7 @@
     width: 100vw;
     height: 100vh;
     background-color: #ADD8E6;
+    /* background-color: #dff9fb; */
 }
 /* Header Part */
 .main_div .header_div{
@@ -33,7 +34,7 @@
     justify-content: space-around;
     align-items: center;
     margin-top: 10px;
-    background-color: #76d1f0;
+    background-color: #48dbfb;
     border-radius: 20px;
 }
 .masjid_header span{

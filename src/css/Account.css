@@ -1,7 +1,7 @@
 .main_div {
   width: 100vw;
   height: 100vh;
-  background-color: #add8e6;
+  background-color: #add8e6;;
 }
 .input_box{
   width: 82%;
@@ -72,6 +72,16 @@
 
 EditIcon:hover{
   color: black;
+}
+
+/* Account Header  */
+
+.account_detail_header .account_header_info{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: space-around;
 }
 
 @media only screen and (max-width: 768px){

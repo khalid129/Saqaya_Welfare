@@ -18,9 +18,10 @@ const initialState = {
 
 
 const Accountinfo = (props) => {
-  const dispatch = useDispatch() 
+const dispatch = useDispatch() 
 const [modal,setModal]=useState(false);
 const [form,setForm]=useState(initialState);
+
 
 
 const toggleModal=() => {
