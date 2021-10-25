@@ -1,14 +1,5 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-} from "reactstrap";
+import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label } from "reactstrap";
 import "../css/masjid.css";
 import "../css/home.css";
 import Header from "./Header";
@@ -16,7 +7,34 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import EditIcon from '@material-ui/icons/Edit';
 import SearchIcon from '@material-ui/icons/Search';
+import { makeStyles } from "@material-ui/core/styles";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
 
+const ContainerStyles = {
+  width: "1200px",
+  background: "red"
+}
+
+const HeaderStyle = {
+  width: "500px",
+  fontWeight: "bold",
+  fontSize: "28px",
+  textAlign: "center",
+  fontFamily: "Jameel",
+  backgroundColor: "#48dbfb"
+};
+
+const tableStyle = {
+  fontSize: "20px",
+  textAlign: "center",
+  fontFamily: "Jameel"
+};
 
 const initialState = {
   id: 0,
@@ -32,9 +50,10 @@ const initialState2 = {
   bank: "",
   reciever: "",
   detail: "",
+  purpose: "مسجد",
   voucherNo: "",
   amount: null,
-  loan:false,
+  loan: false,
   accountName: "",
 };
 
@@ -93,6 +112,7 @@ const Masjid = ({
         form2.bank,
         form2.reciever,
         form2.detail,
+        form2.purpose,
         form2.voucherNo,
         form2.loan,
         parseInt(form2.amount)
@@ -115,27 +135,29 @@ const Masjid = ({
     }));
   };
 
-  const handleUpdate = () => { 
+  const handleUpdate = () => {
     const index = allMasjid.findIndex(masjid => masjid.id === form.id)
+    console.log(index, "index");
     const updatedMasjid = [...allMasjid]
-    updatedMasjid[index] = form 
+    console.log(form, "form");
+    updatedMasjid[index] = form
+    console.log(updatedMasjid, "updatedMasjid");
     setMasjidList(updatedMasjid)
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(!changeButton){
+    if (!changeButton) {
       handleUpdate();
     }
-    else{
-      event.preventDefault();
+    else {
       dispatch(
         postMasjid(form.id, form.name, form.province, form.area, form.manager)
-        );
-        setallMasjid(dispatch(fetchMasjids()));
-        setMasjidList(dispatch(fetchMasjids()));
-        setForm(initialState);
-      }
+      );
+      setallMasjid(dispatch(fetchMasjids()));
+      setMasjidList(dispatch(fetchMasjids()));
+      setForm(initialState);
+    }
     toggleModal();
   };
 
@@ -148,23 +170,22 @@ const Masjid = ({
     setMasjidList(filtered);
   };
 
-  const editMasjid = (data) =>{
+  const editMasjid = (data) => {
     setChangeButton(false);
-    console.log(data,"data");
+    console.log(data, "data");
     setForm(data)
     setModal(!modal);
   }
 
-
   // Press enter functionality
 
-  const handler = (e)=>{
-    if(e.key==="Enter"){
+  const handler = (e) => {
+    if (e.key === "Enter") {
       console.log(e.key)
       updateInput(state, button)
     }
   }
-  
+
 
   if (masjidLoading) {
     return <h4>Loading</h4>;
@@ -182,44 +203,89 @@ const Masjid = ({
             خرچ کا اندراج
           </div>
           <div className="search_box">
-          <div className="button search"
-          onClick={() => updateInput(state, button)} 
-          >
-            <SearchIcon/> تلاش کریں
-          </div>
+            <div className="button search"
+              onClick={() => updateInput(state, button)}
+            >
+              <SearchIcon /> تلاش کریں
+            </div>
             <input
               type="text"
               placeholder="تلاش کریں"
               onChange={(e) => setstate(e.target.value)}
-              onKeyPress={(e)=>handler(e)}
+              onKeyPress={(e) => handler(e)}
             />
           </div>
         </div>
         <div className="category_type">
-          <div className={button==="manager"?"active":"button"} onClick={() => setButton("manager")}>
+          <div className={button === "manager" ? "active" : "button"} onClick={() => setButton("manager")}>
             نگران کا نام
           </div>
-          <div className={button==="province"?"active":"button"} onClick={() => setButton("province")}>
+          <div className={button === "province" ? "active" : "button"} onClick={() => setButton("province")}>
             صوبہ کا نام
           </div>
-          <div className={button==="area"?"active":"button"} onClick={() => setButton("area")}>
+          <div className={button === "area" ? "active" : "button"} onClick={() => setButton("area")}>
             علاقہ کا نام
           </div>
-          <div className={button==="name"?"active":"button"} onClick={() => setButton("name")}>
+          <div className={button === "name" ? "active" : "button"} onClick={() => setButton("name")}>
             مسجد کا نام
           </div>
-          <div className={button==="id"?"active":"button"} onClick={() => setButton("id")}>
+          <div className={button === "id" ? "active" : "button"} onClick={() => setButton("id")}>
             مسجد نمبر
           </div>
         </div>
-        <div className="masjid_header">
-          <span className="masjid_id">مسجد نمبر</span>
-          <span className="masjid_name">مسجد کا نام</span>
-          <span className="area">علاقہ</span>
-          <span className="province">صوبہ</span>
-          <span className="manager">نگران کا نام</span>
-          <span className="total">کل رقم</span>
-          <span className="edits">تبدیلی</span>
+        <div className="expense_table">
+          <TableContainer component={Paper} style={{ width: 1400 }}>
+            <Table className={ContainerStyles} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell style={HeaderStyle}>تبدیلی</TableCell>
+                  <TableCell style={HeaderStyle}>کل رقم</TableCell>
+                  <TableCell style={HeaderStyle}>نگران کا نام</TableCell>
+                  <TableCell style={HeaderStyle}>صوبہ</TableCell>
+                  <TableCell style={HeaderStyle}>علاقہ</TableCell>
+                  <TableCell style={HeaderStyle}>مسجد کا نام</TableCell>
+                  <TableCell style={HeaderStyle}>مسجد نمبر</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {masjidList &&
+                  masjidList
+                    .slice(0)
+                    .reverse()
+                    .map((data, index) => {
+                      if (data) {
+                        return (
+                          <TableRow component={Link} style={{ textDecoration: 'none', color: 'black' }} to={`/masjid/${data.id}`} key={data.name}>
+                            <TableCell style={tableStyle}>
+                              <Link to={'/masjid'} class="editIcon" >
+                                <EditIcon onClick={() => { editMasjid(data) }} style={{ color: "#4CAF50" }} />
+                              </Link>
+                            </TableCell>
+                            <TableCell style={tableStyle}>
+                              {allTransactions
+                                ? allTransactions.reduce((acc, list) => {
+                                  if (
+                                    list.masjidId === data.id &&
+                                    list.transType === "expense"
+                                  )
+                                    acc += list.amount;
+                                  return acc;
+                                }, 0)
+                                : null}
+                            </TableCell>
+                            <TableCell style={tableStyle}>{data.manager}</TableCell>
+                            <TableCell style={tableStyle}>{data.province}</TableCell>
+                            <TableCell style={tableStyle}>{data.area}</TableCell>
+                            <TableCell style={tableStyle}>{data.name}</TableCell>
+                            <TableCell style={tableStyle}>{data.id}</TableCell>
+                          </TableRow>
+                        );
+                      }
+                      return null;
+                    })}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </div>
 
         <Modal isOpen={modal} toggle={toggleModal}>
@@ -301,7 +367,7 @@ const Masjid = ({
                   marginTop: "10px",
                 }}
               >
-              {changeButton?"اندراج کریں":"تبدیل کریں"}
+                {changeButton ? "اندراج کریں" : "تبدیل کریں"}
               </Button>
             </Form>
           </ModalBody>
@@ -428,11 +494,11 @@ const Masjid = ({
               </FormGroup>
               <FormGroup check>
                 <Label check style={{ fontSize: "4vh" }}>
-                  <Input 
-                  type="checkbox" 
-                  name="loan"
-                  onChange={()=>setForm2((prev)=>({...prev,loan:!form2.loan}))}
-                  checked={form2.loan}
+                  <Input
+                    type="checkbox"
+                    name="loan"
+                    onChange={() => setForm2((prev) => ({ ...prev, loan: !form2.loan }))}
+                    checked={form2.loan}
                   />{' '}
                   قرضہ
                 </Label>
@@ -452,50 +518,6 @@ const Masjid = ({
             </Form>
           </ModalBody>
         </Modal>
-        <div className="masjid_list">
-          {masjidList &&
-            masjidList
-              .slice(0)
-              .reverse()
-              .map((data, index) => {
-                if (data) {
-                  return (
-                    <div className="filter_Masjid_name" key={data.name}>
-                      <Link
-                        to={`/masjid/${data.id}`}
-                        className="link"
-                        style={{ textDecoration: "none" }}
-                      >
-                        <div style={{ color: "black" }} className="data">
-                        <Link to={'/masjid'} class="editIcon" >
-                          <EditIcon onClick={()=>{editMasjid(data)}} style={{color:"#4CAF50"}}/>
-                        </Link>
-                          <p>
-                            {allTransactions
-                              ? allTransactions.reduce((acc, list) => {
-                                  if (
-                                    list.masjidId === data.id &&
-                                    list.transType === "expense"
-                                  )
-                                    acc += list.amount;
-                                  return acc;
-                                }, 0)
-                              : null}
-                          </p>
-
-                          <p>{data.manager}</p>
-                          <p>{data.province}</p>
-                          <p className="area">{data.area}</p>
-                          <p className="area">{data.name}</p>
-                          <p>{data.id}</p>
-                        </div>
-                      </Link>
-                    </div>
-                  );
-                }
-                return null;
-              })}
-        </div>
       </div>
     );
 };

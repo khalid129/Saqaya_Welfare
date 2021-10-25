@@ -14,6 +14,7 @@ import TableRow from "@material-ui/core/TableRow";
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PrintIcon from '@material-ui/icons/Print';
+import Delete from "./Delete";
 import Paper from "@material-ui/core/Paper";
 import { fetchTransactions, postIncome } from '../redux/ActionCreators';
 import { useDispatch  } from 'react-redux'
@@ -31,6 +32,7 @@ const AccountIncome = (props) => {
   const [modal, setModal] = useState(false);
   const [form, setForm] = useState(initialState);
   const [changeButton, setChangeButton] = useState(null)
+  const [deleteModal, setDeleteModal] = useState(false)
 
   const toggleModal=() => {
     setChangeButton(true)
@@ -58,7 +60,7 @@ const AccountIncome = (props) => {
       handleUpdate();
     } 
     else{
-    dispatch(postIncome(parseInt(props.data.id),null,"income",form.date,"", "", "", form.detail, "",form.amount))
+    dispatch(postIncome(parseInt(props.account.id),null,"income",form.date,"", "", "", form.detail, form.purpose ,"",form.amount))
     dispatch(fetchTransactions())
     setForm(initialState)
     toggleModal();
@@ -130,9 +132,9 @@ const AccountIncome = (props) => {
           <h4>خرچہ : {props.expense}</h4>
           <h4> قرضہ : {props.loan}</h4>
           <h4> بقیہ : {props.income - props.expense - props.loan}</h4>
-          <div>
+          {/*<div>
             <PrintIcon className="print-pdf"/>
-          </div>
+          </div>*/}
           <div className="button" onClick={toggleModal}>آمدن اندراج کریں</div>
         </div>
       </div>
@@ -149,6 +151,7 @@ const AccountIncome = (props) => {
               </TableRow>
             </TableHead>
             <TableBody>
+              {deleteModal===true &&  <Delete id={income.date} state={true}/>}
               {income.map((incomeTransaction) => {
                 return (
                   <>
@@ -157,7 +160,8 @@ const AccountIncome = (props) => {
                         <div className="edits">
                           <DeleteIcon
                             onClick={() => {
-                              deleteTransaction(incomeTransaction.id);
+                              setDeleteModal(true);
+                              // deleteTransaction(incomeTransaction.id);
                             }}
                             style={{ color: "#D11A2A", cursor: "pointer" }}
                           />
@@ -210,4 +214,3 @@ const AccountIncome = (props) => {
 };
 
 export default AccountIncome;
-

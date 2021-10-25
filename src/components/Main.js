@@ -216,7 +216,7 @@ function Main() {
         expenses={allTransactions.transactions.filter(
           (transaction) =>
             transaction.accountId === parseInt(match.params.id, 10) &&
-            transaction.transType === "expense"
+            transaction.transType === "expense" && transaction.purpose === "مسجد"
         )}
         income={allTransactions.transactions.reduce((acc, list) => {
           if (
@@ -260,6 +260,17 @@ function Main() {
       />
     )
   }
+  const loanWithId = ({match}) => {
+    return(
+      <LoanDetail 
+      expenses={allTransactions.transactions.filter(
+        (transaction) =>
+          transaction.accountId === parseInt(match.params.id, 10) &&
+          transaction.transType === "expense" && transaction.loan
+      )}
+      />
+    )
+  }
 
   useEffect(() => {
     const intervalID = setTimeout(() => {
@@ -278,7 +289,6 @@ function Main() {
         <Route exact path="/masjid/:id" component={MasjidWithId} />
         <Route path="/masjid/:id/:accountId" component={MasjidWithAccountId} />
         <Route exact path="/account/:id" component={AccountWithId} />
-        <Route exact path="/account/:id/LoanDetail" component={LoanDetail} />
         <Route
           exact
           path="/account/:id/accountIncome"
@@ -288,6 +298,7 @@ function Main() {
           path="/account/:id/masjidExpense"
           component={MasjidExpenseWithId}
         />
+        <Route exact path="/account/:id/LoanDetail" component={loanWithId} />
 
         <div className="App">
           {toggle ? (

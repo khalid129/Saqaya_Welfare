@@ -15,7 +15,6 @@ const MasjidExpense = (props) => {
       amount: expenses.reduce((prev, curr) => prev + curr.amount, 0),
     };
   });
-
   return (
     <div className="main_div">
       <Header name="خرچ کی تفصیل" />

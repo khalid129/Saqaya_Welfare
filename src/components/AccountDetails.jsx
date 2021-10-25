@@ -83,18 +83,27 @@ const AccountDetails = (props) => {
       <Link to={`/account/${data.id}/masjidExpense`} style={{textDecoration:"none"}}>
       <IndividualExpense 
       expense={props.transaction.reduce((acc, list) => {
-        if (list.transType === "expense") acc += list.amount;
+        if (list.transType === "expense"  && list.purpose === "مسجد") acc += list.amount;
         return acc;
       }, 0)} 
       income={props.transaction.reduce((acc, list) => {
-        if (list.transType === "income") acc += list.amount;
+        if (list.transType === "income"  && list.purpose === "مسجد") acc += list.amount;
         return acc;
       }, 0)}
       purpose={"مسجد"} />
       </Link>
-      <IndividualExpense id={data.id} expense={0} income={0} purpose={"جانور"} />
-      <IndividualExpense id={data.id} expense={0} income={0} purpose={"پانی"} />
-      <IndividualExpense id={data.id} expense={0} income={0} purpose={"راشن"} />
+      <IndividualExpense expense={0} income={0} purpose={"جانور"} />
+      <IndividualExpense expense={0} income={0} purpose={"پانی"} />
+      <IndividualExpense 
+      expense={props.transaction.reduce((acc, list) => {
+        if (list.transType === "expense"  && list.purpose === "راشن") acc += list.amount;
+        return acc;
+      }, 0)} 
+      income={props.transaction.reduce((acc, list) => {
+        if (list.transType === "income"  && list.purpose === "راشن") acc += list.amount;
+        return acc;
+      }, 0)}
+       purpose={"راشن"} />
     </div>
   );
     }

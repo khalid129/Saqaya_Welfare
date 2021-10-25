@@ -24,7 +24,7 @@ const initialState = {
 const initialState2 = {
   accountName:"",
   date: "",
-  place: "",
+  purpose: "",
   detail: "",
   amount: null,
 };
@@ -43,14 +43,15 @@ const Account = (props) => {
   const [form2, setForm2] = useState(initialState2);
   const [changeButton, setchangeButton] = useState(null)
 
+
   const toggleModal2 = () => {
     setModal2(!modal2);
   };
 
-  const handleChange2 = ({ target: { name, value } }) => {
+  const handleChange2 = ({ target: { name, value, type } }) => {
     setForm2((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: type === "number" ? parseInt(value) : value
     }));
   };
 
@@ -67,8 +68,9 @@ const Account = (props) => {
         "",
         "",
         form2.detail,
+        form2.purpose,
         "",
-        parseInt(form2.amount)
+        form2.amount
       )
     );
     // dispatch(fetchTransactions());
@@ -81,11 +83,10 @@ const Account = (props) => {
     setModal(!modal);
   };
 
-  const handleChange = ({ target: { name, value } }) => {
-    // console.log({ name, value });
+  const handleChange = ({ target: { name, value, type } }) => {
     setForm((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: type === "number" ? parseInt(value) : value
     }));
   };
 

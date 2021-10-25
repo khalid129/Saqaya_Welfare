@@ -23,9 +23,13 @@
     margin-right: 30px;
 }
 
+.expense_table{
+    display: flex;
+    justify-content: center;
+}
 
 /* Filter Masjid Header */
-.masjid_header{
+/* .masjid_header{
     width: 80%;
     height: 50px;
     margin: 0 auto;
@@ -57,7 +61,7 @@
 
 .masjid_header .manager, .masjid_header .total, .masjid_header .province, .masjid_header .area{
     text-align: left;
-}
+} */
 
 /* Check Box Part */
 .input_box{
@@ -132,7 +136,7 @@ input:focus{
 .button:hover{
     text-shadow: 1px 1px 2px rgb(158, 158, 158), 0 0 1em rgb(175, 175, 175), 0 0 0.2em rgb(216, 216, 216);
 }
-.masjid_list{
+/* .masjid_list{
     width: 95%;
     margin: 0 auto;
     display: flex;
@@ -144,7 +148,7 @@ input:focus{
 .filter_Masjid_name{
     width: 90%;
     margin-top: 10px;
-}
+} */
 .active {
     width: 150px;
     height: 45px;
@@ -156,7 +160,8 @@ input:focus{
     background-color: #E1E1E1;
     cursor: pointer;
   }
-.data{
+
+/* .data{
     width: 94%;
     margin: 0 auto;
     display: flex;
@@ -183,7 +188,7 @@ input:focus{
     transition: all .3s ease-in-out;
     position:relative;
     width: 98%;
-}
+} */
 /* Resposive CSS  */
 
 @media only screen and (max-width: 768px){

@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import "../css/home.css";
 import "../css/masjid.css";
 import Header from "./Header";
@@ -21,8 +22,7 @@ function RenderCard(props) {
       }}
     >
       <div>
-        <Card
-          className="home_card"
+        <Card className="home_card"
           style={{
             backgroundColor: "white",
             paddingTop: "30px",
@@ -67,6 +67,12 @@ export default function Home({ transactions }) {
   }, 0);
   let totalIncomeAmount = transactions.reduce((acc, list) => {
     if (list.transType === "income") {
+      acc = list.amount + acc;
+    }
+    return acc;
+  }, 0);
+  let totalLoanAmount = transactions.reduce((acc, list) => {
+    if (list.loan) {
       acc = list.amount + acc;
     }
     return acc;
@@ -131,7 +137,7 @@ export default function Home({ transactions }) {
               <RenderCard
                 img={image6}
                 name={"قرضہ جات"}
-                des={<CountUp end={totalMasjidAmount} duration={1.5} />}
+                des={<CountUp end={totalLoanAmount} duration={1.5} />}
               />
             </Link>
           </div>

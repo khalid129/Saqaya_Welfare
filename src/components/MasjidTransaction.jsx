@@ -14,8 +14,8 @@ const MasjidTransaction = (props) => {
         <div className="amount">
           <span id="amount">{props.data.amount}</span>
         </div>
-        <div className="province">
-          <span id="province">{props.masjid[0].province}</span>
+        <div className="ares">
+        <span id="area">{props.masjid[0].province}</span>
         </div>
         <div className="ares">
         <span id="area">{props.masjid[0].area}</span>
@@ -24,7 +24,7 @@ const MasjidTransaction = (props) => {
           <span id="name">{props.masjid[0].name}</span>
         </div>
         <div className="masjid_number">
-          <span id="id">{props.data.masjidId}</span>
+          <span id="id">{props.masjid[0].id}</span>
         </div>
       </div>
     </Link>
