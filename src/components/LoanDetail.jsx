@@ -3,16 +3,26 @@ import Header from "./Header";
 import DeleteIcon from '@material-ui/icons/Delete';
 import "../css/Account.css";
 import "../css/masjid.css";
+import DeleteModal from './DeleteModal';
 
 function LoanDetail(props) {
     const [loans, setLoans] = useState(props.expenses)
-    const deleteTransaction = (id)=>{
-        // console.log(id,"id");
-        alert("Do you want to Delete Transaction")
-        // dispatch(props.deleteTrans(id));
-        // setTransactions(dispatch(props.fetchTransactions()));
-        setLoans(loans.filter(loan => loan.id !== id))
-      }
+    const [deleteModal,setDeleteModal] = useState(null)
+
+    const toggleDeleteModal = () => {
+      setDeleteModal(null)
+    }
+
+      const deleteTransaction = (id)=>{
+    // console.log(id,"id");
+    // alert("Do you want to Delete Transaction")
+    // dispatch(props.deleteTrans(id));
+    // setTransactions(dispatch(props.fetchTransactions()));
+    // temporary
+    // setTransactions(transactions.filter(transaction => transaction.id !== id))
+    setDeleteModal(id)
+  }
+
     return (
         <div>
             <div className="main_div">
@@ -33,7 +43,7 @@ function LoanDetail(props) {
                         </div>
                     </div>
                 </div>
-
+                {deleteModal?<DeleteModal id={deleteModal} state={true} onClick={toggleDeleteModal} />:null}
                 {loans.map((loan) => {
                     return(
                         <div className="account_ledger_details">

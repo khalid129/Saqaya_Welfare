@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../css/masjid.css";
 import "../css/MasjidDetail.css";
 import Header from "./Header";
+import DeleteModal from './DeleteModal';
 import {
   Button,
   Modal,
@@ -25,21 +26,14 @@ import Paper from "@material-ui/core/Paper";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
-const ContainerStyles = {
-  width: "1200px",
-  background: "red"
-}
-const HeaderStyle = {
-  width: "500px",
-  fontWeight: "bold",
-  fontSize: "20px",
-  textAlign: "center",
-  fontFamily: "Jameel",
-  backgroundColor:"#48dbfb"
-};
-
+const useStyles = makeStyles({
+  table: {
+    minWidth: 500,
+  },
+});
 
 const tableStyle = {
+  fontWeight: "bold",
   fontSize: "20px",
   textAlign: "center",
   fontFamily: "Jameel"
@@ -51,10 +45,10 @@ const initialState = {
   bank: "",
   reciever: "",
   detail: "",
-  purpose: "مسجد",
+  purpose:"مسجد",
   voucherNo: "",
   amount: null,
-  loan: false,
+  loan:false,
   accountName: "",
 };
 
@@ -62,10 +56,15 @@ const MasjidDetail = (props) => {
   let sum = 0
   const dispatch = useDispatch();
   const [transactions, setTransactions] = useState(props.expenses);
-  const [allAccounts, setAccounts] = useState(props.accounts)
+  const [allAccounts,setAccounts] = useState(props.accounts)
   const [modal, setModal] = useState(false);
   const [form, setForm] = useState(initialState);
   const [changeButton, setChangeButton] = useState(null)
+  const [deleteModal,setDeleteModal] = useState(null)
+
+  const toggleDeleteModal = () => {
+    setDeleteModal(null)
+  }
 
   const toggleModal = () => {
     setChangeButton(true)
@@ -83,18 +82,18 @@ const MasjidDetail = (props) => {
     const index = transactions.findIndex(transaction => transaction.id === form.id)
     const updatedTransactions = [...transactions]
     const accountId = allAccounts.filter((account) => account.name === form.accountName)[0]
-    console.log(form, "accountId");
+    console.log(form,"accountId");
     updatedTransactions[index] = form
     updatedTransactions[index].accountId = accountId.id
-    setTransactions(updatedTransactions)
+    setTransactions(updatedTransactions)  
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!changeButton) {
+    if(!changeButton){
       handleUpdate();
-    }
-    else {
+    } 
+    else{
       const account = allAccounts.filter((account) => account.name === form.accountName)[0]
       dispatch(
         props.postExpense(
@@ -121,37 +120,42 @@ const MasjidDetail = (props) => {
   };
 
   const grandTotal = (value) => {
-    sum += value
+    sum+=value
   }
-  const deleteTransaction = (id) => {
+
+  const classes = useStyles();
+
+  const deleteTransaction = (id)=>{
     // console.log(id,"id");
-    alert("Do you want to Delete Transaction")
+    // alert("Do you want to Delete Transaction")
     // dispatch(props.deleteTrans(id));
     // setTransactions(dispatch(props.fetchTransactions()));
-    setTransactions(transactions.filter(transaction => transaction.id !== id))
+    // temporary
+    // setTransactions(transactions.filter(transaction => transaction.id !== id))
+    setDeleteModal(id)
   }
 
   function formatDate(date) {
     var d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
-      year = d.getFullYear();
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
 
-    if (month.length < 2)
-      month = '0' + month;
-    if (day.length < 2)
-      day = '0' + day;
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
 
     return [year, month, day].join('-');
-  }
+}
 
-  const editTransaction = (transaction) => {
+  const editTransaction = (transaction)=>{
     setChangeButton(false);
-    console.log(transaction, "transaction");
+    console.log(transaction,"transaction");
     const accountName = allAccounts.filter((account) => account.id === transaction.accountId)[0]
     setForm(transaction)
-
-    setForm(prev => ({ ...prev, accountName: accountName.name, date: formatDate(transaction.date) }))
+  
+    setForm( prev => ({...prev,accountName:accountName.name,date:formatDate(transaction.date)}))
     setModal(!modal);
   }
 
@@ -178,24 +182,24 @@ const MasjidDetail = (props) => {
             </p>
             <p>نگران : {props.masjid.manager}</p>
           </div>
-
+          
         </div>
         <div className="expense_table">
           <TableContainer component={Paper}>
-            <Table className={ContainerStyles} aria-label="simple table">
+            <Table className={classes.table} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell style={HeaderStyle}>تبدیلی</TableCell>
-                  <TableCell style={HeaderStyle}>کھاتہ</TableCell>
-                  <TableCell style={HeaderStyle}>بھیجی ہوئی رقم</TableCell>
-                  <TableCell style={HeaderStyle}>واؤچرنمبر</TableCell>
-                  <TableCell style={HeaderStyle}>تفصیل </TableCell>
-                  <TableCell style={HeaderStyle}>
+                  <TableCell style={tableStyle}>تبدیلی</TableCell>
+                  <TableCell style={tableStyle}>کھاتہ</TableCell>
+                  <TableCell style={tableStyle}>بھیجی ہوئی رقم</TableCell>
+                  <TableCell style={tableStyle}>واؤچرنمبر</TableCell>
+                  <TableCell style={tableStyle}>تفصیل </TableCell>
+                  <TableCell style={tableStyle}>
                     کھاتہ بنام /وصول کنندہ کا نام
                   </TableCell>
-                  <TableCell style={HeaderStyle}>بینک کا نام/مد </TableCell>
-                  <TableCell style={HeaderStyle}>واسطہ/واؤچر</TableCell>
-                  <TableCell style={HeaderStyle}>تاریخ</TableCell>
+                  <TableCell style={tableStyle}>بینک کا نام/مد </TableCell>
+                  <TableCell style={tableStyle}>واسطہ/واؤچر</TableCell>
+                  <TableCell style={tableStyle}>تاریخ</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -203,8 +207,8 @@ const MasjidDetail = (props) => {
                   <TableRow key={transaction.name}>
                     <TableCell style={tableStyle}>
                       <div className="edits">
-                        <DeleteIcon onClick={() => { deleteTransaction(transaction.id) }} style={{ color: "#D11A2A", cursor: "pointer" }} />
-                        <EditIcon onClick={() => { editTransaction(transaction) }} style={{ color: "#4CAF50", cursor: "pointer" }} />
+                      <DeleteIcon onClick={()=>{deleteTransaction(transaction.id)}} style={{color: "#D11A2A", cursor:"pointer"}}/>
+                      <EditIcon onClick={()=>{editTransaction(transaction)}} style={{color:"#4CAF50", cursor:"pointer"}}/>
                       </div>
                     </TableCell>
                     <TableCell align="center" style={tableStyle}>
@@ -214,12 +218,14 @@ const MasjidDetail = (props) => {
                         }
                       })}
                     </TableCell>
-                    <TableCell align="center" style={tableStyle}>
-                      {transaction.amount}
-
+                    <TableCell  align="center" style={tableStyle}>
+                    {transaction.amount}
+                    
                     </TableCell>
                     {grandTotal(transaction.amount)}
-                    <TableCell style={tableStyle} align="center">{transaction.voucherNo}</TableCell>
+                    <TableCell style={tableStyle} align="center">
+                      {transaction.voucherNo}
+                    </TableCell>
                     <TableCell style={tableStyle} align="center">{transaction.detail}</TableCell>
                     <TableCell style={tableStyle} align="center">{transaction.reciever}</TableCell>
                     <TableCell style={tableStyle} align="center">{transaction.bank}</TableCell>
@@ -341,11 +347,11 @@ const MasjidDetail = (props) => {
               </FormGroup>
               <FormGroup check>
                 <Label check style={{ fontSize: "4vh" }}>
-                  <Input
-                    type="checkbox"
-                    name="loan"
-                    onChange={() => setForm((prev) => ({ ...prev, loan: !form.loan }))}
-                    checked={form.loan}
+                  <Input 
+                  type="checkbox" 
+                  name="loan"
+                  onChange={()=>setForm((prev)=>({...prev,loan:!form.loan}))}
+                  checked={form.loan}
                   />{' '}
                   قرضہ
                 </Label>
@@ -360,11 +366,12 @@ const MasjidDetail = (props) => {
                   marginTop: "10px",
                 }}
               >
-                {changeButton ? "اندراج کریں" : "تبدیل کریں"}
+                {changeButton?"اندراج کریں":"تبدیل کریں"}
               </Button>
             </Form>
           </ModalBody>
         </Modal>
+        {deleteModal?<DeleteModal id={deleteModal} state={true} onClick={toggleDeleteModal} />:null}
         <div className="total_amount">
           <div><h2>{sum}</h2></div>
           <div><h2>: کل رقم </h2></div>

@@ -14,7 +14,7 @@ import TableRow from "@material-ui/core/TableRow";
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PrintIcon from '@material-ui/icons/Print';
-import Delete from "./Delete";
+import DeleteModal from './DeleteModal';
 import Paper from "@material-ui/core/Paper";
 import { fetchTransactions, postIncome } from '../redux/ActionCreators';
 import { useDispatch  } from 'react-redux'
@@ -32,7 +32,11 @@ const AccountIncome = (props) => {
   const [modal, setModal] = useState(false);
   const [form, setForm] = useState(initialState);
   const [changeButton, setChangeButton] = useState(null)
-  const [deleteModal, setDeleteModal] = useState(false)
+  const [deleteModal,setDeleteModal] = useState(null)
+
+  const toggleDeleteModal = () => {
+    setDeleteModal(null)
+  }
 
   const toggleModal=() => {
     setChangeButton(true)
@@ -84,10 +88,15 @@ const AccountIncome = (props) => {
 }
 
 
-  const deleteTransaction = (id) => {
-    alert("Do you want to Delete Transaction?");
-    setIncome(income.filter((income) => income.id !== id));
-  };
+const deleteTransaction = (id)=>{
+  // console.log(id,"id");
+  // alert("Do you want to Delete Transaction")
+  // dispatch(props.deleteTrans(id));
+  // setTransactions(dispatch(props.fetchTransactions()));
+  // temporary
+  // setTransactions(transactions.filter(transaction => transaction.id !== id))
+  setDeleteModal(id)
+}
 
   const editTransaction = (income)=>{
     setChangeButton(false);
@@ -151,7 +160,7 @@ const AccountIncome = (props) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {deleteModal===true &&  <Delete id={income.date} state={true}/>}
+            {deleteModal?<DeleteModal id={deleteModal} state={true} onClick={toggleDeleteModal} />:null}
               {income.map((incomeTransaction) => {
                 return (
                   <>
