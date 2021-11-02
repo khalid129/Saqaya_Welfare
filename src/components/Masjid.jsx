@@ -57,6 +57,29 @@ const initialState2 = {
   accountName: "",
 };
 
+const options = [
+  {
+    label:"مسجد نمبر",
+    value:"id"
+  },
+  {
+    label:"مسجد کا نام",
+    value:"name"
+  },
+  {
+    label:"علاقہ کا نام",
+    value:"area"
+  },
+  {
+    label:"صوبہ کا نام",
+    value:"province"
+  },
+  {
+    label:"نگران کا نام",
+    value:"manager"
+  }
+]
+
 const Masjid = ({
   masjids,
   masjidLoading,
@@ -196,17 +219,22 @@ const Masjid = ({
       <div className="main_div">
         <Header name="مساجد" />
         <div className="input_box">
-          <div className="button expense" onClick={toggleModal}>
+          <div className="button" onClick={toggleModal}>
             مسجد کا اندراج
           </div>
-          <div className="button expense" onClick={toggleModal2}>
+          <div className="button" onClick={toggleModal2}>
             خرچ کا اندراج
           </div>
+          <select onChange={(e)=>{setButton(e.target.value)}} className="options"  id="options" name="options">
+              {options.map((option) => (
+              <option value={option.value}>{option.label}</option>
+              ))}
+          </select>
           <div className="search_box">
-            <div className="button search"
+            <div className="search"
               onClick={() => updateInput(state, button)}
             >
-              <SearchIcon /> تلاش کریں
+              <SearchIcon />
             </div>
             <input
               type="text"
@@ -216,7 +244,8 @@ const Masjid = ({
             />
           </div>
         </div>
-        <div className="category_type">
+        {/* <div className="category_type">
+        
           <div className={button === "manager" ? "active" : "button"} onClick={() => setButton("manager")}>
             نگران کا نام
           </div>
@@ -232,7 +261,7 @@ const Masjid = ({
           <div className={button === "id" ? "active" : "button"} onClick={() => setButton("id")}>
             مسجد نمبر
           </div>
-        </div>
+        </div> */}
         <div className="expense_table">
           <TableContainer component={Paper} style={{ width: 1400 }}>
             <Table className={ContainerStyles} aria-label="simple table">

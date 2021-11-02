@@ -145,10 +145,10 @@ const Account = (props) => {
         </div>
         <div className="button"  onClick={toggleModal2}>آمدن کا اندراج</div>
         <div className="search_box">
-          <div className="button search"
+          <div className="search"
           onClick={() => updateInput(state)} 
           >
-            <SearchIcon/> تلاش کریں
+            <SearchIcon/>
           </div>
           <input
             type="text"
