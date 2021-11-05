@@ -32,8 +32,16 @@ const useStyles = makeStyles({
   },
 });
 
-const tableStyle = {
+const HeaderStyle = {
+  width: "500px",
   fontWeight: "bold",
+  fontSize: "20px",
+  textAlign: "center",
+  fontFamily: "Jameel",
+  backgroundColor: "#48dbfb"
+};
+
+const tableStyle = {
   fontSize: "20px",
   textAlign: "center",
   fontFamily: "Jameel"
@@ -111,10 +119,9 @@ const MasjidDetail = (props) => {
           form.amount
         )
       );
-      setTransactions(dispatch(props.fetchTransactions()));
-      setForm(initialState);
-
+      setTransactions(dispatch(props.fetchTransactions()));      
     }
+    setForm(initialState);
     toggleModal();
 
   };
@@ -125,13 +132,17 @@ const MasjidDetail = (props) => {
 
   const classes = useStyles();
 
+  const settingTransactionId = (id)=>{
+    setDeleteModal(id)
+  }
+
   const deleteTransaction = (id)=>{
-    // console.log(id,"id");
+    console.log(id,"id");
     // alert("Do you want to Delete Transaction")
     // dispatch(props.deleteTrans(id));
     // setTransactions(dispatch(props.fetchTransactions()));
     // temporary
-    // setTransactions(transactions.filter(transaction => transaction.id !== id))
+    setTransactions(transactions.filter(transaction => transaction.id !== id))
     setDeleteModal(id)
   }
 
@@ -149,12 +160,16 @@ const MasjidDetail = (props) => {
     return [year, month, day].join('-');
 }
 
+function renderDate(date){
+  var d = new Date(date)
+  return [d.getDate(), d.getMonth() + 1, d.getFullYear()].join('-');
+}
+
   const editTransaction = (transaction)=>{
     setChangeButton(false);
     console.log(transaction,"transaction");
     const accountName = allAccounts.filter((account) => account.id === transaction.accountId)[0]
     setForm(transaction)
-  
     setForm( prev => ({...prev,accountName:accountName.name,date:formatDate(transaction.date)}))
     setModal(!modal);
   }
@@ -173,7 +188,7 @@ const MasjidDetail = (props) => {
           </div>
           <div className="masjid_header_info">
             <p>مسجد نمبر :{props.masjid.id}</p>
-            <h1>{props.masjid.name}</h1>
+            <p>مسجد : {props.masjid.name}</p>
             <p>
               علاقہ : {props.masjid.area}
             </p>
@@ -189,17 +204,17 @@ const MasjidDetail = (props) => {
             <Table className={classes.table} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell style={tableStyle}>تبدیلی</TableCell>
-                  <TableCell style={tableStyle}>کھاتہ</TableCell>
-                  <TableCell style={tableStyle}>بھیجی ہوئی رقم</TableCell>
-                  <TableCell style={tableStyle}>واؤچرنمبر</TableCell>
-                  <TableCell style={tableStyle}>تفصیل </TableCell>
-                  <TableCell style={tableStyle}>
+                  <TableCell style={HeaderStyle}>تبدیلی</TableCell>
+                  <TableCell style={HeaderStyle}>کھاتہ</TableCell>
+                  <TableCell style={HeaderStyle}>بھیجی ہوئی رقم</TableCell>
+                  <TableCell style={HeaderStyle}>واؤچرنمبر</TableCell>
+                  <TableCell style={HeaderStyle}>تفصیل </TableCell>
+                  <TableCell style={HeaderStyle}>
                     کھاتہ بنام /وصول کنندہ کا نام
                   </TableCell>
-                  <TableCell style={tableStyle}>بینک کا نام/مد </TableCell>
-                  <TableCell style={tableStyle}>واسطہ/واؤچر</TableCell>
-                  <TableCell style={tableStyle}>تاریخ</TableCell>
+                  <TableCell style={HeaderStyle}>بینک کا نام/مد </TableCell>
+                  <TableCell style={HeaderStyle}>واسطہ/واؤچر</TableCell>
+                  <TableCell style={HeaderStyle}>تاریخ</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

@@ -6,14 +6,38 @@ import "../css/Account.css";
 import "../css/masjid.css";
 import "../css/MasjidDetail.css";
 import { Link } from "react-router-dom";
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+
+const ContainerStyles = {
+  width: "1200px",
+}
+
+const HeaderStyle = {
+  width: "500px",
+  fontWeight: "bold",
+  fontSize: "28px",
+  textAlign: "center",
+  fontFamily: "Jameel",
+  backgroundColor: "#48dbfb"
+};
+
+const tableStyle = {
+  fontSize: "20px",
+  textAlign: "center",
+  fontFamily: "Jameel"
+};
 
 function IndividualExpense(props) {
   return (
     <div className="account_ledger_details">
       <div className="balance_amount">
-        <span id="amount">{props.income-props.expense}</span>
+        <span id="amount">{props.income - props.expense}</span>
       </div>
       <div className="expense_amount">
         <span id="amount">{props.expense}</span>
@@ -31,40 +55,40 @@ function IndividualExpense(props) {
 const AccountDetails = (props) => {
   const data = props.account;
   if (props.transactionLoading) {
-    return(
+    return (
       <h4>Loading</h4>
     );
   }
   else if (props.transactionErrMess) {
-    return(
-        <h4>{props.transactionErrMess}</h4>
+    return (
+      <h4>{props.transactionErrMess}</h4>
     );
   }
   else
-  if(data){
-  return (
-    <div className="main_div">
-      <Header name="کھاتہ کی تفصیل" />
-      <div className="account_details">
-        <Accountinfo
-          data={data}
-          income={props.transaction.reduce((acc, list) => {
-            if (list.transType === "income") acc += list.amount;
-            return acc;
-          }, 0)}
-          expense={props.transaction.reduce((acc, list) => {
-            if (list.transType === "expense" && !list.loan) acc += list.amount;
-            return acc;
-          }, 0)}
-          loan={props.transaction.reduce((acc, list) => {
-            if (list.loan) acc += list.amount;
-            return acc;
-          }, 0)}
-          // fetchTransactions={props.fetchTransactions}
-          // postIncome={props.postIncome}
-        />
-      </div>
-      <div className="account_header">
+    if (data) {
+      return (
+        <div className="main_div">
+          <Header name="کھاتہ کی تفصیل" />
+          <div className="account_details">
+            <Accountinfo
+              data={data}
+              income={props.transaction.reduce((acc, list) => {
+                if (list.transType === "income") acc += list.amount;
+                return acc;
+              }, 0)}
+              expense={props.transaction.reduce((acc, list) => {
+                if (list.transType === "expense" && !list.loan) acc += list.amount;
+                return acc;
+              }, 0)}
+              loan={props.transaction.reduce((acc, list) => {
+                if (list.loan) acc += list.amount;
+                return acc;
+              }, 0)}
+            // fetchTransactions={props.fetchTransactions}
+            // postIncome={props.postIncome}
+            />
+          </div>
+          <div className="account_header">
         <div className="account_text">
           <div className="balance">
             <span>بقیہ</span>
@@ -80,7 +104,35 @@ const AccountDetails = (props) => {
           </div>
         </div>
       </div>
-      <Link to={`/account/${data.id}/masjidExpense`} style={{textDecoration:"none"}}>
+          {/* <div className="expense_table">
+            <TableContainer component={Paper} style={{ width: 1230 }}>
+              <Table className={ContainerStyles} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell style={HeaderStyle}>بقیہ</TableCell>
+                    <TableCell style={HeaderStyle}>خرچ</TableCell>
+                    <TableCell style={HeaderStyle}>آمدن</TableCell>
+                    <TableCell style={HeaderStyle}>نام</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <TableRow component={Link} style={{ textDecoration: 'none', color: 'black' }} to={`/account/${data.id}/masjidExpense`}>
+                    <TableCell style={tableStyle}>a</TableCell>
+                    <TableCell style={tableStyle}>{props.transaction.reduce((acc, list) => {
+                      if (list.transType === "expense" && list.purpose === "مسجد") acc += list.amount;
+                      return acc;
+                    }, 0)}</TableCell>
+                    <TableCell style={tableStyle}>{props.transaction.reduce((acc, list) => {
+                      if (list.transType === "income" && list.purpose === "مسجد") acc += list.amount;
+                      return acc;
+                    }, 0)}</TableCell>
+                    <TableCell style={tableStyle}>مسجد</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </div> */}
+          <Link to={`/account/${data.id}/masjidExpense`} style={{textDecoration:"none"}}>
       <IndividualExpense 
       expense={props.transaction.reduce((acc, list) => {
         if (list.transType === "expense"  && list.purpose === "مسجد") acc += list.amount;
@@ -104,11 +156,11 @@ const AccountDetails = (props) => {
         return acc;
       }, 0)}
        purpose={"راشن"} />
-    </div>
-  );
+        </div>
+      );
     }
-    else{
-      return(
+    else {
+      return (
         <h4>No such account of this id</h4>
       );
     }

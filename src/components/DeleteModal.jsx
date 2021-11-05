@@ -5,7 +5,6 @@ import {
   ModalHeader,
   ModalBody,
 } from "reactstrap";
-import { TrendingUpRounded } from "@material-ui/icons";
 
 const DeleteModal=(props)=> {
   const [modal, setModal] = useState(props.state);
@@ -31,9 +30,8 @@ const DeleteModal=(props)=> {
             type="submit"
             value="submit"
             style={{
-              backgroundColor: "#90DAF2",
+              backgroundColor: "#D11A2A",
               color: "black",
-              borderColor: "#90DAF2",
               marginRight: "10px",
             }}
           >
@@ -41,7 +39,7 @@ const DeleteModal=(props)=> {
         </Button>
           <Button
             onClick={() => cancel()}
-            style={{ backgroundColor: "red" }}
+            style={{ backgroundColor: "#4CAF50" }}
           >
             cancel
           </Button>

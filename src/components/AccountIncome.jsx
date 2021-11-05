@@ -66,12 +66,12 @@ const AccountIncome = (props) => {
     else{
     dispatch(postIncome(parseInt(props.account.id),null,"income",form.date,"", "", "", form.detail, form.purpose ,"",form.amount))
     dispatch(fetchTransactions())
-    setForm(initialState)
-    toggleModal();
-    }
+  }
+  setForm(initialState)
     toggleModal();
 
   };
+
 
   function formatDate(date) {
     var d = new Date(date),
@@ -87,16 +87,19 @@ const AccountIncome = (props) => {
     return [year, month, day].join('-');
 }
 
+const settingTransactionId = (id)=>{
+  setDeleteModal(id)
+}
 
 const deleteTransaction = (id)=>{
-  // console.log(id,"id");
-  // alert("Do you want to Delete Transaction")
+  console.log(id,"id");
   // dispatch(props.deleteTrans(id));
   // setTransactions(dispatch(props.fetchTransactions()));
   // temporary
-  // setTransactions(transactions.filter(transaction => transaction.id !== id))
-  setDeleteModal(id)
+  setIncome(income.filter((income) => income.id !== id));
+  setDeleteModal(null)
 }
+
 
   const editTransaction = (income)=>{
     setChangeButton(false);
@@ -148,7 +151,7 @@ const deleteTransaction = (id)=>{
         </div>
       </div>
       <div className="expense_table">
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} style={{ width: 1360 }}>
           <Table className={classes.table} aria-label="simple table">
             <TableHead>
               <TableRow>

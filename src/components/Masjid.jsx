@@ -18,7 +18,6 @@ import Paper from "@material-ui/core/Paper";
 
 const ContainerStyles = {
   width: "1200px",
-  background: "red"
 }
 
 const HeaderStyle = {
@@ -27,13 +26,15 @@ const HeaderStyle = {
   fontSize: "28px",
   textAlign: "center",
   fontFamily: "Jameel",
-  backgroundColor: "#48dbfb"
+  backgroundColor: "#76d1f0"
 };
 
 const tableStyle = {
   fontSize: "20px",
   textAlign: "center",
-  fontFamily: "Jameel"
+  fontFamily: "Jameel",
+  backgroundColor:"#e1e1e1",
+  borderBottom : "0.1rem solid gray"
 };
 
 const initialState = {
